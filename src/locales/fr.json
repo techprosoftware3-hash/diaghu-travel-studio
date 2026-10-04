@@ -1,0 +1,228 @@
+{
+  "site": {
+    "name": "DIAGHU",
+    "subtitle": "Asesor Migratorio",
+    "kicker": "Conseil en immigration · Konsèy imigrasyon",
+    "tagline1": "Votre voyage commence ici.",
+    "tagline2": "Votre voyage commence ici.",
+    "heroDescription": "Visas, conseil en immigration et organisation de voyages internationaux avec la rigueur et la discrétion de la diplomatie. Confidentialité et clarté à chaque étape.",
+    "takeAppointment": "Prendre rendez-vous",
+    "whatsapp": "WhatsApp",
+    "contactUs": "Contact",
+    "aboutUs": "À propos",
+    "home": "Accueil",
+    "services": "Services",
+    "destinations": "Destinations",
+    "preConsultation": "Préconsultation",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "openMenu": "Ouvrir le menu",
+    "metaTitle": "DIAGHU Asesor Migratorio — Visas & Voyages Internationaux",
+    "metaDescription": "Cabinet de conseil en immigration : visas, résidence et voyages internationaux. Réservez une consultation ou écrivez-nous sur WhatsApp.",
+    "ogTitle": "DIAGHU Asesor Migratorio",
+    "ogDescription": "Visas, résidence et voyages internationaux accompagnés avec rigueur et discrétion."
+  },
+  "services": {
+    "01": {
+      "title": "Visas",
+      "body": "Gestion complète des visas d'études, de travail et de résidence avec un dossier impeccable.",
+      "description": "Préparation et vérification du dossier.",
+      "details": "DIAGHU fournit des services d'assistance et d'orientation pour les demandes de visa touristique."
+    },
+    "02": {
+      "title": "Conseil en immigration",
+      "body": "Conseil personnalisé pour chaque profil, du dossier initial au suivi final.",
+      "description": "Orientation concernant les démarches familiales.",
+      "details": "Assistance pour le regroupement familial et les démarches administratives connexes."
+    },
+    "03": {
+      "title": "Organisation de voyage",
+      "body": "Vols, hébergements et logistique coordonnés pour un départ sans stress.",
+      "description": "Évaluation préliminaire de votre situation.",
+      "details": "Analyse de profil et consultation pour évaluer votre éligibilité et vos options."
+    },
+    "04": {
+      "title": "Assistance documentaire",
+      "body": "Organisation et vérification des pièces du dossier.",
+      "description": "Organisation et vérification des pièces du dossier.",
+      "details": "Aide à la préparation et à la vérification de tous les documents nécessaires."
+    }
+  },
+  "servicesPage": {
+    "title": "Nos services",
+    "heading": "Comment pouvons-nous vous aider ?",
+    "subtitle": "DIAGHU fournit des services d'assistance et d'orientation. Aucune approbation de visa n'est garantie.",
+    "disclaimer": "DIAGHU fournit des services d'assistance et d'orientation. Aucune approbation de visa n'est garantie.",
+    "metaTitle": "Nos services — DIAGHU Asesor Migratorio",
+    "metaDescription": "Découvrez nos services d'assistance pour les visas, le regroupement familial et l'analyse de profil.",
+    "ogTitle": "Nos services — DIAGHU",
+    "ogDescription": "Services d'assistance et d'orientation pour vos démarches de visa et administratives."
+  },
+  "destinations": {
+    "eu": {
+      "name": "Europe / Schengen",
+      "description": "Visa Schengen et autres destinations européennes. Informations générales sur les documents, étapes d'application et préparation pour le voyage.",
+      "countries": "10 pays"
+    },
+    "ec": {
+      "name": "Équateur",
+      "description": "Conditions générales, liste des documents à vérifier et procédures spécifiques pour l'Équateur.",
+      "countries": "1 pays"
+    },
+    "br": {
+      "name": "Brésil",
+      "description": "Exigences pour les visas touristiques et d'affaires, documents nécessaires et processus de demande.",
+      "countries": "1 pays"
+    },
+    "gf": {
+      "name": "Guyane",
+      "description": "Informations sur les démarches pour la Guyane française et les territoires d'outre-mer.",
+      "countries": "1 territoire"
+    },
+    "pa": {
+      "name": "Panama",
+      "description": "Conditions d'entrée, types de visas et procédures pour les voyageurs vers Panama.",
+      "countries": "1 pays"
+    }
+  },
+  "destinationsPage": {
+    "title": "Destinations / Destinasyon",
+    "heading": "Pays desservis",
+    "subtitle": "DIAGHU accompagne vers 10 destinations dans le monde.",
+    "contactUs": "Nous contacter",
+    "note": "Les informations spécifiques doivent être vérifiées selon le pays et le consulat concerné.",
+    "metaTitle": "Destinations — DIAGHU Asesor Migratorio",
+    "metaDescription": "Découvrez les destinations que nous desservons : Europe, Équateur, Brésil, Guyane, Panama et plus.",
+    "ogTitle": "Destinations — DIAGHU",
+    "ogDescription": "Nous accompagnons vers de multiples destinations à travers le monde."
+  },
+  "preConsultation": {
+    "title": "Préconsultation",
+    "heading": "Demande de préconsultation",
+    "subtitle": "Premier contact pour comprendre vos besoins.",
+    "errorRequired": "Veuillez remplir tous les champs obligatoires.",
+    "whatsappIntro": "Bonjour DIAGHU — demande de préconsultation.",
+    "fieldName": "Nom",
+    "fieldEmail": "Email",
+    "fieldWhatsapp": "WhatsApp",
+    "fieldDestination": "Pays destination",
+    "fieldService": "Type de service",
+    "labelName": "Nom complet *",
+    "labelEmail": "Email *",
+    "labelWhatsapp": "WhatsApp / Téléphone *",
+    "labelDestination": "Pays de destination",
+    "labelService": "Type de service",
+    "placeholderName": "Votre nom complet",
+    "placeholderEmail": "votre@email.com",
+    "placeholderWhatsapp": "+1 509 …",
+    "placeholderDestination": "France, États-Unis, Canada …",
+    "selectService": "Sélectionnez un service",
+    "serviceTourist": "Visa touristique",
+    "serviceSchengen": "Visa Schengen",
+    "serviceFamily": "Regroupement familial",
+    "serviceProfile": "Analyse de profil",
+    "serviceOther": "Autre demande",
+    "serviceOtherShort": "Autre",
+    "submit": "Envoyer la demande",
+    "success": "WhatsApp s'est ouvert avec votre demande. Si rien ne s'affiche, autorisez les fenêtres pop-up ou contactez-nous au",
+    "metaTitle": "Préconsultation — DIAGHU Asesor Migratorio",
+    "metaDescription": "Premier contact pour comprendre vos besoins en matière de visa et d'assistance migratoire.",
+    "ogTitle": "Préconsultation — DIAGHU",
+    "ogDescription": "Remplissez le formulaire de préconsultation pour votre premier contact avec DIAGHU."
+  },
+  "stats": {
+    "experience": "Ans d'expérience",
+    "files": "Dossiers traités",
+    "success": "Taux de réussite",
+    "countries": "Destinations"
+  },
+  "about": {
+    "title": "À propos",
+    "heading": "Un conseiller qui parle votre langue",
+    "subtitle": "Un conseil clair, dans votre langue, à chaque étape du dossier.",
+    "description1": "DIAGHU Asesor Migratorio naît d'une conviction simple : un dossier migratoire ne devrait jamais être une boîte noire. Nous expliquons chaque document, chaque délai et chaque décision avant de commencer, pour que vous sachiez exactement où vous en êtes.",
+    "description2": "Depuis notre bureau, nous accompagnons particuliers, étudiants et familles : visas d'études et de travail, visa tourisme et organisation complète du voyage.",
+    "description3": "Chaque rendez-vous commence par une évaluation honnête de votre situation, et nous vous donnons un plan clair avec des dates exactes.",
+    "languages": "Créole · Français · Espagnol",
+    "metaTitle": "À propos — DIAGHU Asesor Migratorio",
+    "metaDescription": "Qui se cache derrière DIAGHU : un cabinet de conseil en immigration qui explique chaque étape, en créole, français et espagnol.",
+    "ogTitle": "À propos — DIAGHU",
+    "ogDescription": "Un accompagnement migratoire clair, confidentiel et suivi de près, dans trois langues.",
+    "values": {
+      "01": {
+        "title": "Transparence",
+        "body": "Tarifs annoncés à l'avance, aucun frais caché, aucun faux espoir sur les chances d'un dossier."
+      },
+      "02": {
+        "title": "Confidentialité",
+        "body": "Vos documents restent entre nos mains. Confidentialité contractuelle, du premier échange à la décision."
+      },
+      "03": {
+        "title": "Suivi",
+        "body": "Un point d'avancement à chaque étape, en créole, en français ou en espagnol, jusqu'à la réponse finale."
+      }
+    }
+  },
+  "contact": {
+    "whatsappMessage": "Bonjour, je souhaite obtenir des informations sur vos services de consultation et de visa."
+  },
+  "appointment": {
+    "title": "Rendez-vous",
+    "heading": "Réservez votre consultation",
+    "subtitle": "Remplissez le formulaire — nous répondons sur WhatsApp en moins de 24 heures.",
+    "errorRequired": "Veuillez indiquer votre nom et un téléphone ou courriel pour pouvoir vous répondre.",
+    "whatsappIntro": "Bonjour DIAGHU — demande de rendez-vous.",
+    "fieldName": "Nom",
+    "fieldContact": "Contact",
+    "fieldCountry": "Pays",
+    "fieldService": "Service",
+    "fieldDate": "Date souhaitée",
+    "fieldMessage": "Message",
+    "toBeArranged": "à convenir",
+    "labelName": "Nom *",
+    "labelContact": "Téléphone ou courriel *",
+    "labelCountry": "Pays de résidence",
+    "labelService": "Service souhaité",
+    "labelDate": "Date souhaitée",
+    "labelMessage": "Décrivez votre situation",
+    "placeholderName": "Votre nom complet",
+    "placeholderContact": "+1 509 …",
+    "placeholderCountry": "Haïti, République Dominicaine …",
+    "placeholderMessage": "Études, travail, regroupement familial, renouvellement de statut …",
+    "sendWhatsapp": "Envoyer sur WhatsApp",
+    "writeWithoutForm": "Écrire sans formulaire",
+    "successMessage": "WhatsApp s'est ouvert avec votre demande prête à envoyer. Si rien ne s'affiche, autorisez les fenêtres pop-up ou écrivez-nous directement au",
+    "contactDirect": "Contact direct",
+    "metaTitle": "Rendez-vous — DIAGHU Asesor Migratorio",
+    "metaDescription": "Réservez une consultation avec DIAGHU Asesor Migratorio : indiquez-nous votre cas et nous vous répondons par WhatsApp en moins de 24 heures.",
+    "ogTitle": "Rendez-vous — DIAGHU",
+    "ogDescription": "Demandez un rendez-vous de conseil en immigration ; nous vous répondons par WhatsApp en moins de 24 heures."
+  },
+  "cta": {
+    "heading": "Prêt à décoller ?",
+    "subtitle": "Prêt à décoller ?"
+  },
+  "footer": {
+    "description": "Conseil en immigration haut de gamme. Voyages internationaux en toute confiance.",
+    "contact": "Contact",
+    "hours": "Horaires",
+    "hoursMonFri": "Lundi – Vendredi",
+    "hoursMonFriValue": "9h – 17h",
+    "hoursSat": "Samedi",
+    "hoursSatValue": "sur rendez-vous"
+  },
+  "errors": {
+    "notFound": {
+      "title": "404",
+      "heading": "Page not found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "goHome": "Go home"
+    },
+    "error": {
+      "title": "This page didn't load",
+      "description": "Something went wrong on our end. You can try refreshing or head back home.",
+      "tryAgain": "Try again",
+      "goHome": "Go home"
+    }
+  }
+}

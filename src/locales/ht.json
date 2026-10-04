@@ -1,0 +1,228 @@
+{
+  "site": {
+    "name": "DIAGHU",
+    "subtitle": "Asesor Migratorio",
+    "kicker": "Konsèy imigrasyon · Asesoría migratoria",
+    "tagline1": "Vwayaj ou kòmanse isit la.",
+    "tagline2": "Vwayaj ou kòmanse isit la.",
+    "heroDescription": "Visa, konsèy imigrasyon ak òganizasyon vwayaj entènasyonal ak rigè ak diskresyon diplomasi. Konfidansyalite ak klète nan chak etap.",
+    "takeAppointment": "Pran randevou",
+    "whatsapp": "WhatsApp",
+    "contactUs": "Kontak",
+    "aboutUs": "Ki moun nou ye",
+    "home": "Akèy",
+    "services": "Sèvis",
+    "destinations": "Destinasyon",
+    "preConsultation": "Pre-konsiltasyon",
+    "menu": "Meni",
+    "closeMenu": "Fèmen meni an",
+    "openMenu": "Ouvri meni an",
+    "metaTitle": "DIAGHU Asesor Migratorio — Visa & Vwayaj Entènasyonal",
+    "metaDescription": "Kabinè konsèy imigrasyon: visa, rezidans ak vwayaj entènasyonal. Rezève yon konsiltasyon oswa ekri nou sou WhatsApp.",
+    "ogTitle": "DIAGHU Asesor Migratorio",
+    "ogDescription": "Visa, rezidans ak vwayaj entènasyonal akonpaye ak rigè ak diskresyon."
+  },
+  "services": {
+    "01": {
+      "title": "Visa",
+      "body": "Jesyon konplè visa etid, travay ak rezidans ak dosye san defo.",
+      "description": "Preparasyon ak verifikasyon dosye a.",
+      "details": "DIAGHU bay sèvis asistans ak oryantasyon pou demann viza touristik."
+    },
+    "02": {
+      "title": "Konsèy imigrasyon",
+      "body": "Konsèy pèsonalize pou chak profil, soti nan dosye inisyal jiska swiv final la.",
+      "description": "Oryantasyon sou pwosedi fanmi.",
+      "details": "Asistans pou reyini fanmi ak pwosedi administratif ki gen rapò."
+    },
+    "03": {
+      "title": "Òganizasyon vwayaj",
+      "body": "Vòl, lojman ak lojistik koòdone pou yon depati san stres.",
+      "description": "Evaluasyon premye sitiyasyon ou.",
+      "details": "Analiz profil ak konsiltasyon pou evalye eligibility ou ak opsyon ou yo."
+    },
+    "04": {
+      "title": "Asistans dokimantè",
+      "body": "Òganizasyon ak verifikasyon pyès dosye a.",
+      "description": "Òganizasyon ak verifikasyon pyès dosye a.",
+      "details": "Ed ak preparasyon ak verifikasyon tout dokiman ki nesesè yo."
+    }
+  },
+  "servicesPage": {
+    "title": "Sèvis nou yo",
+    "heading": "Kijan nou ka ede ou?",
+    "subtitle": "DIAGHU bay sèvis asistans ak oryantasyon. Pa gen okenn garanti aprobasyon viza.",
+    "disclaimer": "DIAGHU bay sèvis asistans ak oryantasyon. Pa gen okenn garanti aprobasyon viza.",
+    "metaTitle": "Sèvis nou yo — DIAGHU Asesor Migratorio",
+    "metaDescription": "Dekouvri sèvis asistans nou yo pou viza, reyini fanmi ak analiz profil.",
+    "ogTitle": "Sèvis nou yo — DIAGHU",
+    "ogDescription": "Sèvis asistans ak oryantasyon pou pwosedi viza ak administratif ou yo."
+  },
+  "destinations": {
+    "eu": {
+      "name": "Ewòp / Schengen",
+      "description": "Viza Schengen ak lòt destinasyon ewopeyen. Enfòmasyon jeneral sou dokiman, etap aplikasyon ak preparasyon pou vwayaj la.",
+      "countries": "10 peyi"
+    },
+    "ec": {
+      "name": "Ekwatè",
+      "description": "Kondisyon jeneral, lis dokiman pou verifye ak pwosedi espesifik pou Ekwatè.",
+      "countries": "1 peyi"
+    },
+    "br": {
+      "name": "Brezil",
+      "description": "Ezijans pou viza touristik ak biznis, dokiman nesesè ak pwosedi demann.",
+      "countries": "1 peyi"
+    },
+    "gf": {
+      "name": "Giyàn",
+      "description": "Enfòmasyon sou pwosedi pou Giyàn franse ak teritwa dwayèlamer.",
+      "countries": "1 teritwa"
+    },
+    "pa": {
+      "name": "Panama",
+      "description": "Kondisyon antre, kalite viza ak pwosedi pou vwayajè ki ale Panama.",
+      "countries": "1 peyi"
+    }
+  },
+  "destinationsPage": {
+    "title": "Destinasyon",
+    "heading": "Peyi nou sèvi",
+    "subtitle": "DIAGHU akonpaye nan 10 destinasyon nan lemonn.",
+    "contactUs": "Kontakte nou",
+    "note": "Enfòmasyon espesifik yo dwe verifye selon peyi ak konsila ki konsène a.",
+    "metaTitle": "Destinasyon — DIAGHU Asesor Migratorio",
+    "metaDescription": "Dekouvri destinasyon nou sèvi: Ewòp, Ekwatè, Brezil, Giyàn, Panama ak plis.",
+    "ogTitle": "Destinasyon — DIAGHU",
+    "ogDescription": "Nou akonpaye nan miltip destinasyon atravè lemonn."
+  },
+  "preConsultation": {
+    "title": "Pre-konsiltasyon",
+    "heading": "Demann pre-konsiltasyon",
+    "subtitle": "Premye kontak pou konprann bezwen ou.",
+    "errorRequired": "Tanpri ranpli tout chan ki obligatwa yo.",
+    "whatsappIntro": "Bonjou DIAGHU — demann pre-konsiltasyon.",
+    "fieldName": "Non",
+    "fieldEmail": "Imèl",
+    "fieldWhatsapp": "WhatsApp",
+    "fieldDestination": "Peyi destinasyon",
+    "fieldService": "Kalite sèvis",
+    "labelName": "Non konplè *",
+    "labelEmail": "Imèl *",
+    "labelWhatsapp": "WhatsApp / Telefòn *",
+    "labelDestination": "Peyi destinasyon",
+    "labelService": "Kalite sèvis",
+    "placeholderName": "Non konplè ou",
+    "placeholderEmail": "ou@imel.com",
+    "placeholderWhatsapp": "+1 509 …",
+    "placeholderDestination": "Frans, Etazini, Kanada …",
+    "selectService": "Chwazi yon sèvis",
+    "serviceTourist": "Viza touristik",
+    "serviceSchengen": "Viza Schengen",
+    "serviceFamily": "Reyini fanmi",
+    "serviceProfile": "Analiz profil",
+    "serviceOther": "Lòt sèvis",
+    "serviceOtherShort": "Lòt",
+    "submit": "Voye demann lan",
+    "success": "WhatsApp louvri ak demann ou. Si anyen pa parèt, pèmèt fenèt pop-up oswa kontakte nou nan",
+    "metaTitle": "Pre-konsiltasyon — DIAGHU Asesor Migratorio",
+    "metaDescription": "Premye kontak pou konprann bezwen ou nan viza ak asistans migratwa.",
+    "ogTitle": "Pre-konsiltasyon — DIAGHU",
+    "ogDescription": "Ranpli fòmilè pre-konsiltasyon an pou premye kontak ou ak DIAGHU."
+  },
+  "stats": {
+    "experience": "Lane eksperyans",
+    "files": "Dosye trete",
+    "success": "Pousantaj reyisi",
+    "countries": "Peyi sèvi"
+  },
+  "about": {
+    "title": "Ki moun nou ye",
+    "heading": "Konseye ki pale lang ou",
+    "subtitle": "Yon konseyi klè, nan lang ou, nan chak etap dosye a.",
+    "description1": "DIAGHU Asesor Migratorio fèt soti nan yon konviksyon senp: yon dosye migratwa pa ta dwe tankou yon kachon nwa. Nou eksplike chak dokiman, chak delè ak chak desizyon anvan nou kòmanse, pou ou konbyen kote ou ye.",
+    "description2": "Depi biwo nou, nou akonpaye moun, elèv ak fanmi: visa etid ak travay, viza touristik ak òganizasyon konplè vwayaj la.",
+    "description3": "Chak randevou kòmanse ak yon evalyasyon onèt sitiyasyon ou, epi nou ba w yon plan klè ak dat egzak.",
+    "languages": "Kreyòl · Français · Español",
+    "metaTitle": "Ki moun nou ye — DIAGHU Asesor Migratorio",
+    "metaDescription": "Ki moun ki dèyè DIAGHU: yon kabinè konsèy migratwa ki eksplike chak etap, nan kreyòl, franse ak panyòl.",
+    "ogTitle": "Ki moun nou ye — DIAGHU",
+    "ogDescription": "Yon akonpayman migratwa klè, konfidansyel ak swiv byen, nan twa lang.",
+    "values": {
+      "01": {
+        "title": "Transparans",
+        "body": "Pri anonse avan, pa gen kach koute, pa gen falespwa sou chans yon dosye."
+      },
+      "02": {
+        "title": "Konfidansyalite",
+        "body": "Dokiman ou rete ant men nou. Konfidansyalite kontraktèl, depi premye chanjman jiska desizyon an."
+      },
+      "03": {
+        "title": "Swiv",
+        "body": "Yon pwen avansman nan chak etap, nan kreyòl, franse oswa panyòl, jiska repons final la."
+      }
+    }
+  },
+  "contact": {
+    "whatsappMessage": "Bonjou DIAGHU — mwen vle enfòmasyon sou yon dosye migratwa."
+  },
+  "appointment": {
+    "title": "Randevou",
+    "heading": "Rezève konsiltasyon ou",
+    "subtitle": "Ranpli fòmilè a — nou reponn sou WhatsApp nan mwens pase 24 èdtan.",
+    "errorRequired": "Endike non ou ak yon telefòn oswa imèl pou nou ka reponn ou.",
+    "whatsappIntro": "Bonjou DIAGHU — demann randevou.",
+    "fieldName": "Non",
+    "fieldContact": "Kontak",
+    "fieldCountry": "Peyi",
+    "fieldService": "Sèvis",
+    "fieldDate": "Dat ou vle",
+    "fieldMessage": "Mesaj",
+    "toBeArranged": "a konveni",
+    "labelName": "Non *",
+    "labelContact": "Telefòn oswa imèl *",
+    "labelCountry": "Peyi ou rete",
+    "labelService": "Sèvis ou vle",
+    "labelDate": "Dat ou vle",
+    "labelMessage": "Dekri sitiyasyon ou",
+    "placeholderName": "Non konplè ou",
+    "placeholderContact": "+1 509 …",
+    "placeholderCountry": "Ayiti, Dominikani …",
+    "placeholderMessage": "Etid, travay, reyini fanmi, renouvle estati …",
+    "sendWhatsapp": "Voye sou WhatsApp",
+    "writeWithoutForm": "Ekri san fòmilè",
+    "successMessage": "WhatsApp louvri ak demann ou pare pou voye. Si anyen pa parèt, pèmèt fenèt pop-up oswa ekri nou dirèk nan",
+    "contactDirect": "Kontak dirèk",
+    "metaTitle": "Pran randevou — DIAGHU Asesor Migratorio",
+    "metaDescription": "Rezève yon konsiltasyon ak DIAGHU Asesor Migratorio: di nou ka ou epi nou reponn ou sou WhatsApp nan mwens pase 24 èdtan.",
+    "ogTitle": "Pran randevou — DIAGHU",
+    "ogDescription": "Rezève yon randevou konsèy migratwa; nou reponn ou sou WhatsApp nan mwens pase 24 èdtan."
+  },
+  "cta": {
+    "heading": "Ou pare pou dekole?",
+    "subtitle": "Nou pare pou dekole."
+  },
+  "footer": {
+    "description": "Konsèy imigrasyon wo nivo. Vwayaj entènasyonal ak konfyans.",
+    "contact": "Kontak",
+    "hours": "Èdtan",
+    "hoursMonFri": "Lendi – Vandredi",
+    "hoursMonFriValue": "9h – 17h",
+    "hoursSat": "Samdi",
+    "hoursSatValue": "sou randevou"
+  },
+  "errors": {
+    "notFound": {
+      "title": "404",
+      "heading": "Paj sa pa ekziste",
+      "description": "Paj ou ap chèche a pa ekziste oswa li te deplase.",
+      "goHome": "Ale nan akèy"
+    },
+    "error": {
+      "title": "Paj sa pa charge",
+      "description": "Yon bagay mal pase nan kote nou. Ou ka eseye recharge oswa tounen nan akèy.",
+      "tryAgain": "Eseye ankò",
+      "goHome": "Ale nan akèy"
+    }
+  }
+}

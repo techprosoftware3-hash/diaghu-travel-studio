@@ -1,0 +1,267 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DIAGHU Asesor Migratorio — sistema de diseño.
+ *
+ * Superficies azul marino profundo, tipografía dorada, texto en marfil.
+ * Los tokens se declaran en :root y se exponen a Tailwind en @theme inline
+ * (--color-x genera bg-x / text-x / border-x; --font-x genera font-x).
+ *
+ * Movimiento: rise (aparición escalonada), draw (trazado de la ruta de vuelo),
+ * stamp (sello diplomático), glow (pulso del botón de contacto).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-deep: var(--deep);
+  --color-navy: var(--navy);
+  --color-navy2: var(--navy2);
+  --color-gold: var(--gold);
+  --color-gold2: var(--gold2);
+  --color-ivory: var(--ivory);
+  --color-muted: var(--muted);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Paleta DIAGHU */
+  --deep: #071120;
+  --navy: #0b1b33;
+  --navy2: #0e2242;
+  --gold: #c9a84c;
+  --gold2: #e7c77b;
+  --ivory: #f2ead6;
+  --muted: #9cadcb;
+
+  /* Semánticos (shadcn) sobre la paleta DIAGHU */
+  --background: #071120;
+  --foreground: #f2ead6;
+  --card: #0b1b33;
+  --card-foreground: #f2ead6;
+  --popover: #0b1b33;
+  --popover-foreground: #f2ead6;
+  --primary: #c9a84c;
+  --primary-foreground: #071120;
+  --secondary: #0e2242;
+  --secondary-foreground: #f2ead6;
+  --muted-foreground: #8c9bb8;
+  --accent: #e7c77b;
+  --accent-foreground: #071120;
+  --destructive: #c2554d;
+  --destructive-foreground: #f2ead6;
+  --border: rgba(201, 168, 76, 0.16);
+  --input: rgba(201, 168, 76, 0.32);
+  --ring: #c9a84c;
+  --chart-1: #c9a84c;
+  --chart-2: #e7c77b;
+  --chart-3: #8c9bb8;
+  --chart-4: #0e2242;
+  --chart-5: #f2ead6;
+  --sidebar: #0b1b33;
+  --sidebar-foreground: #f2ead6;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #071120;
+  --sidebar-accent: #0e2242;
+  --sidebar-accent-foreground: #f2ead6;
+  --sidebar-border: rgba(201, 168, 76, 0.16);
+  --sidebar-ring: #c9a84c;
+}
+
+.dark {
+  --background: #071120;
+  --foreground: #f2ead6;
+  --card: #0b1b33;
+  --card-foreground: #f2ead6;
+  --popover: #0b1b33;
+  --popover-foreground: #f2ead6;
+  --primary: #c9a84c;
+  --primary-foreground: #071120;
+  --secondary: #0e2242;
+  --secondary-foreground: #f2ead6;
+  --muted-foreground: #8c9bb8;
+  --accent: #e7c77b;
+  --accent-foreground: #071120;
+  --destructive: #c2554d;
+  --destructive-foreground: #f2ead6;
+  --border: rgba(201, 168, 76, 0.16);
+  --input: rgba(201, 168, 76, 0.32);
+  --ring: #c9a84c;
+  --sidebar: #0b1b33;
+  --sidebar-foreground: #f2ead6;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #071120;
+  --sidebar-accent: #0e2242;
+  --sidebar-accent-foreground: #f2ead6;
+  --sidebar-border: rgba(201, 168, 76, 0.16);
+  --sidebar-ring: #c9a84c;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(201, 168, 76, 0.28);
+    color: var(--ivory);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.25) rotate(-10deg);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.9) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(201, 168, 76, 0);
+  }
+}
+
+@keyframes pulse-zoom {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes fly-across {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - 20px);
+  }
+}
+
+/* Aparición escalonada: se aplica al entrar en pantalla (ver components/reveal.tsx) */
+@utility rise {
+  animation: rise 0.6s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Sello diplomático que se estampa al cargar */
+@utility stamp {
+  animation: stamp 1.1s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Pulso suave del botón de contacto */
+@utility glow {
+  animation: glow 2.6s ease-in-out infinite;
+}
+
+/* Zoom in/zoom out suave del logo */
+@utility pulse-zoom {
+  animation: pulse-zoom 3s ease-in-out infinite;
+}
+
+/* Trazado de la ruta de vuelo */
+@utility draw-line {
+  stroke-dasharray: 1400;
+  animation: draw 2s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .stamp,
+  .glow,
+  .draw-line,
+  .pulse-zoom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
