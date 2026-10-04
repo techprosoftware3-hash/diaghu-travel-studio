@@ -1,21 +1,12 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import i18n from "../lib/i18n";
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const { i18n } = useTranslation();
-
   useEffect(() => {
-    if (!i18n.isInitialized) {
-      console.log("i18n not initialized, initializing...");
-      i18n.init().then(() => {
-        console.log("i18n initialized successfully");
-      }).catch((err) => {
-        console.error("i18n initialization failed:", err);
-      });
-    } else {
-      console.log("i18n already initialized");
-    }
-  }, [i18n]);
+    console.log("I18nProvider mounted, i18n.isInitialized:", i18n.isInitialized);
+    console.log("i18n languages:", i18n.languages);
+    console.log("i18n resources:", Object.keys(i18n.services.resourceStore.data));
+  }, []);
 
   return <>{children}</>;
 }
