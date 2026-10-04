@@ -6,9 +6,9 @@ import es from "../locales/es.json";
 import ht from "../locales/ht.json";
 
 const resources = {
-  fr: { translation: fr },
-  es: { translation: es },
-  ht: { translation: ht },
+  fr: { translation: fr as any },
+  es: { translation: es as any },
+  ht: { translation: ht as any },
 };
 
 void i18n.use(initReactI18next).init({
