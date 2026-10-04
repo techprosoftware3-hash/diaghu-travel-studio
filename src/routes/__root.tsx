@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet-async";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
-import "../lib/i18n";
+import "./lib/i18n";
 
 function NotFoundComponent() {
   const { t } = useTranslation();
