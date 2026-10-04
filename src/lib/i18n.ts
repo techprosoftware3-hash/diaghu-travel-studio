@@ -11,13 +11,16 @@ const resources = {
   ht: { translation: ht },
 };
 
-i18n.use(initReactI18next).init({
-  resources,
-  lng: "fr",
-  fallbackLng: "fr",
-  interpolation: {
-    escapeValue: false,
-  },
-});
+// Solo inicializar si no está inicializado
+if (!i18n.isInitialized) {
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: "fr",
+    fallbackLng: "fr",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+}
 
 export default i18n;
