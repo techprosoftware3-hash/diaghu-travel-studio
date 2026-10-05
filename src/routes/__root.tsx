@@ -9,14 +9,13 @@ import {
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, I18nextProvider } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
-import { I18nProvider } from "@/components/i18n-provider";
-import "../lib/i18n";
+import i18n from "../lib/i18n";
 
 function NotFoundComponent() {
   const { t } = useTranslation();
@@ -147,11 +146,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <I18nProvider>
+      <I18nextProvider i18n={i18n}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <WhatsAppFloat />
-      </I18nProvider>
+      </I18nextProvider>
     </QueryClientProvider>
   );
 }
