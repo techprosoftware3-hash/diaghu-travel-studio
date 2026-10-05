@@ -227,6 +227,26 @@
   }
 }
 
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Aparición escalonada: se aplica al entrar en pantalla (ver components/reveal.tsx) */
 @utility rise {
   animation: rise 0.6s cubic-bezier(0.32, 0.72, 0, 1) both;
@@ -253,12 +273,28 @@
   animation: draw 2s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
+/* Desplazamiento horizontal de izquierda a derecha */
+@utility slide-right {
+  animation: slide-right 1.5s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Rotación continua lenta */
+@utility rotate-slow {
+  animation: rotate-slow 10s linear infinite;
+}
+
+/* Avión volando a lo largo de la línea */
+@utility animate-plane {
+  animation: fly-across 8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise,
   .stamp,
   .glow,
   .draw-line,
-  .pulse-zoom {
+  .pulse-zoom,
+  .slide-right {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

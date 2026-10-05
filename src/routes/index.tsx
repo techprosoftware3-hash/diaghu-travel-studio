@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/site-header";
 import { BTN_GHOST, BTN_GOLD, CARD } from "@/lib/styles";
 import { whatsappLink } from "@/lib/site";
 import emblem from "@/assets/emblem.png";
+import { ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -118,9 +119,16 @@ function Index() {
               </h1>
             </Reveal>
             <Reveal delay={220}>
-              <p className="mt-6 text-balance font-display text-2xl text-ivory italic md:text-3xl">
-                {t("site.tagline1")}
-              </p>
+              <div className="mt-6 flex items-center gap-4 overflow-hidden">
+                <p className="text-balance font-display text-2xl text-ivory italic md:text-3xl">
+                  {t("site.tagline1")}
+                </p>
+                <img
+                  src="https://static.depositphotos.com//storage/ai_tools/preview/1024/file_ad2344bf-d6b1-45ce-9f62-7c509f0a4dba_6ac3a1819a8042.11343767.png"
+                  alt="Travel icon"
+                  className="h-14 rotate-slow"
+                />
+              </div>
             </Reveal>
             <Reveal delay={300}>
               <p className="mt-3 font-display text-lg text-muted italic">{t("site.tagline2")}</p>
@@ -143,6 +151,12 @@ function Index() {
                 >
                   {t("site.whatsapp")}
                 </a>
+              </div>
+            </Reveal>
+            <Reveal delay={520}>
+              <div className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-gold/30 bg-gold/10 px-4 py-2 text-sm font-medium text-gold2 glow">
+                <ShieldCheck className="h-5 w-5" />
+                <span>✓ {t("site.trustBadge")}</span>
               </div>
             </Reveal>
           </div>

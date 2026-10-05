@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet-async";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { AuthProvider } from "@/lib/auth";
 import i18n from "../lib/i18n";
 
 function NotFoundComponent() {
@@ -146,11 +147,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <I18nextProvider i18n={i18n}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-        <WhatsAppFloat />
-      </I18nextProvider>
+      <AuthProvider>
+        <I18nextProvider i18n={i18n}>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+          <WhatsAppFloat />
+        </I18nextProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

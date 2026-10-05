@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut, LogIn, LayoutDashboard } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { BTN_GOLD } from "@/lib/styles";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { useAuth } from "@/lib/auth";
+import { AuthModal } from "@/components/auth-modal";
 import emblem from "@/assets/emblem.png";
 
 const LINK = "text-ivory transition-colors hover:text-gold2";
@@ -38,6 +40,8 @@ function NavLinks({ className }: { className?: string }) {
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const { user, role, signOut } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gold/15 bg-navy/85 backdrop-blur-md">
@@ -64,9 +68,38 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <Link to="/randevou" className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}>
+          {user && (role === 'admin' || role === 'staff') && (
+            <Link
+              to="/admin"
+              className="hidden md:flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+              title={t("site.adminDashboard")}
+            >
+              <LayoutDashboard className="h-4 w-4" />
+              <span>{t("site.adminDashboard")}</span>
+            </Link>
+          )}
+          {user ? (
+            <button
+              onClick={signOut}
+              className="hidden md:flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+              title={t("site.logout")}
+            >
+              <LogOut className="h-4 w-4" />
+              <span>{t("site.logout")}</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowAuthModal(true)}
+              className="hidden md:flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+              title={t("site.login")}
+            >
+              <LogIn className="h-4 w-4" />
+              <span>{t("site.login")}</span>
+            </button>
+          )}
+          {/* <Link to="/randevou" className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}>
             {t("site.takeAppointment")}
-          </Link>
+          </Link> */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -83,15 +116,21 @@ export function SiteHeader() {
         <nav className="border-t border-gold/15 bg-navy px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm">
             <NavLinks />
-            <Link to="/randevou" className={cn(BTN_GOLD, "mt-2 w-full")}>
+            {/* <Link to="/randevou" className={cn(BTN_GOLD, "mt-2 w-full")}>
               {t("site.takeAppointment")}
-            </Link>
+            </Link> */}
             <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
               04 · {t("site.home")} — {t("site.aboutUs")}
             </p>
           </div>
         </nav>
       )}
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        defaultTab="login"
+      />
     </header>
   );
 }

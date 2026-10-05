@@ -183,29 +183,12 @@ CREATE POLICY "Users can view own profile"
   ON users FOR SELECT
   USING (auth.uid()::text = id::text);
 
-CREATE POLICY "Admins can view all users"
-  ON users FOR SELECT
-  USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid()::text::uuid
-      AND role = 'admin'
-    )
-  );
-
 CREATE POLICY "Users can update own profile"
   ON users FOR UPDATE
   USING (auth.uid()::text = id::text);
 
-CREATE POLICY "Admins can update all users"
-  ON users FOR UPDATE
-  USING (
-    EXISTS (
-      SELECT 1 FROM users
-      WHERE id = auth.uid()::text::uuid
-      AND role = 'admin'
-    )
-  );
+-- Note: Admin policies removed to avoid infinite recursion
+-- Admin access will be handled by service role functions
 
 -- Pre-consultations RLS policies
 CREATE POLICY "Anyone can create pre-consultations"

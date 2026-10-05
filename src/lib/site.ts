@@ -10,8 +10,8 @@ export const SITE = {
   /** Solo dígitos, con código de país, sin +, espacios ni guiones. */
   whatsappNumber: "593989632349",
   phoneDisplay: "+593 98 963 23 49",
-  email: "bonjour@diaghu.com",
-  address: "Port-au-Prince, Haïti",
+  email: "diaghuasesormigratorio@gmail.com",
+  address: "www.diaghuasesormigratorio.com",
 } as const;
 
 export function whatsappLink(message: string): string {
