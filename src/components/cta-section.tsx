@@ -25,7 +25,7 @@ export function CtaSection() {
       </Reveal>
       <Reveal delay={280}>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/randevou" className={BTN_GOLD}>
+          <Link to="/pre-consultation" className={BTN_GOLD}>
             {t("site.takeAppointment")}
           </Link>
           <a

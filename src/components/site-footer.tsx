@@ -33,6 +33,13 @@ export function SiteFooter() {
           <div className="text-ivory/85">{SITE.phoneDisplay}</div>
           <div className="text-ivory/85">{SITE.email}</div>
           <div className="text-ivory/85">{SITE.address}</div>
+          <div className="mt-4 flex justify-center">
+            <img
+              src="https://thumbs.dreamstime.com/b/dinero-de-vuelta-garant%C3%ADa-la-insignia-confianza-dise%C3%B1o-vectorial-garantizado-marca-logotipo-226409666.jpg?w=768"
+              alt="Garantía de dinero de vuelta - Insignia de confianza"
+              className="h-16 w-auto object-contain"
+            />
+          </div>
         </div>
         <div className="text-sm md:text-right">
           <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-gold/60">
