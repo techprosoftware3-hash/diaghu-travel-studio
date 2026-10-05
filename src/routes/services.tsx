@@ -27,24 +27,28 @@ function Services() {
       title: t("services.01.title"),
       description: t("services.01.description"),
       details: t("services.01.details"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦", "🇧🇷", "🇪🇨", "🇵🇦"],
     },
     {
       num: "02",
       title: t("services.02.title"),
       description: t("services.02.description"),
       details: t("services.02.details"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
     },
     {
       num: "03",
       title: t("services.03.title"),
       description: t("services.03.description"),
       details: t("services.03.details"),
+      flags: ["🌍"],
     },
     {
       num: "04",
       title: t("services.04.title"),
       description: t("services.04.description"),
       details: t("services.04.details"),
+      flags: ["📄"],
     },
   ];
 
@@ -84,6 +88,13 @@ function Services() {
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
               <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>
               <h3 className="mt-4 font-display text-2xl font-bold text-gold2">{service.title}</h3>
+              <div className="mt-2 flex flex-wrap gap-1 text-2xl">
+                {service.flags.map((flag, idx) => (
+                  <span key={idx} className="transform hover:scale-125 transition-transform">
+                    {flag}
+                  </span>
+                ))}
+              </div>
               <p className="mt-3 text-base leading-relaxed text-ivory/90 text-pretty">
                 {service.description}
               </p>
