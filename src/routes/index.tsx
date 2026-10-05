@@ -140,7 +140,7 @@ function Index() {
             </Reveal>
             <Reveal delay={460}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="/randevou" className={BTN_GOLD}>
+                <a href="/pre-consultation" className={BTN_GOLD}>
                   {t("site.takeAppointment")}
                 </a>
                 <a
