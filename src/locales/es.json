@@ -46,6 +46,30 @@
       "body": "Organización y verificación de las piezas del expediente.",
       "description": "Organización y verificación de las piezas del expediente.",
       "details": "Ayuda en la preparación y verificación de todos los documentos necesarios."
+    },
+    "05": {
+      "title": "Visa Canadá",
+      "body": "Asistencia completa para visas turístico, trabajo y estudios para Canadá.",
+      "description": "Visa trabajo, visa turista, visa estudios.",
+      "details": "Acompañamiento personalizado para todas las solicitudes de visa canadiense."
+    },
+    "06": {
+      "title": "Visa Estados Unidos",
+      "body": "Preparación y asistencia para solicitudes de visa estadounidense.",
+      "description": "B-1/B-2, F-1, H-1B y otras categorías.",
+      "details": "Consejo experto para trámites de visa USA."
+    },
+    "07": {
+      "title": "Reagrupamiento familiar",
+      "body": "Asistencia para reunir a tu familia en tu país de residencia.",
+      "description": "Patrocinio y trámites administrativos.",
+      "details": "Acompañamiento completo para expedientes de reagrupamiento familiar."
+    },
+    "08": {
+      "title": "Solicitud de asilo",
+      "body": "Consejo y asistencia para solicitudes de asilo y protección internacional.",
+      "description": "Evaluación de tu situación y preparación del expediente.",
+      "details": "Acompañamiento en procedimientos de asilo y protección."
     }
   },
   "servicesPage": {

@@ -48,6 +48,31 @@ function Index() {
       title: t("services.03.title"),
       body: t("services.03.body"),
     },
+    {
+      num: "04",
+      title: t("services.04.title"),
+      body: t("services.04.body"),
+    },
+    {
+      num: "05",
+      title: t("services.05.title"),
+      body: t("services.05.body"),
+    },
+    {
+      num: "06",
+      title: t("services.06.title"),
+      body: t("services.06.body"),
+    },
+    {
+      num: "07",
+      title: t("services.07.title"),
+      body: t("services.07.body"),
+    },
+    {
+      num: "08",
+      title: t("services.08.title"),
+      body: t("services.08.body"),
+    },
   ];
 
   const stats = [
@@ -125,7 +150,7 @@ function Index() {
       <FlightPath />
 
       <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-4">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
               <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>

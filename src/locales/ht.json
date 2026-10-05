@@ -46,6 +46,30 @@
       "body": "Òganizasyon ak verifikasyon pyès dosye a.",
       "description": "Òganizasyon ak verifikasyon pyès dosye a.",
       "details": "Ed ak preparasyon ak verifikasyon tout dokiman ki nesesè yo."
+    },
+    "05": {
+      "title": "Visa Kanada",
+      "body": "Asistans konplè pou visa touristik, travay ak etid pou Kanada.",
+      "description": "Visa travay, visa touristik, visa etid.",
+      "details": "Akonpayman pèsonalize pou tout demann visa kanadyen."
+    },
+    "06": {
+      "title": "Visa Etazini",
+      "body": "Preparasyon ak asistans pou demann visa ameriken.",
+      "description": "B-1/B-2, F-1, H-1B ak lòt kategori.",
+      "details": "Konsèy ekspè pou pwosedi visa USA."
+    },
+    "07": {
+      "title": "Reyini fanmi",
+      "body": "Asistans pou reyini fanmi ou nan peyi ou rete.",
+      "description": "Patanaj ak pwosedi administratif.",
+      "details": "Akonpayman konplè pou dosye reyini fanmi."
+    },
+    "08": {
+      "title": "Demann azil",
+      "body": "Konsèy ak asistans pou demann azil ak pwoteksyon entènasyonal.",
+      "description": "Evaluasyon sitiyasyon ou ak preparasyon dosye a.",
+      "details": "Akonpayman nan pwosedi azil ak pwoteksyon."
     }
   },
   "servicesPage": {

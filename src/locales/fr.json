@@ -46,6 +46,30 @@
       "body": "Organisation et vérification des pièces du dossier.",
       "description": "Organisation et vérification des pièces du dossier.",
       "details": "Aide à la préparation et à la vérification de tous les documents nécessaires."
+    },
+    "05": {
+      "title": "Visa Canada",
+      "body": "Assistance complète pour les visas touristique, travail et études pour le Canada.",
+      "description": "Visa travail, visa touriste, visa études.",
+      "details": "Accompagnement personnalisé pour toutes les demandes de visa canadien."
+    },
+    "06": {
+      "title": "Visa États-Unis",
+      "body": "Préparation et assistance pour les demandes de visa américain.",
+      "description": "B-1/B-2, F-1, H-1B et autres catégories.",
+      "details": "Conseil expert pour les démarches de visa USA."
+    },
+    "07": {
+      "title": "Regroupement familial",
+      "body": "Assistance pour réunir votre famille dans votre pays de résidence.",
+      "description": "Parrainage et démarches administratives.",
+      "details": "Accompagnement complet pour les dossiers de regroupement familial."
+    },
+    "08": {
+      "title": "Demande d'asile",
+      "body": "Conseil et assistance pour les demandes d'asile et protection internationale.",
+      "description": "Évaluation de votre situation et préparation du dossier.",
+      "details": "Accompagnement dans les procédures d'asile et de protection."
     }
   },
   "servicesPage": {
