@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { SITE } from "@/lib/site";
 import emblem from "@/assets/emblem.png";
-import { Plane } from "lucide-react";
+import { Plane, Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 export function SiteFooter() {
   const { t } = useTranslation();
@@ -50,6 +50,44 @@ export function SiteFooter() {
           </div>
           <div className="text-ivory/85">
             {t("footer.hoursSat")} · {t("footer.hoursSatValue")}
+          </div>
+          <div className="mt-4 flex justify-end gap-4">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ivory/70 hover:text-gold transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={24} />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ivory/70 hover:text-gold transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={24} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ivory/70 hover:text-gold transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={24} />
+            </a>
+            <a
+              href={`https://wa.me/${SITE.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ivory/70 hover:text-gold transition-colors"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={24} />
+            </a>
           </div>
         </div>
       </div>

@@ -91,21 +91,35 @@ function Services() {
       <SiteHeader />
 
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-20">
-        <Reveal delay={60}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
-            {t("servicesPage.title")}
-          </p>
-        </Reveal>
-        <Reveal delay={140}>
-          <h1 className="mt-5 max-w-[20ch] text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
-            {t("servicesPage.heading")}
-          </h1>
-        </Reveal>
-        <Reveal delay={220}>
-          <p className="mt-6 font-display text-2xl text-muted italic">
-            {t("servicesPage.subtitle")}
-          </p>
-        </Reveal>
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <Reveal delay={60}>
+              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+                {t("servicesPage.title")}
+              </p>
+            </Reveal>
+            <Reveal delay={140}>
+              <h1 className="mt-5 max-w-[20ch] text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
+                {t("servicesPage.heading")}
+              </h1>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="mt-6 font-display text-2xl text-muted italic">
+                {t("servicesPage.subtitle")}
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={120}>
+            <div className="flex justify-center">
+              <img
+                src="https://static.depositphotos.com//storage/ai_tools/preview/1024/file_cdf1a9ba-26a1-4761-8371-b3380ffea84a_6ac3fcb47fca70.66014533.png"
+                alt="Banderas de países - Asesoría migratoria DIAGHU"
+                className="h-64 w-auto object-contain mix-blend-normal rounded-none"
+                style={{ background: '#071120' }}
+              />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       <FlightPath codes="PAP · VISA · ASSISTANCE · ACHEVEMENT" />
