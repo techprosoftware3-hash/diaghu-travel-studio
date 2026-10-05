@@ -50,6 +50,34 @@ function Services() {
       details: t("services.04.details"),
       flags: ["📄"],
     },
+    {
+      num: "05",
+      title: t("services.05.title"),
+      description: t("services.05.description"),
+      details: t("services.05.details"),
+      flags: ["🇨🇦"],
+    },
+    {
+      num: "06",
+      title: t("services.06.title"),
+      description: t("services.06.description"),
+      details: t("services.06.details"),
+      flags: ["🇺🇸"],
+    },
+    {
+      num: "07",
+      title: t("services.07.title"),
+      description: t("services.07.description"),
+      details: t("services.07.details"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
+    },
+    {
+      num: "08",
+      title: t("services.08.title"),
+      description: t("services.08.description"),
+      details: t("services.08.details"),
+      flags: ["🌐"],
+    },
   ];
 
   return (
@@ -83,11 +111,11 @@ function Services() {
       <FlightPath codes="PAP · VISA · ASSISTANCE · ACHEVEMENT" />
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
               <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>
-              <h3 className="mt-4 font-display text-2xl font-bold text-gold2">{service.title}</h3>
+              <h3 className="mt-4 font-display text-xl font-bold text-gold2">{service.title}</h3>
               <div className="mt-2 flex flex-wrap gap-1 text-2xl">
                 {service.flags.map((flag, idx) => (
                   <span key={idx} className="transform hover:scale-125 transition-transform">
@@ -95,10 +123,10 @@ function Services() {
                   </span>
                 ))}
               </div>
-              <p className="mt-3 text-base leading-relaxed text-ivory/90 text-pretty">
+              <p className="mt-3 text-sm leading-relaxed text-ivory/90 text-pretty">
                 {service.description}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-ivory/70 text-pretty">
+              <p className="mt-2 text-xs leading-relaxed text-ivory/70 text-pretty">
                 {service.details}
               </p>
             </Reveal>
