@@ -11,9 +11,34 @@ interface MediaItem {
 
 const CAROUSEL_MEDIA: MediaItem[] = [
   {
+    type: 'image',
+    url: "https://images.unsplash.com/photo-1645969725362-3353993c9fe1?w=1200&auto=format&fit=crop&q=80",
+    alt: "Imagen 1 del carrusel"
+  },
+  {
+    type: 'image',
+    url: "https://images.unsplash.com/photo-1743251173770-a2fa43789eeb?w=1200&auto=format&fit=crop&q=80",
+    alt: "Imagen 2 del carrusel"
+  },
+  {
+    type: 'image',
+    url: "https://images.unsplash.com/photo-1602003355524-184dbe828b18?w=600&auto=format&fit=crop&q=80",
+    alt: "Imagen 3 del carrusel"
+  },
+  {
+    type: 'image',
+    url: "https://images.unsplash.com/photo-1509856124-a6a83c5cd829?w=1200&auto=format&fit=crop&q=80",
+    alt: "Imagen 4 del carrusel"
+  },
+  {
     type: 'video',
     url: "https://www.pexels.com/es-es/download/video/37119474/",
-    alt: "Video del carrusel"
+    alt: "Cabina de pasajeros abarrotada"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/35507462/",
+    alt: "Cabina de avión con pasajeros"
   },
   {
     type: 'video',
@@ -39,6 +64,21 @@ const CAROUSEL_MEDIA: MediaItem[] = [
     type: 'video',
     url: "https://www.pexels.com/es-es/download/video/31256909/",
     alt: "Terminal aeropuerto pasillo móvil"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/35904845/",
+    alt: "Terminal aeropuerto ocupada"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/34782571/",
+    alt: "Facturación en aeropuerto"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/34782566/",
+    alt: "Registro aeropuerto"
   },
   {
     type: 'video',
@@ -71,24 +111,9 @@ const CAROUSEL_MEDIA: MediaItem[] = [
     alt: "Pista avión transporte aviación"
   },
   {
-    type: 'image',
-    url: "https://images.unsplash.com/photo-1645969725362-3353993c9fe1?w=1200&auto=format&fit=crop&q=80",
-    alt: "Imagen 1 del carrusel"
-  },
-  {
-    type: 'image',
-    url: "https://images.unsplash.com/photo-1743251173770-a2fa43789eeb?w=1200&auto=format&fit=crop&q=80",
-    alt: "Imagen 2 del carrusel"
-  },
-  {
-    type: 'image',
-    url: "https://images.unsplash.com/photo-1602003355524-184dbe828b18?w=600&auto=format&fit=crop&q=80",
-    alt: "Imagen 3 del carrusel"
-  },
-  {
-    type: 'image',
-    url: "https://images.unsplash.com/photo-1509856124-a6a83c5cd829?w=1200&auto=format&fit=crop&q=80",
-    alt: "Imagen 4 del carrusel"
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/7089207/",
+    alt: "Sonriente sombras tirantes"
   }
 ];
 
