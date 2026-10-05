@@ -90,7 +90,7 @@ function Services() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-20">
+      <section className="mx-auto max-w-6xl px-6 pt-10 pb-12 md:pt-16 md:pb-20">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
             <Reveal delay={60}>
@@ -124,7 +124,7 @@ function Services() {
 
       <FlightPath codes="PAP · VISA · ASSISTANCE · ACHEVEMENT" />
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>

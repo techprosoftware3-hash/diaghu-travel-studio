@@ -95,7 +95,7 @@ function Index() {
     <div className="min-h-screen bg-deep font-body text-ivory">
       <SiteHeader />
 
-      <section className="relative mx-auto max-w-6xl px-6 pt-10 pb-16">
+      <section className="relative mx-auto max-w-6xl px-6 pt-6 pb-8 md:pt-10 md:pb-16">
         {/* Logo de fondo */}
         <div
           className="absolute inset-0 -z-10 opacity-15 pointer-events-none"
@@ -171,7 +171,7 @@ function Index() {
 
       <FlightPath />
 
-      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20">
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-12 md:py-20">
         <div className="grid gap-5 md:grid-cols-4">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
@@ -193,7 +193,7 @@ function Index() {
       </section>
 
       <section className="border-y border-gold/15 bg-navy">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-14 text-center md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 py-6 text-center md:gap-8 md:py-8 md:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={100 + i * 60}>
               <div className="font-display text-5xl font-black text-gold2">

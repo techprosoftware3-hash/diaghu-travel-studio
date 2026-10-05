@@ -50,7 +50,7 @@ function APropos() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-20">
+      <section className="mx-auto max-w-6xl px-6 pt-10 pb-12 md:pt-16 md:pb-20">
         <Reveal delay={60}>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
             {t("about.title")}
