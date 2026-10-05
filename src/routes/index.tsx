@@ -37,41 +37,49 @@ function Index() {
       num: "01",
       title: t("services.01.title"),
       body: t("services.01.body"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦", "🇧🇷", "🇪🇨", "🇵🇦"],
     },
     {
       num: "02",
       title: t("services.02.title"),
       body: t("services.02.body"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
     },
     {
       num: "03",
       title: t("services.03.title"),
       body: t("services.03.body"),
+      flags: ["🌍"],
     },
     {
       num: "04",
       title: t("services.04.title"),
       body: t("services.04.body"),
+      flags: ["📄"],
     },
     {
       num: "05",
       title: t("services.05.title"),
       body: t("services.05.body"),
+      flags: ["🇨🇦"],
     },
     {
       num: "06",
       title: t("services.06.title"),
       body: t("services.06.body"),
+      flags: ["🇺🇸"],
     },
     {
       num: "07",
       title: t("services.07.title"),
       body: t("services.07.body"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
     },
     {
       num: "08",
       title: t("services.08.title"),
       body: t("services.08.body"),
+      flags: ["🌐"],
     },
   ];
 
@@ -155,6 +163,13 @@ function Index() {
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
               <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>
               <h3 className="mt-4 font-display text-xl font-bold text-gold2">{service.title}</h3>
+              <div className="mt-2 flex flex-wrap gap-1 text-2xl">
+                {service.flags.map((flag, idx) => (
+                  <span key={idx} className="transform hover:scale-125 transition-transform">
+                    {flag}
+                  </span>
+                ))}
+              </div>
               <p className="mt-2 text-sm leading-relaxed text-ivory/80 text-pretty">
                 {service.body}
               </p>
