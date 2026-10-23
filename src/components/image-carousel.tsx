@@ -39,6 +39,16 @@ const CAROUSEL_MEDIA: MediaItem[] = [
     type: 'video',
     url: "https://www.pexels.com/es-es/download/video/35904845/",
     alt: "Terminal aeropuerto ocupada"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/34782571/",
+    alt: "Facturación en aeropuerto"
+  },
+  {
+    type: 'video',
+    url: "https://www.pexels.com/es-es/download/video/29305358/",
+    alt: "Viaje internacional"
   }
 ];
 

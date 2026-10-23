@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as PreConsultationRouteImport } from './routes/pre-consultation'
 import { Route as RandevouRouteImport } from './routes/randevou'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -30,11 +29,6 @@ const AProposRoute = AProposRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DestinationsRoute = DestinationsRouteImport.update({
-  id: '/destinations',
-  path: '/destinations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PreConsultationRoute = PreConsultationRouteImport.update({
@@ -57,7 +51,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
-  '/destinations': typeof DestinationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
@@ -66,7 +59,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
-  '/destinations': typeof DestinationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
@@ -76,7 +68,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
-  '/destinations': typeof DestinationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
@@ -87,7 +78,6 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
-    | '/destinations'
     | '/pre-consultation'
     | '/randevou'
     | '/services'
@@ -96,7 +86,6 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
-    | '/destinations'
     | '/pre-consultation'
     | '/randevou'
     | '/services'
@@ -105,7 +94,6 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
-    | '/destinations'
     | '/pre-consultation'
     | '/randevou'
     | '/services'
@@ -115,7 +103,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AProposRoute: typeof AProposRoute
   AdminRoute: typeof AdminRoute
-  DestinationsRoute: typeof DestinationsRoute
   PreConsultationRoute: typeof PreConsultationRoute
   RandevouRoute: typeof RandevouRoute
   ServicesRoute: typeof ServicesRoute
@@ -142,13 +129,6 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/destinations': {
-      id: '/destinations'
-      path: '/destinations'
-      fullPath: '/destinations'
-      preLoaderRoute: typeof DestinationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pre-consultation': {
@@ -179,7 +159,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
   AdminRoute: AdminRoute,
-  DestinationsRoute: DestinationsRoute,
   PreConsultationRoute: PreConsultationRoute,
   RandevouRoute: RandevouRoute,
   ServicesRoute: ServicesRoute,

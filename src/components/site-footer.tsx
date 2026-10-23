@@ -53,7 +53,7 @@ export function SiteFooter() {
           </div>
           <div className="mt-4 flex justify-end gap-4">
             <a
-              href="https://facebook.com"
+              href="https://web.facebook.com/profile.php?id=61588303456096"
               target="_blank"
               rel="noopener noreferrer"
               className="text-ivory/70 hover:text-gold transition-colors"

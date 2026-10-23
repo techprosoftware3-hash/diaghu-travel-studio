@@ -24,14 +24,11 @@ function NavLinks({ className }: { className?: string }) {
       <Link to="/services" className={cn(LINK, className)}>
         <span className="mr-2 font-mono text-gold/60">03</span>{t("site.services")}
       </Link>
-      <Link to="/destinations" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">04</span>{t("site.destinations")}
-      </Link>
       <Link to="/pre-consultation" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">05</span>{t("site.preConsultation")}
+        <span className="mr-2 font-mono text-gold/60">04</span>{t("site.preConsultation")}
       </Link>
       <Link to="/randevou" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">06</span>{t("site.contactUs")}
+        <span className="mr-2 font-mono text-gold/60">05</span>{t("site.contactUs")}
       </Link>
     </>
   );
