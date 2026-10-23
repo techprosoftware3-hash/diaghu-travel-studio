@@ -10,7 +10,6 @@ interface MediaItem {
 }
 
 const CAROUSEL_MEDIA: MediaItem[] = [
-
   {
     type: 'video',
     url: "https://www.pexels.com/es-es/download/video/37119474/",
@@ -33,68 +32,13 @@ const CAROUSEL_MEDIA: MediaItem[] = [
   },
   {
     type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/13642665/",
-    alt: "Campo avión ventanas"
-  },
-  {
-    type: 'video',
     url: "https://www.pexels.com/es-es/download/video/34739690/",
     alt: "Recorrido interior aeropuerto"
   },
   {
     type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/31256909/",
-    alt: "Terminal aeropuerto pasillo móvil"
-  },
-  {
-    type: 'video',
     url: "https://www.pexels.com/es-es/download/video/35904845/",
     alt: "Terminal aeropuerto ocupada"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/34782571/",
-    alt: "Facturación en aeropuerto"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/34782566/",
-    alt: "Registro aeropuerto"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/32030363/",
-    alt: "Viajeros con pasaporte en terminal"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/28160905/",
-    alt: "Moda hombre amor gente"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/5329480/",
-    alt: "Vacaciones gente amigos de viaje"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/12908965/",
-    alt: "Traje mujer entrenar en pie"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/11993000/",
-    alt: "Pista avión aviación ala de avión"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/11993191/",
-    alt: "Pista avión transporte aviación"
-  },
-  {
-    type: 'video',
-    url: "https://www.pexels.com/es-es/download/video/7089207/",
-    alt: "Sonriente sombras tirantes"
   }
 ];
 
@@ -160,6 +104,7 @@ export function ImageCarousel({ className }: { className?: string }) {
                 src={media.url}
                 alt={media.alt || `Imagen ${index + 1} del carrusel`}
                 className="h-full w-full object-cover"
+                loading={index === currentIndex ? "eager" : "lazy"}
               />
             ) : (
               <video
@@ -169,6 +114,7 @@ export function ImageCarousel({ className }: { className?: string }) {
                 muted
                 loop
                 playsInline
+                preload={index === currentIndex ? "auto" : "none"}
               />
             )}
           </div>
