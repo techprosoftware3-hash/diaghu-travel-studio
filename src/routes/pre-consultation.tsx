@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import { FlightPath } from "@/components/flight-path";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -236,35 +235,33 @@ function PreConsultation() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-14">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-8">
         <Reveal delay={60}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+          <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-gold">
             {t("preConsultation.title")}
           </p>
         </Reveal>
         <Reveal delay={140}>
-          <h1 className="mt-5 max-w-[22ch] text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
+          <h1 className="mt-2 sm:mt-3 max-w-[22ch] text-balance font-display text-3xl sm:text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
             {t("preConsultation.heading")}
           </h1>
         </Reveal>
         <Reveal delay={220}>
-          <p className="mt-6 font-display text-2xl text-muted italic">
+          <p className="mt-2 sm:mt-3 font-display text-lg sm:text-2xl text-muted italic">
             {t("preConsultation.subtitle")}
           </p>
         </Reveal>
       </section>
 
-      <FlightPath codes="CONSULTATION · PAIEMENT · SUIVI" />
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-10 md:grid-cols-12">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-10">
+        <div className="grid gap-6 md:gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <Reveal delay={140}>
               <form
                 onSubmit={onSubmit}
-                className="rounded-[18px] border border-gold/25 bg-navy2/40 p-8 md:p-10"
+                className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6 sm:p-8 md:p-10"
               >
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                   <div>
                     <label className={LABEL} htmlFor="name">
                       {t("preConsultation.labelName")}

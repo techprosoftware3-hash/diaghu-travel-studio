@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import deskStill from "@/assets/desk-still.jpg";
-import { FlightPath } from "@/components/flight-path";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -32,10 +31,8 @@ function Randevou() {
       </Helmet>
       <SiteHeader />
 
-      <FlightPath codes="PAP · DEMANDE · SUIVI · ACORD" />
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-10 md:grid-cols-2">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-20">
+        <div className="grid gap-6 md:gap-10 md:grid-cols-2">
           <div className="md:col-span-1">
             <Reveal delay={240}>
               <div className="aspect-[4/5] w-full overflow-hidden rounded-[18px] bg-navy2 outline-1 -outline-offset-1 outline-gold/10">
@@ -51,17 +48,17 @@ function Randevou() {
             </Reveal>
           </div>
 
-          <div className="md:col-span-1 flex flex-col gap-6">
+          <div className="md:col-span-1 flex flex-col gap-4 sm:gap-6">
             <Reveal delay={240}>
-              <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-7">
+              <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-5 sm:p-7">
                 <p className={LABEL}>{t("appointment.contactDirect")}</p>
-                <p className="mt-4 text-sm text-ivory/85">{SITE.phoneDisplay}</p>
+                <p className="mt-3 sm:mt-4 text-sm text-ivory/85">{SITE.phoneDisplay}</p>
                 <p className="text-sm text-ivory/85">{SITE.email}</p>
                 <p className="text-sm text-ivory/85">{SITE.address}</p>
-                <p className="mt-5 border-t border-gold/15 pt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                <p className="mt-4 sm:mt-5 border-t border-gold/15 pt-4 sm:pt-5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-muted">
                   {t("footer.hoursMonFri")} · {t("footer.hoursMonFriValue")}  /  {t("footer.hoursSat")} · {t("footer.hoursSatValue")}
                 </p>
-                <div className="mt-6">
+                <div className="mt-4 sm:mt-6">
                   <Link to="/pre-consultation" className={BTN_GOLD}>
                     {t("appointment.writeWithoutForm")}
                   </Link>
