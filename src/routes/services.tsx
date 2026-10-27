@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { CtaSection } from "@/components/cta-section";
 import { FlightPath } from "@/components/flight-path";
+import { ImageCarousel, MediaItem } from "@/components/image-carousel";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -20,6 +21,79 @@ export const Route = createFileRoute("/services")({
 
 function Services() {
   const { t } = useTranslation();
+
+  const servicesImages: MediaItem[] = [
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691873-6d6f8f5b60c9?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 1"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691597-681c828fd5d2?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 2"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691549-36a6a3472249?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 3"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691617-79c39a782fa6?q=80&w=410&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 4"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691588-d1fcb0b11752?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 5"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691750-f79284ef999d?q=80&w=410&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 6"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691640-88dd64981308?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 7"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691667-1cf5b0db12b4?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 8"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691640-7d83cd9126e5?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 9"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691615-7995ce92ba02?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 10"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691638-4c9dc7b1c342?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 11"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691563-83994c3dc06a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 12"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691624-42d8d77e9e8a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 13"
+    },
+    {
+      type: 'image',
+      url: "https://images.unsplash.com/photo-1793114691568-e2343997ee87?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      alt: "Travel image 14"
+    }
+  ];
 
   const services = [
     {
@@ -111,12 +185,7 @@ function Services() {
           </div>
           <Reveal delay={120}>
             <div className="flex justify-center">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/10/18/20/18/international-1751293_1280.png"
-                alt="Banderas de países - Asesoría migratoria DIAGHU"
-                className="h-64 w-auto object-contain mix-blend-normal rounded-none"
-                style={{ background: '#071120' }}
-              />
+              <ImageCarousel media={servicesImages} className="h-126 w-auto" />
             </div>
           </Reveal>
         </div>
