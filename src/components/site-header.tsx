@@ -94,9 +94,12 @@ export function SiteHeader() {
               <span>{t("site.login")}</span>
             </button>
           )}
-          {/* <Link to="/randevou" className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}>
+          <Link
+            to="/randevou"
+            className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}
+          >
             {t("site.takeAppointment")}
-          </Link> */}
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -113,9 +116,42 @@ export function SiteHeader() {
         <nav className="border-t border-gold/15 bg-navy px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm">
             <NavLinks />
-            {/* <Link to="/randevou" className={cn(BTN_GOLD, "mt-2 w-full")}>
+            {user && (role === 'admin' || role === 'staff') && (
+              <Link
+                to="/admin"
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                <span>{t("site.adminDashboard")}</span>
+              </Link>
+            )}
+            {user ? (
+              <button
+                onClick={signOut}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>{t("site.logout")}</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setShowAuthModal(true);
+                  setOpen(false);
+                }}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>{t("site.login")}</span>
+              </button>
+            )}
+            <Link
+              to="/randevou"
+              className={cn(BTN_GOLD, "mt-2 w-full justify-center")}
+              onClick={() => setOpen(false)}
+            >
               {t("site.takeAppointment")}
-            </Link> */}
+            </Link>
           </div>
         </nav>
       )}
