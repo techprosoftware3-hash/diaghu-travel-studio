@@ -274,7 +274,9 @@
     "loginRequired": "Vous devez être connecté pour soumettre une préconsultation.",
     "paypalTitle": "Payer la préconsultation",
     "paypalDescription": "Le coût de la préconsultation est de 50 USD.",
-    "paypalButton": "Payer 50 USD avec PayPal"
+    "paypalButton": "Payer 50 USD avec PayPal",
+    "pichinchaButton": "Payer avec Pichincha",
+    "securePayment": "Paiement sécurisé et vérifié par Visa, Mastercard, PayPal et plus"
   },
   "admin": {
     "title": "Administration",

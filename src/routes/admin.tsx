@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import { FlightPath } from "@/components/flight-path";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -208,8 +207,6 @@ function AdminDashboard() {
           </p>
         </Reveal>
       </section>
-
-      <FlightPath codes="DASHBOARD · SUIVI · GESTION" />
 
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="flex gap-4 mb-8">

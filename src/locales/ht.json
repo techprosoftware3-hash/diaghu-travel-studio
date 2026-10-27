@@ -274,7 +274,9 @@
     "loginRequired": "Ou dwe konekte pou voye yon pre-konsiltasyon.",
     "paypalTitle": "Peye pre-konsiltasyon an",
     "paypalDescription": "Kòt pre-konsiltasyon an se 50 USD.",
-    "paypalButton": "Peye 50 USD ak PayPal"
+    "paypalButton": "Peye 50 USD ak PayPal",
+    "pichinchaButton": "Peye ak Pichincha",
+    "securePayment": "Peye ki sekirize ak verifie pa Visa, Mastercard, PayPal ak plis"
   },
   "admin": {
     "title": "Administasyon",

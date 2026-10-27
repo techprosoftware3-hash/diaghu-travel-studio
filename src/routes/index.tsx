@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { CtaSection } from "@/components/cta-section";
-import { FlightPath } from "@/components/flight-path";
 import { ImageCarousel } from "@/components/image-carousel";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
@@ -95,7 +94,7 @@ function Index() {
     <div className="min-h-screen bg-deep font-body text-ivory">
       <SiteHeader />
 
-      <section className="relative mx-auto max-w-6xl px-6 pt-6 pb-8 md:pt-10 md:pb-16">
+      <section className="relative mx-auto max-w-6xl px-6 pt-2 pb-4 md:pt-4 md:pb-6">
         {/* Logo de fondo */}
         <div
           className="absolute inset-0 -z-10 opacity-15 pointer-events-none"
@@ -169,9 +168,7 @@ function Index() {
         </div>
       </section>
 
-      <FlightPath />
-
-      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-12 md:py-20">
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-6 md:py-8">
         <div className="grid gap-5 md:grid-cols-4">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={120 + i * 60} className={CARD}>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
+import { CreditCard } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -399,20 +400,53 @@ function PreConsultation() {
             <Reveal delay={240}>
               <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-7">
                 <h3 className="font-display text-xl font-bold text-gold2 mb-4">{t("auth.paypalTitle")}</h3>
-                <p className="text-sm text-ivory/85 mb-4">{t("auth.paypalDescription")}</p>
-                <a
-                  href="https://www.paypal.com/ncp/payment/VFWUNHUB4A88C"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={BTN_GOLD}
-                >
-                  <img
-                    src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
-                    alt="PayPal"
-                    className="h-6 w-auto mr-2"
-                  />
-                  {t("auth.paypalButton")}
-                </a>
+                <p className="text-sm text-ivory/85 mb-6">{t("auth.paypalDescription")}</p>
+                <div className="space-y-3">
+                  <a
+                    href="https://www.paypal.com/ncp/payment/VFWUNHUB4A88C"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={BTN_GOLD}
+                  >
+                    <img
+                      src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                      alt="PayPal"
+                      className="h-6 w-auto mr-2"
+                    />
+                    {t("auth.paypalButton")}
+                  </a>
+                  <a
+                    href="https://envios.pichincha.com/l/CN1LBrB8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={BTN_GOLD}
+                  >
+                    <CreditCard className="h-6 w-auto mr-2" />
+                    {t("auth.pichinchaButton")}
+                  </a>
+                </div>
+                <div className="mt-6 pt-4 border-t border-gold/15">
+                  <p className="text-xs text-muted text-center mb-3">
+                    {t("auth.securePayment")}
+                  </p>
+                  <div className="flex justify-center gap-3">
+                    <img
+                      src="https://img.icons8.com/color/48/visa.png"
+                      alt="Visa"
+                      className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                    <img
+                      src="https://img.icons8.com/color/48/mastercard.png"
+                      alt="Mastercard"
+                      className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                    <img
+                      src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                      alt="PayPal"
+                      className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="mt-6 rounded-[18px] border border-gold/25 bg-navy2/40 p-7">
                 <p className={LABEL}>{t("appointment.contactDirect")}</p>

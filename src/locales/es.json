@@ -274,7 +274,9 @@
     "loginRequired": "Debe estar conectado para enviar una preconsulta.",
     "paypalTitle": "Pagar la preconsulta",
     "paypalDescription": "El costo de la preconsulta es de 50 USD.",
-    "paypalButton": "Pagar 50 USD con PayPal"
+    "paypalButton": "Pagar 50 USD con PayPal",
+    "pichinchaButton": "Pagar con Pichincha",
+    "securePayment": "Pago seguro y verificado por Visa, Mastercard, PayPal y más"
   },
   "admin": {
     "title": "Administración",
