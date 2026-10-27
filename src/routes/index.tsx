@@ -6,6 +6,7 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { TestimonialsSection } from "@/components/testimonials-section";
 import { BTN_GHOST, BTN_GOLD, CARD } from "@/lib/styles";
 import { whatsappLink } from "@/lib/site";
 import emblem from "@/assets/emblem.png";
@@ -80,6 +81,12 @@ function Index() {
       title: t("services.08.title"),
       body: t("services.08.body"),
       flags: ["🌐"],
+    },
+    {
+      num: "09",
+      title: t("services.09.title"),
+      body: t("services.09.body"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸"],
     },
   ];
 
@@ -205,6 +212,7 @@ function Index() {
         </div>
       </section>
 
+      <TestimonialsSection />
       <CtaSection />
       <SiteFooter />
     </div>

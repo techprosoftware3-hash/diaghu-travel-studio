@@ -27,7 +27,7 @@ function AdminDashboard() {
   const [selectedConsultation, setSelectedConsultation] = useState<any>(null);
   const [showProofModal, setShowProofModal] = useState(false);
   const [rescheduleDate, setRescheduleDate] = useState("");
-  const [activeTab, setActiveTab] = useState<'consultations' | 'slots'>('consultations');
+  const [activeTab, setActiveTab] = useState<'consultations' | 'slots' | 'testimonials'>('consultations');
   const [slots, setSlots] = useState<any[]>([]);
   const [showSlotForm, setShowSlotForm] = useState(false);
   const [newSlot, setNewSlot] = useState({
@@ -36,6 +36,13 @@ function AdminDashboard() {
     end_time: '',
     max_bookings: 1,
     description: ''
+  });
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [showTestimonialForm, setShowTestimonialForm] = useState(false);
+  const [newTestimonial, setNewTestimonial] = useState({
+    client_name: '',
+    content: '',
+    language: 'ht'
   });
 
   useEffect(() => {
@@ -48,6 +55,7 @@ function AdminDashboard() {
     if (role === 'admin' || role === 'staff') {
       fetchConsultations();
       fetchSlots();
+      fetchTestimonials();
     }
   }, [role]);
 
@@ -76,6 +84,19 @@ function AdminDashboard() {
       console.error('Error fetching slots:', error);
     } else {
       setSlots(data || []);
+    }
+  };
+
+  const fetchTestimonials = async () => {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching testimonials:', error);
+    } else {
+      setTestimonials(data || []);
     }
   };
 
@@ -129,6 +150,63 @@ function AdminDashboard() {
       console.error('Error deleting slot:', error);
     } else {
       fetchSlots();
+    }
+  };
+
+  const handleAddTestimonial = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newTestimonial.client_name || !newTestimonial.content) {
+      console.error('Missing required fields');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('testimonials')
+      .insert({
+        client_name: newTestimonial.client_name,
+        content: newTestimonial.content,
+        language: newTestimonial.language,
+        is_approved: false,
+      });
+
+    if (error) {
+      console.error('Error adding testimonial:', error);
+      alert('Error: ' + error.message);
+    } else {
+      fetchTestimonials();
+      setShowTestimonialForm(false);
+      setNewTestimonial({
+        client_name: '',
+        content: '',
+        language: 'ht'
+      });
+    }
+  };
+
+  const handleApproveTestimonial = async (id: string) => {
+    const { error } = await supabase
+      .from('testimonials')
+      .update({ is_approved: true })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error approving testimonial:', error);
+    } else {
+      fetchTestimonials();
+    }
+  };
+
+  const handleDeleteTestimonial = async (id: string) => {
+    const { error } = await supabase
+      .from('testimonials')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting testimonial:', error);
+    } else {
+      fetchTestimonials();
     }
   };
 
@@ -221,16 +299,28 @@ function AdminDashboard() {
             {t("admin.consultationsTab")}
           </button>
           {role === 'admin' && (
-            <button
-              onClick={() => setActiveTab('slots')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                activeTab === 'slots'
-                  ? 'bg-gold text-deep'
-                  : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
-              }`}
-            >
-              {t("admin.slotsTab")}
-            </button>
+            <>
+              <button
+                onClick={() => setActiveTab('slots')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'slots'
+                    ? 'bg-gold text-deep'
+                    : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
+                }`}
+              >
+                {t("admin.slotsTab")}
+              </button>
+              <button
+                onClick={() => setActiveTab('testimonials')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeTab === 'testimonials'
+                    ? 'bg-gold text-deep'
+                    : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
+                }`}
+              >
+                {t("admin.testimonialsTab")}
+              </button>
+            </>
           )}
         </div>
 
@@ -360,6 +450,119 @@ function AdminDashboard() {
                         <Trash2 className="h-4 w-4" />
                         <span>{t("admin.deleteSlot")}</span>
                       </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'testimonials' && role === 'admin' && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="font-display text-2xl font-bold text-gold2">{t("admin.manageTestimonials")}</h2>
+              <button
+                onClick={() => setShowTestimonialForm(!showTestimonialForm)}
+                className="flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors"
+              >
+                <Plus className="h-4 w-4" />
+                <span>{t("admin.addTestimonial")}</span>
+              </button>
+            </div>
+
+            {showTestimonialForm && (
+              <form onSubmit={handleAddTestimonial} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
+                <div className="grid gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-ivory mb-2">{t("admin.clientName")}</label>
+                    <input
+                      type="text"
+                      value={newTestimonial.client_name}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, client_name: e.target.value })}
+                      className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-ivory mb-2">{t("admin.testimonialContent")}</label>
+                    <textarea
+                      value={newTestimonial.content}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, content: e.target.value })}
+                      className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                      rows={4}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-ivory mb-2">{t("admin.language")}</label>
+                    <select
+                      value={newTestimonial.language}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, language: e.target.value })}
+                      className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                    >
+                      <option value="ht">Haitian Creole</option>
+                      <option value="fr">Français</option>
+                      <option value="es">Español</option>
+                      <option value="en">English</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <button
+                    type="submit"
+                    className="rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors"
+                  >
+                    {t("admin.saveTestimonial")}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowTestimonialForm(false)}
+                    className="rounded-lg border border-gold/30 px-4 py-2 text-ivory hover:bg-gold/10 transition-colors"
+                  >
+                    {t("admin.cancel")}
+                  </button>
+                </div>
+              </form>
+            )}
+
+            <div className="space-y-4">
+              {testimonials.length === 0 ? (
+                <p className="text-center text-ivory/80">{t("admin.noTestimonials")}</p>
+              ) : (
+                testimonials.map((testimonial) => (
+                  <div key={testimonial.id} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="font-display text-xl font-bold text-gold2">{testimonial.client_name}</h3>
+                        <p className="mt-2 text-sm text-ivory/80 italic">"{testimonial.content}"</p>
+                        <div className="mt-2 flex items-center gap-4 text-xs text-muted">
+                          <span>{t("admin.language")}: {testimonial.language}</span>
+                          <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 ${
+                            testimonial.is_approved ? 'bg-green-500/10 text-green-400' : 'bg-yellow-500/10 text-yellow-400'
+                          }`}>
+                            {testimonial.is_approved ? t("admin.approved") : t("admin.pending")}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        {!testimonial.is_approved && (
+                          <button
+                            onClick={() => handleApproveTestimonial(testimonial.id)}
+                            className="flex items-center gap-2 rounded border border-green-500/30 px-3 py-2 text-[13px] text-green-400 hover:bg-green-500/10 transition-colors"
+                          >
+                            <Check className="h-4 w-4" />
+                            <span>{t("admin.approve")}</span>
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDeleteTestimonial(testimonial.id)}
+                          className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[13px] text-red-400 hover:bg-red-500/10 transition-colors"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          <span>{t("admin.deleteTestimonial")}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))

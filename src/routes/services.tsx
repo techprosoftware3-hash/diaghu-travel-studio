@@ -152,6 +152,13 @@ function Services() {
       details: t("services.08.details"),
       flags: ["🌐"],
     },
+    {
+      num: "09",
+      title: t("services.09.title"),
+      description: t("services.09.description"),
+      details: t("services.09.details"),
+      flags: ["🇫🇷", "🇪🇸", "🇺🇸"],
+    },
   ];
 
   return (

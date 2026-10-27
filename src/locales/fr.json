@@ -48,7 +48,7 @@
     },
     "04": {
       "title": "Assistance documentaire",
-      "body": "Organisation et vérification des pièces du dossier.",
+      "body": "Organisation et vérification des pièces du dossier. Traduction de documents en français, espagnol et anglais.",
       "description": "Organisation et vérification des pièces du dossier.",
       "details": "Aide à la préparation et à la vérification de tous les documents nécessaires."
     },
@@ -75,6 +75,12 @@
       "body": "Conseil et assistance pour les demandes d'asile et protection internationale.",
       "description": "Évaluation de votre situation et préparation du dossier.",
       "details": "Accompagnement dans les procédures d'asile et de protection."
+    },
+    "09": {
+      "title": "Traduction de documents",
+      "body": "Traduction professionnelle de documents officiels en français, espagnol et anglais.",
+      "description": "Traduction certifiée de documents.",
+      "details": "Services de traduction de documents officiels pour les démarches migratoires."
     }
   },
   "servicesPage": {
@@ -239,6 +245,11 @@
     "heading": "Prêt à décoller ?",
     "subtitle": "Prêt à décoller ?"
   },
+  "testimonials": {
+    "kicker": "Témoignages · Temwayaj",
+    "heading": "Ce que disent nos clients",
+    "subtitle": "Témoignages authentiques de nos clients"
+  },
   "footer": {
     "description": "Conseil en immigration haut de gamme. Voyages internationaux en toute confiance.",
     "contact": "Contact",
@@ -295,7 +306,17 @@
     "paymentProof": "Preuve de paiement",
     "consultationsTab": "Consultations",
     "slotsTab": "Créneaux",
+    "testimonialsTab": "Témoignages",
     "manageSlots": "Gérer les créneaux",
+    "manageTestimonials": "Gérer les témoignages",
+    "addTestimonial": "Ajouter un témoignage",
+    "clientName": "Nom du client",
+    "testimonialContent": "Contenu du témoignage",
+    "language": "Langue",
+    "saveTestimonial": "Enregistrer",
+    "noTestimonials": "Aucun témoignage pour le moment",
+    "approved": "Approuvé",
+    "deleteTestimonial": "Supprimer",
     "addSlot": "Ajouter un créneau",
     "slotDate": "Date",
     "startTime": "Heure de début",

@@ -48,7 +48,7 @@
     },
     "04": {
       "title": "Asistans dokimantè",
-      "body": "Òganizasyon ak verifikasyon pyès dosye a.",
+      "body": "Òganizasyon ak verifikasyon pyès dosye a. Tradiksyon dokiman nan franse, panyòl ak angle.",
       "description": "Òganizasyon ak verifikasyon pyès dosye a.",
       "details": "Ed ak preparasyon ak verifikasyon tout dokiman ki nesesè yo."
     },
@@ -75,6 +75,12 @@
       "body": "Konsèy ak asistans pou demann azil ak pwoteksyon entènasyonal.",
       "description": "Evaluasyon sitiyasyon ou ak preparasyon dosye a.",
       "details": "Akonpayman nan pwosedi azil ak pwoteksyon."
+    },
+    "09": {
+      "title": "Tradiksyon dokiman",
+      "body": "Tradiksyon pwofesyonèl dokiman ofisyèl nan franse, panyòl ak angle.",
+      "description": "Tradiksyon sètifye dokiman.",
+      "details": "Sèvis tradiksyon dokiman ofisyèl pou pwosedi imigrasyon."
     }
   },
   "servicesPage": {
@@ -239,6 +245,11 @@
     "heading": "Ou pare pou dekole?",
     "subtitle": "Nou pare pou dekole."
   },
+  "testimonials": {
+    "kicker": "Temwayaj · Testimonios",
+    "heading": "Sa kliyan nou yo di",
+    "subtitle": "Temwayaj otantik kliyan nou yo"
+  },
   "footer": {
     "description": "Konsèy imigrasyon wo nivo. Vwayaj entènasyonal ak konfyans.",
     "contact": "Kontak",
@@ -295,7 +306,17 @@
     "paymentProof": "Previ peman",
     "consultationsTab": "Konsiltasyon",
     "slotsTab": "Lè",
+    "testimonialsTab": "Temwayaj",
     "manageSlots": "Gere lè yo",
+    "manageTestimonials": "Gere temwayaj yo",
+    "addTestimonial": "Ajoute yon temwayaj",
+    "clientName": "Non kliyan an",
+    "testimonialContent": "Kontni temwayaj la",
+    "language": "Lang",
+    "saveTestimonial": "Anrejistre",
+    "noTestimonials": "Pa gen temwayaj pou kounye a",
+    "approved": "Apwouve",
+    "deleteTestimonial": "Siprime",
     "addSlot": "Ajoute yon lè",
     "slotDate": "Dat",
     "startTime": "Lè kòmanse",

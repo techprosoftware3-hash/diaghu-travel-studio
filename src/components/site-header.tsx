@@ -16,19 +16,19 @@ function NavLinks({ className }: { className?: string }) {
   return (
     <>
       <Link to="/" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">01</span>{t("site.home")}
+        {t("site.home")}
       </Link>
       <Link to="/a-propos" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">02</span>{t("site.aboutUs")}
+        {t("site.aboutUs")}
       </Link>
       <Link to="/services" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">03</span>{t("site.services")}
+        {t("site.services")}
       </Link>
       <Link to="/pre-consultation" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">04</span>{t("site.preConsultation")}
+        {t("site.preConsultation")}
       </Link>
       <Link to="/randevou" className={cn(LINK, className)}>
-        <span className="mr-2 font-mono text-gold/60">05</span>{t("site.contactUs")}
+        {t("site.contactUs")}
       </Link>
     </>
   );
@@ -116,9 +116,6 @@ export function SiteHeader() {
             {/* <Link to="/randevou" className={cn(BTN_GOLD, "mt-2 w-full")}>
               {t("site.takeAppointment")}
             </Link> */}
-            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-              04 · {t("site.home")} — {t("site.aboutUs")}
-            </p>
           </div>
         </nav>
       )}

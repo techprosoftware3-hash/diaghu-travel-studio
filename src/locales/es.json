@@ -48,7 +48,7 @@
     },
     "04": {
       "title": "Asistencia documentaria",
-      "body": "Organización y verificación de las piezas del expediente.",
+      "body": "Organización y verificación de las piezas del expediente. Traducción de documentos en francés, español e inglés.",
       "description": "Organización y verificación de las piezas del expediente.",
       "details": "Ayuda en la preparación y verificación de todos los documentos necesarios."
     },
@@ -75,6 +75,12 @@
       "body": "Consejo y asistencia para solicitudes de asilo y protección internacional.",
       "description": "Evaluación de tu situación y preparación del expediente.",
       "details": "Acompañamiento en procedimientos de asilo y protección."
+    },
+    "09": {
+      "title": "Traducción de documentos",
+      "body": "Traducción profesional de documentos oficiales en francés, español e inglés.",
+      "description": "Traducción certificada de documentos.",
+      "details": "Servicios de traducción de documentos oficiales para trámites migratorios."
     }
   },
   "servicesPage": {
@@ -239,6 +245,11 @@
     "heading": "¿Listo para despegar?",
     "subtitle": "¿Listo para despegar?"
   },
+  "testimonials": {
+    "kicker": "Testimonios · Temwayaj",
+    "heading": "Lo que dicen nuestros clientes",
+    "subtitle": "Testimonios auténticos de nuestros clientes"
+  },
   "footer": {
     "description": "Asesoría migratoria de alta gama. Viajes internacionales con confianza.",
     "contact": "Contacto",
@@ -295,7 +306,17 @@
     "paymentProof": "Comprobante de pago",
     "consultationsTab": "Consultas",
     "slotsTab": "Horarios",
+    "testimonialsTab": "Testimonios",
     "manageSlots": "Gestionar horarios",
+    "manageTestimonials": "Gestionar testimonios",
+    "addTestimonial": "Agregar testimonio",
+    "clientName": "Nombre del cliente",
+    "testimonialContent": "Contenido del testimonio",
+    "language": "Idioma",
+    "saveTestimonial": "Guardar",
+    "noTestimonials": "No hay testimonios por ahora",
+    "approved": "Aprobado",
+    "deleteTestimonial": "Eliminar",
     "addSlot": "Agregar horario",
     "slotDate": "Fecha",
     "startTime": "Hora de inicio",
