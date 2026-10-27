@@ -84,8 +84,8 @@ function Index() {
   ];
 
   const stats = [
-    { value: "12", suffix: "+", label: t("stats.experience") },
-    { value: "1 400", suffix: "", label: t("stats.files") },
+    { value: "6", suffix: "+", label: t("stats.experience") },
+    { value: " 800", suffix: "", label: t("stats.files") },
     { value: "98", suffix: "%", label: t("stats.success") },
     { value: "32", suffix: "", label: t("stats.countries") },
   ];
