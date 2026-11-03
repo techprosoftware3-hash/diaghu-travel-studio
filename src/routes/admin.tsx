@@ -35,7 +35,11 @@ function AdminDashboard() {
     start_time: '',
     end_time: '',
     max_bookings: 1,
-    description: ''
+    description: '',
+    recurrence: 'none', // none, weekly, monthly
+    selectedDays: [] as number[], // 0-6 for Sunday-Saturday
+    monthlyDay: 1, // 1-31
+    recurrenceEndDate: ''
   });
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [showTestimonialForm, setShowTestimonialForm] = useState(false);
@@ -109,9 +113,11 @@ function AdminDashboard() {
       return;
     }
 
-    const { error } = await supabase
-      .from('appointment_slots')
-      .insert({
+    const slotsToInsert: any[] = [];
+
+    if (newSlot.recurrence === 'none') {
+      // Single slot
+      slotsToInsert.push({
         slot_date: newSlot.slot_date,
         start_time: newSlot.start_time,
         end_time: newSlot.end_time,
@@ -119,6 +125,49 @@ function AdminDashboard() {
         description: newSlot.description || null,
         created_by: user?.id,
       });
+    } else if (newSlot.recurrence === 'weekly') {
+      // Weekly recurrence - generate slots for selected days for 4 weeks
+      const startDate = new Date(newSlot.slot_date);
+      const endDate = newSlot(newSlot.recurrenceEndDate || new Date(startDate.getTime() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
+
+      let currentDate = new Date(startDate);
+      while (currentDate <= endDate) {
+        const dayOfWeek = currentDate.getDay();
+        if (newSlot.selectedDays.includes(dayOfWeek)) {
+          slotsToInsert.push({
+            slot_date: currentDate.toISOString().split('T')[0],
+            start_time: newSlot.start_time,
+            end_time: newSlot.end_time,
+            max_bookings: newSlot.max_bookings,
+            description: newSlot.description || null,
+            created_by: user?.id,
+          });
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    } else if (newSlot.recurrence === 'monthly') {
+      // Monthly recurrence - generate slots for specific day for 3 months
+      const startDate = new Date(newSlot.slot_date);
+      const targetDay = newSlot.monthlyDay;
+
+      for (let month = 0; month < 3; month++) {
+        const slotDate = new Date(startDate.getFullYear(), startDate.getMonth() + month, targetDay);
+        if (slotDate.getDate() === targetDay && slotDate >= startDate) {
+          slotsToInsert.push({
+            slot_date: slotDate.toISOString().split('T')[0],
+            start_time: newSlot.start_time,
+            end_time: newSlot.end_time,
+            max_bookings: newSlot.max_bookings,
+            description: newSlot.description || null,
+            created_by: user?.id,
+          });
+        }
+      }
+    }
+
+    const { error } = await supabase
+      .from('appointment_slots')
+      .insert(slotsToInsert);
 
     if (error) {
       console.error('Error adding slot:', error);
@@ -127,7 +176,7 @@ function AdminDashboard() {
       console.error('Error details:', error.details);
       alert('Error: ' + error.message);
     } else {
-      console.log('Slot added successfully');
+      console.log('Slot(s) added successfully');
       fetchSlots();
       setShowSlotForm(false);
       setNewSlot({
@@ -135,7 +184,11 @@ function AdminDashboard() {
         start_time: '',
         end_time: '',
         max_bookings: 1,
-        description: ''
+        description: '',
+        recurrence: 'none',
+        selectedDays: [],
+        monthlyDay: 1,
+        recurrenceEndDate: ''
       });
     }
   };
@@ -350,6 +403,69 @@ function AdminDashboard() {
                       required
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium text-ivory mb-2">{t("admin.recurrence")}</label>
+                    <select
+                      value={newSlot.recurrence}
+                      onChange={(e) => setNewSlot({ ...newSlot, recurrence: e.target.value })}
+                      className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                    >
+                      <option value="none">{t("admin.recurrenceNone")}</option>
+                      <option value="weekly">{t("admin.recurrenceWeekly")}</option>
+                      <option value="monthly">{t("admin.recurrenceMonthly")}</option>
+                    </select>
+                  </div>
+                  {newSlot.recurrence === 'weekly' && (
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-ivory mb-2">{t("admin.selectDays")}</label>
+                      <div className="flex flex-wrap gap-2">
+                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
+                          <button
+                            key={day}
+                            type="button"
+                            onClick={() => {
+                              const days = newSlot.selectedDays.includes(index)
+                                ? newSlot.selectedDays.filter(d => d !== index)
+                                : [...newSlot.selectedDays, index];
+                              setNewSlot({ ...newSlot, selectedDays: days });
+                            }}
+                            className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                              newSlot.selectedDays.includes(index)
+                                ? 'bg-gold text-deep'
+                                : 'bg-navy border border-gold/30 text-ivory hover:bg-gold/10'
+                            }`}
+                          >
+                            {day}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {newSlot.recurrence === 'monthly' && (
+                    <div>
+                      <label className="block text-sm font-medium text-ivory mb-2">{t("admin.monthlyDay")}</label>
+                      <select
+                        value={newSlot.monthlyDay}
+                        onChange={(e) => setNewSlot({ ...newSlot, monthlyDay: parseInt(e.target.value) })}
+                        className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                      >
+                        {Array.from({ length: 31 }, (_, i) => i + 1).map(day => (
+                          <option key={day} value={day}>{day}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  {newSlot.recurrence !== 'none' && (
+                    <div>
+                      <label className="block text-sm font-medium text-ivory mb-2">{t("admin.recurrenceEndDate")}</label>
+                      <input
+                        type="date"
+                        value={newSlot.recurrenceEndDate}
+                        onChange={(e) => setNewSlot({ ...newSlot, recurrenceEndDate: e.target.value })}
+                        className="w-full rounded-lg border border-gold/30 bg-navy px-3 py-2 text-ivory"
+                      />
+                    </div>
+                  )}
                   <div>
                     <label className="block text-sm font-medium text-ivory mb-2">{t("admin.startTime")}</label>
                     <input
