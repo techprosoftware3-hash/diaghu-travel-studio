@@ -77,6 +77,8 @@ function AdminDashboard() {
     setLoadingData(false);
   };
 
+  const pendingCount = consultations.filter(c => c.status === 'pending').length;
+
   const fetchSlots = async () => {
     const { data, error } = await supabase
       .from('appointment_slots')
@@ -344,13 +346,18 @@ function AdminDashboard() {
         <div className="flex gap-4 mb-8">
           <button
             onClick={() => setActiveTab('consultations')}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`relative px-4 py-2 rounded-lg font-medium transition-colors ${
               activeTab === 'consultations'
                 ? 'bg-gold text-deep'
                 : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
             }`}
           >
             {t("admin.consultationsTab")}
+            {pendingCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[11px] font-bold text-white animate-pulse">
+                {pendingCount}
+              </span>
+            )}
           </button>
           {role === 'admin' && (
             <>

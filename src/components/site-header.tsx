@@ -7,6 +7,7 @@ import { BTN_GOLD } from "@/lib/styles";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useAuth } from "@/lib/auth";
 import { AuthModal } from "@/components/auth-modal";
+import { AdminNotificationBadge } from "@/components/admin-notification-badge";
 import emblem from "@/assets/emblem.png";
 
 const LINK = "text-ivory transition-colors hover:text-gold2";
@@ -66,14 +67,17 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           {user && (role === 'admin' || role === 'staff') && (
-            <Link
-              to="/admin"
-              className="hidden md:flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
-              title={t("site.adminDashboard")}
-            >
-              <LayoutDashboard className="h-4 w-4" />
-              <span>{t("site.adminDashboard")}</span>
-            </Link>
+            <div className="relative hidden md:flex">
+              <Link
+                to="/admin"
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+                title={t("site.adminDashboard")}
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                <span>{t("site.adminDashboard")}</span>
+              </Link>
+              <AdminNotificationBadge />
+            </div>
           )}
           {user ? (
             <button
@@ -117,13 +121,16 @@ export function SiteHeader() {
           <div className="flex flex-col gap-3 text-sm">
             <NavLinks />
             {user && (role === 'admin' || role === 'staff') && (
-              <Link
-                to="/admin"
-                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
-              >
-                <LayoutDashboard className="h-4 w-4" />
-                <span>{t("site.adminDashboard")}</span>
-              </Link>
+              <div className="relative">
+                <Link
+                  to="/admin"
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>{t("site.adminDashboard")}</span>
+                </Link>
+                <AdminNotificationBadge />
+              </div>
             )}
             {user ? (
               <button
