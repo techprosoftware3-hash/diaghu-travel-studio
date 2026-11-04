@@ -16,6 +16,7 @@
     "adminDashboard": "Admin",
     "aboutUs": "À propos",
     "home": "Accueil",
+    "myConsultations": "Mes consultations",
     "services": "Services",
     "destinations": "Destinations",
     "preConsultation": "Préconsultation",
@@ -345,6 +346,26 @@
       "booked": "Complet",
       "cancelled": "Annulé"
     },
+    "status": {
+      "pending": "En attente",
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "rescheduled": "Reprogrammé"
+    }
+  },
+  "myConsultations": {
+    "title": "Mes consultations",
+    "heading": "Mes demandes",
+    "subtitle": "Suivez l'état de vos demandes de pré-consultation",
+    "metaTitle": "Mes consultations — DIAGHU",
+    "metaDescription": "Consultez l'état de vos demandes de pré-consultation",
+    "noConsultations": "Vous n'avez aucune demande de pré-consultation",
+    "bookFirst": "Réserver une pré-consultation",
+    "submitted": "Soumis le",
+    "destination": "Destination",
+    "service": "Service",
+    "scheduledDate": "Date programmée",
+    "slot": "Créneau",
     "status": {
       "pending": "En attente",
       "approved": "Approuvé",

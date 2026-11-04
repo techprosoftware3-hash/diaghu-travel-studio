@@ -14,6 +14,7 @@ const LINK = "text-ivory transition-colors hover:text-gold2";
 
 function NavLinks({ className }: { className?: string }) {
   const { t } = useTranslation();
+  const { user } = useAuth();
   return (
     <>
       <Link to="/" className={cn(LINK, className)}>
@@ -28,6 +29,11 @@ function NavLinks({ className }: { className?: string }) {
       <Link to="/pre-consultation" className={cn(LINK, className)}>
         {t("site.preConsultation")}
       </Link>
+      {user && (
+        <Link to="/my-consultations" className={cn(LINK, className)}>
+          {t("site.myConsultations")}
+        </Link>
+      )}
       <Link to="/randevou" className={cn(LINK, className)}>
         {t("site.contactUs")}
       </Link>

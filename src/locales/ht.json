@@ -16,6 +16,7 @@
     "adminDashboard": "Admin",
     "aboutUs": "Ki moun nou ye",
     "home": "Akèy",
+    "myConsultations": "Konsiltasyon mwen yo",
     "services": "Sèvis",
     "destinations": "Destinasyon",
     "preConsultation": "Pre-konsiltasyon",
@@ -345,6 +346,26 @@
       "booked": "Konplè",
       "cancelled": "Anile"
     },
+    "status": {
+      "pending": "An tann",
+      "approved": "Apwouve",
+      "rejected": "Rejte",
+      "rescheduled": "Repwogram"
+    }
+  },
+  "myConsultations": {
+    "title": "Konsiltasyon mwen yo",
+    "heading": "Demann mwen yo",
+    "subtitle": "Swiv eta demann pre-konsiltasyon ou yo",
+    "metaTitle": "Konsiltasyon mwen yo — DIAGHU",
+    "metaDescription": "Gade eta demann pre-konsiltasyon ou yo",
+    "noConsultations": "Ou pa gen okenn demann pre-konsiltasyon",
+    "bookFirst": "Rezève yon pre-konsiltasyon",
+    "submitted": "Voye le",
+    "destination": "Destinasyon",
+    "service": "Sèvis",
+    "scheduledDate": "Dat ki pwogram",
+    "slot": "Lè",
     "status": {
       "pending": "An tann",
       "approved": "Apwouve",
