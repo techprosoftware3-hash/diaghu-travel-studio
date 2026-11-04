@@ -128,7 +128,8 @@ function AdminDashboard() {
     } else if (newSlot.recurrence === 'weekly') {
       // Weekly recurrence - generate slots for selected days for 4 weeks
       const startDate = new Date(newSlot.slot_date);
-      const endDate = newSlot(newSlot.recurrenceEndDate || new Date(startDate.getTime() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
+      const defaultEndDate = new Date(startDate.getTime() + 28 * 24 * 60 * 60 * 1000);
+      const endDate = newSlot.recurrenceEndDate ? new Date(newSlot.recurrenceEndDate) : defaultEndDate;
 
       let currentDate = new Date(startDate);
       while (currentDate <= endDate) {
