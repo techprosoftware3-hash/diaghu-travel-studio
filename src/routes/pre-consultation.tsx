@@ -384,15 +384,30 @@ function PreConsultation() {
                 </div>
 
                 {error && (
-                  <p className="mt-6 rounded-[10px] border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-ivory">
+                  <p className="mt-6 rounded-[10px] border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-ivory">
                     {error}
                   </p>
                 )}
 
                 {sent && !error && (
-                  <p className="mt-6 text-sm leading-relaxed text-gold2">
-                    {t("preConsultation.success")} {SITE.phoneDisplay}.
-                  </p>
+                  <div className="mt-6 rounded-[10px] border border-green-500/40 bg-green-500/10 px-4 py-4">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-deep">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-green-400 mb-2">{t("preConsultation.successTitle")}</h4>
+                        <p className="text-sm text-ivory/90 leading-relaxed">
+                          {t("preConsultation.successMessage")}
+                        </p>
+                        <p className="mt-2 text-xs text-muted">
+                          {t("preConsultation.successContact")} {SITE.phoneDisplay}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 <div className="mt-8">
