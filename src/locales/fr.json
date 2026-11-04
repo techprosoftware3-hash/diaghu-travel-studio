@@ -149,6 +149,7 @@
     "labelService": "Type de service",
     "labelSlot": "Sélectionner un créneau (optionnel)",
     "selectSlot": "Choisir un créneau disponible",
+    "noSlotsAvailable": "Aucun créneau disponible pour le moment",
     "slotPaymentRequired": "Pour réserver un créneau, le paiement est obligatoire",
     "labelPaymentProof": "Preuve de paiement",
     "paymentProofHint": "Image ou PDF du reçu PayPal",

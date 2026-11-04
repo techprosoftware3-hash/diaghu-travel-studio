@@ -334,30 +334,38 @@ function PreConsultation() {
                     <label className={LABEL} htmlFor="slotId">
                       {t("preConsultation.labelSlot")}
                     </label>
-                    <select
-                      id="slotId"
-                      className={`${FIELD} mt-2`}
-                      value={form.slotId}
-                      onChange={(e) => update("slotId", e.target.value)}
-                      disabled={loadingSlots}
-                    >
-                      <option value="">{t("preConsultation.selectSlot")}</option>
-                      {availableSlots.map((slot) => (
-                        <option key={slot.id} value={slot.id}>
-                          {new Date(slot.slot_date + 'T00:00:00').toLocaleDateString('fr-FR', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })} - {slot.start_time} à {slot.end_time}
-                          {slot.description && ` (${slot.description})`}
-                        </option>
-                      ))}
-                    </select>
-                    {form.slotId && (
-                      <p className="mt-2 text-xs text-gold2">
-                        {t("preConsultation.slotPaymentRequired")}
-                      </p>
+                    {loadingSlots ? (
+                      <p className="mt-2 text-sm text-muted">{t("admin.loading")}</p>
+                    ) : availableSlots.length === 0 ? (
+                      <p className="mt-2 text-sm text-muted">{t("preConsultation.noSlotsAvailable")}</p>
+                    ) : (
+                      <>
+                        <select
+                          id="slotId"
+                          className={`${FIELD} mt-2`}
+                          value={form.slotId}
+                          onChange={(e) => update("slotId", e.target.value)}
+                        >
+                          <option value="">{t("preConsultation.selectSlot")}</option>
+                          {availableSlots.map((slot) => (
+                            <option key={slot.id} value={slot.id}>
+                              {new Date(slot.slot_date + 'T00:00:00').toLocaleDateString('fr-FR', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })} - {slot.start_time} à {slot.end_time}
+                              {slot.description && ` (${slot.description})`}
+                              {` (${slot.current_bookings}/${slot.max_bookings} réservés)`}
+                            </option>
+                          ))}
+                        </select>
+                        {form.slotId && (
+                          <p className="mt-2 text-xs text-gold2">
+                            {t("preConsultation.slotPaymentRequired")}
+                          </p>
+                        )}
+                      </>
                     )}
                   </div>
                   <div className="sm:col-span-2">

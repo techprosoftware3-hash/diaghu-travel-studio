@@ -149,6 +149,7 @@
     "labelService": "Tipo de servicio",
     "labelSlot": "Seleccionar un horario (opcional)",
     "selectSlot": "Elegir un horario disponible",
+    "noSlotsAvailable": "No hay horarios disponibles por ahora",
     "slotPaymentRequired": "Para reservar un horario, el pago es obligatorio",
     "labelPaymentProof": "Comprobante de pago",
     "paymentProofHint": "Imagen o PDF del recibo de PayPal",

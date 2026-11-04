@@ -149,6 +149,7 @@
     "labelService": "Kalite sèvis",
     "labelSlot": "Chwazi yon lè (opsyonèl)",
     "selectSlot": "Chwazi yon lè ki disponib",
+    "noSlotsAvailable": "Pa gen lè ki disponib pou kounye a",
     "slotPaymentRequired": "Pou rezève yon lè, peman se obligatwa",
     "labelPaymentProof": "Previ peman",
     "paymentProofHint": "Imaj oswa PDF resevwa PayPal la",
