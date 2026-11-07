@@ -184,7 +184,7 @@ function Services() {
           </div>
           <Reveal delay={120}>
             <div className="flex justify-center">
-              <ImageCarousel media={servicesImages} className="h-126 w-auto" />
+              <ImageCarousel media={servicesImages} className="h-[504px] w-auto" />
             </div>
           </Reveal>
         </div>

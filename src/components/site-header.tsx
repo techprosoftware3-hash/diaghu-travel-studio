@@ -54,7 +54,7 @@ export function SiteHeader() {
           <img
             src={emblem}
             alt="DIAGHU Logo"
-            className="h-16 w-16 object-contain pulse-zoom md:h-22 md:w-22"
+            className="h-16 w-16 object-contain pulse-zoom md:h-[88px] md:w-[88px]"
           />
           <div className="flex flex-col">
             <span className="font-display text-xl font-bold tracking-wide text-gold2">
