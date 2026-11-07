@@ -50,7 +50,7 @@ function APropos() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-10 pb-12 md:pt-16 md:pb-20">
+      <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
         <Reveal delay={60}>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
             {t("about.title")}
@@ -68,7 +68,7 @@ function APropos() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="grid items-center gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Reveal delay={200}>
@@ -109,9 +109,7 @@ function APropos() {
         </div>
       </section>
 
-      <FlightPath codes="PAP · MIA · MAD · YUL" />
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-5 md:grid-cols-3">
           {values.map((value, i) => (
             <Reveal key={value.num} delay={120 + i * 60} className={CARD}>
