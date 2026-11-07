@@ -393,7 +393,10 @@
       "approved": "Apwouve",
       "rejected": "Rejte",
       "rescheduled": "Repwogram"
-    }
+    },
+    "rejectReasonTitle": "Rezon rejet",
+    "rejectReasonPlaceholder": "Egzplike rezon rejet la (egzanp: peman pa trete)",
+    "confirmReject": "Konfime rejet la"
   },
   "myConsultations": {
     "title": "Konsiltasyon mwen yo",
@@ -416,6 +419,10 @@
     },
     "congratulationsTitle": "Brikaj!",
     "congratulationsMessage": "Demann ou apwouve. Konsèye a pral kontakte ou nan lè ou chwazi a.",
-    "advisorWillContact": "Konsèye a pral kontakte ou"
+    "advisorWillContact": "Konsèye a pral kontakte ou",
+    "rejectionTitle": "Demann rejete",
+    "rejectionMessage": "Demann ou rejete. Tanpri gade rezon an anba a.",
+    "rejectionReason": "Rezon rejet la",
+    "claimEmail": "Pou reklame, voye yon imèl nan"
   }
 }

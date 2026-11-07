@@ -393,7 +393,10 @@
       "approved": "Aprobado",
       "rejected": "Rechazado",
       "rescheduled": "Reprogramado"
-    }
+    },
+    "rejectReasonTitle": "Motivo del rechazo",
+    "rejectReasonPlaceholder": "Por favor, explica el motivo del rechazo (ej: pago no procesado)",
+    "confirmReject": "Confirmar rechazo"
   },
   "myConsultations": {
     "title": "Mis consultas",
@@ -416,6 +419,10 @@
     },
     "congratulationsTitle": "¡Felicidades!",
     "congratulationsMessage": "Tu solicitud ha sido aprobada. El asesor te contactará en la franja horaria programada.",
-    "advisorWillContact": "El asesor te contactará"
+    "advisorWillContact": "El asesor te contactará",
+    "rejectionTitle": "Solicitud rechazada",
+    "rejectionMessage": "Tu solicitud ha sido rechazada. Por favor, revisa el motivo a continuación.",
+    "rejectionReason": "Motivo del rechazo",
+    "claimEmail": "Para reclamar, envía un correo a"
   }
 }

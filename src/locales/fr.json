@@ -393,7 +393,10 @@
       "approved": "Approuvé",
       "rejected": "Rejeté",
       "rescheduled": "Reprogrammé"
-    }
+    },
+    "rejectReasonTitle": "Motif du rejet",
+    "rejectReasonPlaceholder": "Veuillez expliquer le motif du rejet (ex: paiement non traité)",
+    "confirmReject": "Confirmer le rejet"
   },
   "myConsultations": {
     "title": "Mes consultations",
@@ -416,6 +419,10 @@
     },
     "congratulationsTitle": "Félicitations !",
     "congratulationsMessage": "Votre demande a été approuvée. Le conseiller vous contactera dans le créneau horaire programmé.",
-    "advisorWillContact": "Le conseiller vous contactera"
+    "advisorWillContact": "Le conseiller vous contactera",
+    "rejectionTitle": "Demande rejetée",
+    "rejectionMessage": "Votre demande a été rejetée. Veuillez consulter le motif ci-dessous.",
+    "rejectionReason": "Motif du rejet",
+    "claimEmail": "Pour réclamer, envoyez un email à"
   }
 }

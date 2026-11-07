@@ -19,6 +19,7 @@ type Consultation = {
   status: string;
   created_at: string;
   scheduled_date: string | null;
+  rejection_reason: string | null;
   appointment_slots: {
     slot_date: string;
     start_time: string;
@@ -186,6 +187,37 @@ function MyConsultations() {
                                 {consultation.appointment_slots.start_time} - {consultation.appointment_slots.end_time}
                               </p>
                             )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {consultation.status === 'rejected' && (
+                      <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-4">
+                        <div className="flex items-start gap-3">
+                          <AlertCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="font-semibold text-red-400 mb-1">
+                              {t("myConsultations.rejectionTitle")}
+                            </p>
+                            <p className="text-sm text-ivory/90 leading-relaxed">
+                              {t("myConsultations.rejectionMessage")}
+                            </p>
+                            {consultation.rejection_reason && (
+                              <p className="mt-2 text-sm text-ivory/80">
+                                <span className="font-medium text-red-400">
+                                  {t("myConsultations.rejectionReason")}:
+                                </span>{' '}
+                                {consultation.rejection_reason}
+                              </p>
+                            )}
+                            <p className="mt-2 text-sm text-ivory/80">
+                              <span className="font-medium text-red-400">
+                                {t("myConsultations.claimEmail")}:
+                              </span>{' '}
+                              <a href="mailto:diaghuasesormigratorio@gmail.com" className="text-gold hover:text-gold/80 underline">
+                                diaghuasesormigratorio@gmail.com
+                              </a>
+                            </p>
                           </div>
                         </div>
                       </div>

@@ -53,6 +53,9 @@ function AdminDashboard() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterSearch, setFilterSearch] = useState<string>('');
   const [filterDate, setFilterDate] = useState<string>('');
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [rejectReason, setRejectReason] = useState('');
+  const [selectedRejectId, setSelectedRejectId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && (role !== 'admin' && role !== 'staff')) {
@@ -315,16 +318,19 @@ function AdminDashboard() {
     }
   };
 
-  const handleReject = async (id: string) => {
+  const handleReject = async (id: string, reason: string) => {
     const { error } = await supabase
       .from('pre_consultations')
-      .update({ status: 'rejected' })
+      .update({ status: 'rejected', rejection_reason: reason })
       .eq('id', id);
 
     if (error) {
       console.error('Error rejecting consultation:', error);
     } else {
       fetchConsultations();
+      setShowRejectModal(false);
+      setRejectReason('');
+      setSelectedRejectId(null);
     }
   };
 
@@ -903,7 +909,10 @@ function AdminDashboard() {
                               <span>{t("admin.approve")}</span>
                             </button>
                             <button
-                              onClick={() => handleReject(consultation.id)}
+                              onClick={() => {
+                                setSelectedRejectId(consultation.id);
+                                setShowRejectModal(true);
+                              }}
                               className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[13px] text-red-400 hover:bg-red-500/10 transition-colors"
                             >
                               <X className="h-4 w-4" />
@@ -1011,6 +1020,56 @@ function AdminDashboard() {
                   transformOrigin: 'center center'
                 }}
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showRejectModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="max-w-md w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-display text-xl font-bold text-gold2">{t("admin.rejectReasonTitle")}</h3>
+              <button
+                onClick={() => {
+                  setShowRejectModal(false);
+                  setRejectReason('');
+                  setSelectedRejectId(null);
+                }}
+                className="text-ivory/70 hover:text-ivory"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <textarea
+              value={rejectReason}
+              onChange={(e) => setRejectReason(e.target.value)}
+              placeholder={t("admin.rejectReasonPlaceholder")}
+              className="w-full rounded-lg border border-gold/30 bg-navy px-4 py-3 text-ivory min-h-[120px] mb-4"
+              rows={4}
+            />
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  if (selectedRejectId && rejectReason.trim()) {
+                    handleReject(selectedRejectId, rejectReason);
+                  }
+                }}
+                disabled={!rejectReason.trim()}
+                className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-white font-medium hover:bg-red-500/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {t("admin.confirmReject")}
+              </button>
+              <button
+                onClick={() => {
+                  setShowRejectModal(false);
+                  setRejectReason('');
+                  setSelectedRejectId(null);
+                }}
+                className="flex-1 rounded-lg border border-gold/30 px-4 py-2 text-ivory hover:bg-gold/10 transition-colors"
+              >
+                {t("admin.cancel")}
+              </button>
             </div>
           </div>
         </div>
