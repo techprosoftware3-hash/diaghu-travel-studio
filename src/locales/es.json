@@ -336,6 +336,8 @@
     "registerButton": "Registrarse",
     "loading": "Cargando...",
     "loginRequired": "Debe estar conectado para enviar una preconsulta.",
+    "humanValidation": "Verificación humana",
+    "humanValidationError": "Respuesta incorrecta. Por favor resuelva la suma correctamente.",
     "paypalTitle": "Pagar la preconsulta",
     "paypalDescription": "El costo de la preconsulta es de 50 USD.",
     "paypalButton": "Pagar 50 USD con PayPal",

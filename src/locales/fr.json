@@ -336,6 +336,8 @@
     "registerButton": "S'inscrire",
     "loading": "Chargement...",
     "loginRequired": "Vous devez être connecté pour soumettre une préconsultation.",
+    "humanValidation": "Vérification humaine",
+    "humanValidationError": "Réponse incorrecte. Veuillez résoudre l'addition correctement.",
     "paypalTitle": "Payer la préconsultation",
     "paypalDescription": "Le coût de la préconsultation est de 50 USD.",
     "paypalButton": "Payer 50 USD avec PayPal",

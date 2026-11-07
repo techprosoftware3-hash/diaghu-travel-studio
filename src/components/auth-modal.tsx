@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/lib/auth';
 import { X } from 'lucide-react';
@@ -18,6 +18,25 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [userAnswer, setUserAnswer] = useState('');
+
+  // Generate new math challenge
+  const generateMathChallenge = () => {
+    const n1 = Math.floor(Math.random() * 10) + 1;
+    const n2 = Math.floor(Math.random() * 10) + 1;
+    setNum1(n1);
+    setNum2(n2);
+    setUserAnswer('');
+  };
+
+  // Generate challenge when tab changes to register
+  useEffect(() => {
+    if (tab === 'register') {
+      generateMathChallenge();
+    }
+  }, [tab]);
 
   if (!isOpen) return null;
 
@@ -44,6 +63,15 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
 
     if (!fullName) {
       setError('Please enter your full name');
+      setLoading(false);
+      return;
+    }
+
+    // Validate math challenge
+    const correctAnswer = num1 + num2;
+    if (parseInt(userAnswer) !== correctAnswer) {
+      setError(t('auth.humanValidationError'));
+      generateMathChallenge();
       setLoading(false);
       return;
     }
@@ -184,6 +212,27 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                 required
                 minLength={6}
               />
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-medium text-ivory">
+                {t('auth.humanValidation')}
+              </label>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 rounded-xl border border-gold/30 bg-deep/50 px-4 py-3">
+                  <span className="text-gold2 font-display text-lg font-bold">{num1}</span>
+                  <span className="text-ivory">+</span>
+                  <span className="text-gold2 font-display text-lg font-bold">{num2}</span>
+                  <span className="text-ivory">=</span>
+                </div>
+                <input
+                  type="number"
+                  value={userAnswer}
+                  onChange={(e) => setUserAnswer(e.target.value)}
+                  className="flex-1 rounded-xl border border-gold/30 bg-deep/50 px-4 py-3 text-ivory placeholder:text-muted/50 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
+                  placeholder="?"
+                  required
+                />
+              </div>
             </div>
             <button
               type="submit"

@@ -336,6 +336,8 @@
     "registerButton": "Enskri",
     "loading": "Chaj...",
     "loginRequired": "Ou dwe konekte pou voye yon pre-konsiltasyon.",
+    "humanValidation": "Validasyon moun",
+    "humanValidationError": "Repons ou pa kòrèk. Tanpri rezouvw adisyon an kòrèkteman.",
     "paypalTitle": "Peye pre-konsiltasyon an",
     "paypalDescription": "Kòt pre-konsiltasyon an se 50 USD.",
     "paypalButton": "Peye 50 USD ak PayPal",
