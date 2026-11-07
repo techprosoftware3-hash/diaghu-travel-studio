@@ -57,7 +57,7 @@ function APropos() {
           </p>
         </Reveal>
         <Reveal delay={140}>
-          <h1 className="mt-5 max-w-[20ch] text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
+          <h1 className="mt-5 font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl whitespace-nowrap">
             {t("about.heading")}
           </h1>
         </Reveal>
