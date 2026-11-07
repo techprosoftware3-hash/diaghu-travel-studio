@@ -163,6 +163,24 @@ function Services() {
       description: t("servicesPage.casierDescription"),
       icon: "⚖️",
     },
+    {
+      id: "residence",
+      title: t("servicesPage.residenceSection"),
+      description: t("servicesPage.residenceDescription"),
+      icon: "�",
+    },
+    {
+      id: "travail",
+      title: t("servicesPage.travailSection"),
+      description: t("servicesPage.travailDescription"),
+      icon: "💼",
+    },
+    {
+      id: "etudiant",
+      title: t("servicesPage.etudiantSection"),
+      description: t("servicesPage.etudiantDescription"),
+      icon: "🎓",
+    },
   ];
 
   return (
