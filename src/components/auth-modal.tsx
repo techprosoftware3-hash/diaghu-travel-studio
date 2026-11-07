@@ -21,6 +21,8 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [welcomeName, setWelcomeName] = useState('');
 
   // Generate new math challenge
   const generateMathChallenge = () => {
@@ -81,7 +83,13 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
     if (error) {
       setError(error.message);
     } else {
-      onClose();
+      setWelcomeName(fullName);
+      setShowWelcome(true);
+      setTab('login');
+      setEmail('');
+      setPassword('');
+      setFullName('');
+      setUserAnswer('');
     }
 
     setLoading(false);
@@ -132,6 +140,27 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
         {error && (
           <div className="mb-6 rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-sm text-red-400 animate-in slide-in-from-top-2">
             {error}
+          </div>
+        )}
+
+        {showWelcome && (
+          <div className="mb-6 rounded-xl bg-green-500/10 border border-green-500/30 p-6 text-center animate-in slide-in-from-top-2">
+            <div className="text-4xl mb-3">🎉</div>
+            <h3 className="font-display text-xl font-bold text-green-400 mb-2">
+              {t('auth.welcomeTitle')}
+            </h3>
+            <p className="text-sm text-ivory/90">
+              {t('auth.welcomeMessage', { name: welcomeName })}
+            </p>
+            <button
+              onClick={() => {
+                setShowWelcome(false);
+                onClose();
+              }}
+              className="mt-4 rounded-lg bg-green-500 px-6 py-2 text-white font-medium hover:bg-green-500/90 transition-colors"
+            >
+              {t('auth.continue')}
+            </button>
           </div>
         )}
 
