@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { Check, X, Calendar, Clock, AlertCircle } from "lucide-react";
+import { Check, X, Calendar, Clock, AlertCircle, Edit2, Save } from "lucide-react";
 
 type Consultation = {
   id: string;
@@ -42,6 +42,10 @@ function MyConsultations() {
   const { user, loading: authLoading } = useAuth();
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editEmail, setEditEmail] = useState('');
+  const [editWhatsapp, setEditWhatsapp] = useState('');
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -100,6 +104,39 @@ function MyConsultations() {
       default:
         return 'bg-gold/10 text-gold2 border-gold/30';
     }
+  };
+
+  const handleEdit = (consultation: Consultation) => {
+    setEditingId(consultation.id);
+    setEditEmail(consultation.email);
+    setEditWhatsapp(consultation.whatsapp);
+  };
+
+  const handleSave = async (id: string) => {
+    setSaving(true);
+    try {
+      const { error } = await supabase
+        .from('pre_consultations')
+        .update({ email: editEmail, whatsapp: editWhatsapp })
+        .eq('id', id);
+
+      if (error) {
+        console.error('Error updating consultation:', error);
+      } else {
+        setEditingId(null);
+        fetchConsultations();
+      }
+    } catch (err) {
+      console.error('Error updating consultation:', err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setEditingId(null);
+    setEditEmail('');
+    setEditWhatsapp('');
   };
 
   if (authLoading || loading) {
@@ -232,6 +269,57 @@ function MyConsultations() {
                           day: 'numeric'
                         })}
                       </p>
+                      {editingId === consultation.id ? (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-gold/60">{t("myConsultations.email")}:</span>
+                            <input
+                              type="email"
+                              value={editEmail}
+                              onChange={(e) => setEditEmail(e.target.value)}
+                              className="flex-1 rounded-lg border border-gold/30 bg-deep/50 px-3 py-1 text-ivory text-sm focus:border-gold focus:outline-none"
+                            />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-gold/60">{t("myConsultations.whatsapp")}:</span>
+                            <input
+                              type="text"
+                              value={editWhatsapp}
+                              onChange={(e) => setEditWhatsapp(e.target.value)}
+                              className="flex-1 rounded-lg border border-gold/30 bg-deep/50 px-3 py-1 text-ivory text-sm focus:border-gold focus:outline-none"
+                            />
+                          </div>
+                          <div className="flex gap-2 mt-2">
+                            <button
+                              onClick={() => handleSave(consultation.id)}
+                              disabled={saving}
+                              className="flex items-center gap-2 rounded-lg bg-green-500 px-3 py-1 text-white text-sm hover:bg-green-500/90 disabled:opacity-50 transition-colors"
+                            >
+                              <Save className="h-4 w-4" />
+                              <span>{t("myConsultations.save")}</span>
+                            </button>
+                            <button
+                              onClick={handleCancel}
+                              disabled={saving}
+                              className="flex items-center gap-2 rounded-lg border border-gold/30 px-3 py-1 text-ivory text-sm hover:bg-gold/10 disabled:opacity-50 transition-colors"
+                            >
+                              <X className="h-4 w-4" />
+                              <span>{t("myConsultations.cancel")}</span>
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-ivory/80">
+                            <span className="font-mono text-gold/60">{t("myConsultations.email")}:</span>{' '}
+                            {consultation.email}
+                          </p>
+                          <p className="text-ivory/80">
+                            <span className="font-mono text-gold/60">{t("myConsultations.whatsapp")}:</span>{' '}
+                            {consultation.whatsapp}
+                          </p>
+                        </>
+                      )}
                       {consultation.destination_country && (
                         <p className="text-ivory/80">
                           <span className="font-mono text-gold/60">{t("myConsultations.destination")}:</span>{' '}
@@ -264,8 +352,20 @@ function MyConsultations() {
                       )}
                     </div>
                   </div>
-                  <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium border ${getStatusColor(consultation.status)}`}>
-                    {t(`myConsultations.status.${consultation.status}`)}
+                  <div className="flex flex-col items-end gap-2">
+                    <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium border ${getStatusColor(consultation.status)}`}>
+                      {t(`myConsultations.status.${consultation.status}`)}
+                    </div>
+                    {editingId !== consultation.id && (
+                      <button
+                        onClick={() => handleEdit(consultation)}
+                        className="flex items-center gap-2 rounded-lg border border-gold/30 px-3 py-2 text-xs text-gold2 hover:bg-gold/10 transition-colors"
+                        title={t("myConsultations.editContact")}
+                      >
+                        <Edit2 className="h-4 w-4" />
+                        <span>{t("myConsultations.edit")}</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </Reveal>
