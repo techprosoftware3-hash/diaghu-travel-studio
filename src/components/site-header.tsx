@@ -104,12 +104,14 @@ export function SiteHeader() {
               <span>{t("site.login")}</span>
             </button>
           )}
-          <Link
-            to="/randevou"
-            className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}
-          >
-            {t("site.takeAppointment")}
-          </Link>
+          {!user && (
+            <Link
+              to="/randevou"
+              className={cn(BTN_GOLD, "hidden px-4 py-2 text-[13px] md:inline-flex")}
+            >
+              {t("site.takeAppointment")}
+            </Link>
+          )}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -158,13 +160,15 @@ export function SiteHeader() {
                 <span>{t("site.login")}</span>
               </button>
             )}
-            <Link
-              to="/randevou"
-              className={cn(BTN_GOLD, "mt-2 w-full justify-center")}
-              onClick={() => setOpen(false)}
-            >
-              {t("site.takeAppointment")}
-            </Link>
+            {!user && (
+              <Link
+                to="/randevou"
+                className={cn(BTN_GOLD, "mt-2 w-full justify-center")}
+                onClick={() => setOpen(false)}
+              >
+                {t("site.takeAppointment")}
+              </Link>
+            )}
           </div>
         </nav>
       )}
