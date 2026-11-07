@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet-async";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { AutoLogoutNotification } from "@/components/auto-logout-notification";
 import { AuthProvider } from "@/lib/auth";
 import i18n from "../lib/i18n";
 
@@ -152,6 +153,7 @@ function RootComponent() {
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <WhatsAppFloat />
+          <AutoLogoutNotification />
         </I18nextProvider>
       </AuthProvider>
     </QueryClientProvider>

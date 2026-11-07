@@ -135,7 +135,7 @@ function MyConsultations() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-8">
         {consultations.length === 0 ? (
           <Reveal delay={140}>
             <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-12 text-center">
@@ -161,6 +161,35 @@ function MyConsultations() {
                         {t(`myConsultations.status.${consultation.status}`)}
                       </h3>
                     </div>
+                    {consultation.status === 'approved' && (
+                      <div className="mb-4 rounded-lg border border-green-500/30 bg-green-500/10 p-4">
+                        <div className="flex items-start gap-3">
+                          <Check className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="font-semibold text-green-400 mb-1">
+                              {t("myConsultations.congratulationsTitle")}
+                            </p>
+                            <p className="text-sm text-ivory/90 leading-relaxed">
+                              {t("myConsultations.congratulationsMessage")}
+                            </p>
+                            {consultation.appointment_slots && (
+                              <p className="mt-2 text-sm text-ivory/80">
+                                <span className="font-medium text-green-400">
+                                  {t("myConsultations.advisorWillContact")}:
+                                </span>{' '}
+                                {new Date(consultation.appointment_slots.slot_date).toLocaleDateString('fr-FR', {
+                                  weekday: 'long',
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric'
+                                })}{' '}
+                                {consultation.appointment_slots.start_time} - {consultation.appointment_slots.end_time}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     <div className="space-y-2 text-sm">
                       <p className="text-ivory/80">
                         <span className="font-mono text-gold/60">{t("myConsultations.submitted")}:</span>{' '}

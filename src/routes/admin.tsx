@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { Check, X, Calendar, Eye, Plus, Trash2 } from "lucide-react";
+import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -26,6 +26,8 @@ function AdminDashboard() {
   const [loadingData, setLoadingData] = useState(true);
   const [selectedConsultation, setSelectedConsultation] = useState<any>(null);
   const [showProofModal, setShowProofModal] = useState(false);
+  const [imageZoom, setImageZoom] = useState(1);
+  const [imageRotation, setImageRotation] = useState(0);
   const [rescheduleDate, setRescheduleDate] = useState("");
   const [activeTab, setActiveTab] = useState<'consultations' | 'slots' | 'testimonials'>('consultations');
   const [slots, setSlots] = useState<any[]>([]);
@@ -48,6 +50,9 @@ function AdminDashboard() {
     content: '',
     language: 'ht'
   });
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [filterSearch, setFilterSearch] = useState<string>('');
+  const [filterDate, setFilterDate] = useState<string>('');
 
   useEffect(() => {
     if (!loading && (role !== 'admin' && role !== 'staff')) {
@@ -78,6 +83,37 @@ function AdminDashboard() {
   };
 
   const pendingCount = consultations.filter(c => c.status === 'pending').length;
+
+  const filteredConsultations = consultations.filter(consultation => {
+    // Filter by status
+    if (filterStatus !== 'all' && consultation.status !== filterStatus) {
+      return false;
+    }
+
+    // Filter by search (name, email, or whatsapp)
+    if (filterSearch) {
+      const searchLower = filterSearch.toLowerCase();
+      const matchesName = consultation.full_name?.toLowerCase().includes(searchLower);
+      const matchesEmail = consultation.email?.toLowerCase().includes(searchLower);
+      const matchesWhatsapp = consultation.whatsapp?.toLowerCase().includes(searchLower);
+      const matchesDestination = consultation.destination_country?.toLowerCase().includes(searchLower);
+      const matchesService = consultation.service_type?.toLowerCase().includes(searchLower);
+
+      if (!matchesName && !matchesEmail && !matchesWhatsapp && !matchesDestination && !matchesService) {
+        return false;
+      }
+    }
+
+    // Filter by date
+    if (filterDate) {
+      const consultationDate = new Date(consultation.created_at).toISOString().split('T')[0];
+      if (consultationDate !== filterDate) {
+        return false;
+      }
+    }
+
+    return true;
+  });
 
   const fetchSlots = async () => {
     const { data, error } = await supabase
@@ -308,6 +344,39 @@ function AdminDashboard() {
     }
   };
 
+  const handleDelete = async (id: string) => {
+    console.log('Attempting to delete consultation with ID:', id);
+
+    if (!confirm('¿Está seguro de que desea eliminar esta solicitud? Esta acción no se puede deshacer.')) {
+      console.log('Delete cancelled by user');
+      return;
+    }
+
+    console.log('Deleting consultation ID:', id);
+
+    const { error, data } = await supabase
+      .from('pre_consultations')
+      .delete()
+      .eq('id', id)
+      .select();
+
+    console.log('Delete result:', { error, data });
+
+    if (error) {
+      console.error('Error deleting consultation:', error);
+      console.error('Error details:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      alert('Error al eliminar la solicitud: ' + error.message);
+    } else {
+      console.log('Successfully deleted consultation');
+      fetchConsultations();
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-deep font-body text-ivory flex items-center justify-center">
@@ -325,13 +394,8 @@ function AdminDashboard() {
       <SiteHeader />
 
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-14">
-        <Reveal delay={60}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
-            {t("admin.title")}
-          </p>
-        </Reveal>
         <Reveal delay={140}>
-          <h1 className="mt-5 text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
+          <h1 className="text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
             {t("admin.heading")}
           </h1>
         </Reveal>
@@ -342,7 +406,7 @@ function AdminDashboard() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-6 py-8">
         <div className="flex gap-4 mb-8">
           <button
             onClick={() => setActiveTab('consultations')}
@@ -697,19 +761,87 @@ function AdminDashboard() {
 
         {activeTab === 'consultations' && (
           <>
+            <div className="mb-6 space-y-4">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="Buscar por nombre, email, WhatsApp, destino o servicio..."
+                    value={filterSearch}
+                    onChange={(e) => setFilterSearch(e.target.value)}
+                    className="w-full rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory placeholder:text-ivory/50"
+                  />
+                </div>
+                <select
+                  value={filterStatus}
+                  onChange={(e) => setFilterStatus(e.target.value)}
+                  className="rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory"
+                >
+                  <option value="all">Todos los estados</option>
+                  <option value="pending">Pendiente</option>
+                  <option value="approved">Aprobado</option>
+                  <option value="rejected">Rechazado</option>
+                  <option value="rescheduled">Reprogramado</option>
+                </select>
+                <input
+                  type="date"
+                  value={filterDate}
+                  onChange={(e) => setFilterDate(e.target.value)}
+                  className="rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory"
+                  placeholder="Filtrar por fecha"
+                />
+              </div>
+              {filterSearch || filterStatus !== 'all' || filterDate ? (
+                <p className="text-sm text-ivory/70">
+                  Mostrando {filteredConsultations.length} de {consultations.length} solicitudes
+                  {(filterSearch || filterStatus !== 'all' || filterDate) && (
+                    <button
+                      onClick={() => {
+                        setFilterSearch('');
+                        setFilterStatus('all');
+                        setFilterDate('');
+                      }}
+                      className="ml-2 text-gold hover:text-gold/80 underline"
+                    >
+                      Limpiar filtros
+                    </button>
+                  )}
+                </p>
+              ) : null}
+            </div>
+
             {loadingData ? (
               <p className="text-center text-ivory/80">{t("admin.loading")}</p>
-            ) : consultations.length === 0 ? (
-              <p className="text-center text-ivory/80">{t("admin.noConsultations")}</p>
+            ) : filteredConsultations.length === 0 ? (
+              <p className="text-center text-ivory/80">
+                {filterSearch || filterStatus !== 'all'
+                  ? "No se encontraron solicitudes con los filtros aplicados"
+                  : t("admin.noConsultations")
+                }
+              </p>
             ) : (
               <div className="space-y-4">
-                {consultations.map((consultation) => (
+                {filteredConsultations.map((consultation) => (
                   <Reveal key={consultation.id} delay={100} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <h3 className="font-display text-xl font-bold text-gold2">{consultation.full_name}</h3>
                         <p className="mt-1 text-sm text-ivory/80">{consultation.email}</p>
-                        <p className="mt-1 text-sm text-ivory/80">{consultation.whatsapp}</p>
+                        <div className="mt-1 flex items-center gap-2">
+                          <p className="text-sm text-ivory/80">{consultation.whatsapp}</p>
+                          {consultation.whatsapp && (
+                            <a
+                              href={`https://wa.me/${consultation.whatsapp.replace(/[^0-9]/g, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 rounded-full bg-green-500/20 px-2 py-1 text-xs font-medium text-green-400 hover:bg-green-500/30 transition-colors"
+                              title="Contactar por WhatsApp"
+                            >
+                              <MessageCircle className="h-3 w-3" />
+                              <span>WhatsApp</span>
+                            </a>
+                          )}
+                        </div>
                         {consultation.destination_country && (
                           <p className="mt-2 text-sm text-ivory/70">
                             <span className="font-mono text-gold/60">Destino:</span> {consultation.destination_country}
@@ -794,6 +926,16 @@ function AdminDashboard() {
                             </div>
                           </>
                         )}
+                        {consultation.status === 'rejected' && (
+                          <button
+                            onClick={() => handleDelete(consultation.id)}
+                            className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[13px] text-red-400 hover:bg-red-500/10 transition-colors"
+                            title="Eliminar solicitud"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            <span>Eliminar</span>
+                          </button>
+                        )}
                       </div>
                     </div>
                   </Reveal>
@@ -810,17 +952,66 @@ function AdminDashboard() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-display text-xl font-bold text-gold2">{t("admin.paymentProof")}</h3>
               <button
-                onClick={() => setShowProofModal(false)}
+                onClick={() => {
+                  setShowProofModal(false);
+                  setImageZoom(1);
+                  setImageRotation(0);
+                }}
                 className="text-ivory/70 hover:text-ivory"
               >
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <img
-              src={selectedConsultation.payment_proof_url}
-              alt="Payment proof"
-              className="w-full rounded-lg"
-            />
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setImageZoom(prev => Math.min(prev + 0.25, 3))}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                title="Zoom in"
+              >
+                <ZoomIn className="h-4 w-4" />
+                <span>+</span>
+              </button>
+              <button
+                onClick={() => setImageZoom(prev => Math.max(prev - 0.25, 0.5))}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                title="Zoom out"
+              >
+                <ZoomOut className="h-4 w-4" />
+                <span>-</span>
+              </button>
+              <button
+                onClick={() => setImageRotation(prev => prev + 90)}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                title="Rotar"
+              >
+                <RotateCcw className="h-4 w-4" />
+                <span>90°</span>
+              </button>
+              <button
+                onClick={() => {
+                  setImageZoom(1);
+                  setImageRotation(0);
+                }}
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                title="Restablecer"
+              >
+                <span>Reset</span>
+              </button>
+              <span className="text-sm text-ivory/70 ml-auto">
+                {Math.round(imageZoom * 100)}%
+              </span>
+            </div>
+            <div className="overflow-auto max-h-[70vh] flex items-center justify-center bg-navy/50 rounded-lg">
+              <img
+                src={selectedConsultation.payment_proof_url}
+                alt="Payment proof"
+                className="transition-transform duration-200 rounded-lg"
+                style={{
+                  transform: `scale(${imageZoom}) rotate(${imageRotation}deg)`,
+                  transformOrigin: 'center center'
+                }}
+              />
+            </div>
           </div>
         </div>
       )}

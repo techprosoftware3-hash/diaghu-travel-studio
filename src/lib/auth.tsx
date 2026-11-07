@@ -19,7 +19,7 @@ interface AuthContextType {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: AuthError | null }>;
-  signOut: () => Promise<void>;
+  signOut: (isAutoLogout?: boolean) => Promise<void>;
   refreshRole: () => Promise<void>;
 }
 
@@ -30,6 +30,10 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   const [session, setSession] = useState<Session | null>(null);
   const [role, setRole] = useState<UserRole | null>(null);
   const [loading, setLoading] = useState(true);
+  const [lastActivity, setLastActivity] = useState<number>(Date.now());
+
+  // Auto-logout after 1 hour of inactivity
+  const INACTIVITY_TIMEOUT = 60 * 60 * 1000; // 1 hour in milliseconds
 
   useEffect(() => {
     if (!isSupabaseConfigured || !supabase) {
@@ -43,6 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       setUser(session?.user ?? null);
       if (session?.user) {
         fetchUserRole(session.user.id);
+        setLastActivity(Date.now());
       } else {
         setLoading(false);
       }
@@ -56,6 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       setUser(session?.user ?? null);
       if (session?.user) {
         fetchUserRole(session.user.id);
+        setLastActivity(Date.now());
       } else {
         setRole(null);
         setLoading(false);
@@ -64,6 +70,37 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Monitor user activity and auto-logout
+  useEffect(() => {
+    if (!user) return;
+
+    const resetActivityTimer = () => {
+      setLastActivity(Date.now());
+    };
+
+    // Track user activity events
+    const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
+    activityEvents.forEach(event => {
+      window.addEventListener(event, resetActivityTimer);
+    });
+
+    // Check for inactivity every minute
+    const inactivityCheck = setInterval(() => {
+      const timeSinceLastActivity = Date.now() - lastActivity;
+      if (timeSinceLastActivity >= INACTIVITY_TIMEOUT) {
+        console.log('User inactive for 1 hour, signing out...');
+        signOut(true);
+      }
+    }, 60 * 1000); // Check every minute
+
+    return () => {
+      activityEvents.forEach(event => {
+        window.removeEventListener(event, resetActivityTimer);
+      });
+      clearInterval(inactivityCheck);
+    };
+  }, [user, lastActivity]);
 
   const fetchUserRole = async (userId: string) => {
     if (!isSupabaseConfigured || !supabase) {
@@ -140,7 +177,10 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     return { error: null };
   };
 
-  const signOut = async () => {
+  const signOut = async (isAutoLogout = false) => {
+    if (isAutoLogout) {
+      sessionStorage.setItem('autoLoggedOut', 'true');
+    }
     if (isSupabaseConfigured && supabase) {
       await supabase.auth.signOut();
     }

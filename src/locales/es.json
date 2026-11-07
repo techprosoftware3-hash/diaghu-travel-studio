@@ -208,10 +208,15 @@
     "successMessage": "Su pre-consulta ha sido registrada. El administrador revisará su pago y se pondrá en contacto con usted pronto.",
     "successContact": "Para cualquier pregunta, contáctenos al",
     "success": "WhatsApp se ha abierto con su solicitud. Si no aparece nada, autorice las ventanas emergentes o contáctenos al",
+    "pendingRequest": "Solicitud pendiente",
+    "pendingRequestMessage": "Ya tiene una solicitud de pre-consulta en proceso. Por favor espere a que el administrador la apruebe o rechace antes de enviar una nueva.",
+    "pendingRequestNote": "Puede verificar el estado de su solicitud en la sección \"Mis consultas\".",
     "metaTitle": "Preconsulta — DIAGHU Asesor Migratorio",
     "metaDescription": "Primer contacto para entender sus necesidades en materia de visa y asistencia migratoria.",
     "ogTitle": "Preconsulta — DIAGHU",
-    "ogDescription": "Complete el formulario de preconsulta para su primer contacto con DIAGHU."
+    "ogDescription": "Complete el formulario de preconsulta para su primer contacto con DIAGHU.",
+    "validatingImage": "Validando imagen... Por favor espere.",
+    "imageValidationError": "La imagen no parece ser un comprobante de pago válido. Por favor cargue una captura de su recibo o factura."
   },
   "stats": {
     "experience": "Años de experiencia",
@@ -327,7 +332,9 @@
     "paypalDescription": "El costo de la preconsulta es de 50 USD.",
     "paypalButton": "Pagar 50 USD con PayPal",
     "pichinchaButton": "Pagar con Pichincha",
-    "securePayment": "Pago seguro y verificado por Visa, Mastercard, PayPal y más"
+    "securePayment": "Pago seguro y verificado por Visa, Mastercard, PayPal y más",
+    "autoLogoutMessage": "Ha sido desconectado por inactividad.",
+    "autoLogoutTitle": "Desconexión automática"
   },
   "admin": {
     "title": "Administración",
@@ -406,6 +413,9 @@
       "approved": "Aprobado",
       "rejected": "Rechazado",
       "rescheduled": "Reprogramado"
-    }
+    },
+    "congratulationsTitle": "¡Felicidades!",
+    "congratulationsMessage": "Tu solicitud ha sido aprobada. El asesor te contactará en la franja horaria programada.",
+    "advisorWillContact": "El asesor te contactará"
   }
 }

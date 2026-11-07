@@ -208,10 +208,15 @@
     "successMessage": "Pre-konsiltasyon ou anrejistre. Admin a ap revize peman ou epi li ap kontakte ou byento.",
     "successContact": "Pou kesyon nenpòt, kontakte nou nan",
     "success": "WhatsApp louvri ak demann ou. Si anyen pa parèt, pèmèt fenèt pop-up oswa kontakte nou nan",
+    "pendingRequest": "Demann an tann",
+    "pendingRequestMessage": "Ou deja gen yon demann pre-konsiltasyon an kours. Tanpri tann ke admin a apwouve oswa rejete li anvan ou voye yon lòt.",
+    "pendingRequestNote": "Ou ka verifye eta demann ou nan seksyon \"Konsiltasyon mwen yo\".",
     "metaTitle": "Pre-konsiltasyon — DIAGHU Asesor Migratorio",
     "metaDescription": "Premye kontak pou konprann bezwen ou nan viza ak asistans migratwa.",
     "ogTitle": "Pre-konsiltasyon — DIAGHU",
-    "ogDescription": "Ranpli fòmilè pre-konsiltasyon an pou premye kontak ou ak DIAGHU."
+    "ogDescription": "Ranpli fòmilè pre-konsiltasyon an pou premye kontak ou ak DIAGHU.",
+    "validatingImage": "Validasyon imaj a... Tanpri tann.",
+    "imageValidationError": "Imaj la sanble pa yon resevwa peman valid. Tanpri chaje yon kapti nan resevwa ou oswa fakti ou."
   },
   "stats": {
     "experience": "Lane eksperyans",
@@ -327,7 +332,9 @@
     "paypalDescription": "Kòt pre-konsiltasyon an se 50 USD.",
     "paypalButton": "Peye 50 USD ak PayPal",
     "pichinchaButton": "Peye ak Pichincha",
-    "securePayment": "Peye ki sekirize ak verifie pa Visa, Mastercard, PayPal ak plis"
+    "securePayment": "Peye ki sekirize ak verifie pa Visa, Mastercard, PayPal ak plis",
+    "autoLogoutMessage": "Ou te dekonekte paske ou pa te aktif.",
+    "autoLogoutTitle": "Dekoneksyon otomatik"
   },
   "admin": {
     "title": "Administasyon",
@@ -406,6 +413,9 @@
       "approved": "Apwouve",
       "rejected": "Rejte",
       "rescheduled": "Repwogram"
-    }
+    },
+    "congratulationsTitle": "Brikaj!",
+    "congratulationsMessage": "Demann ou apwouve. Konsèye a pral kontakte ou nan lè ou chwazi a.",
+    "advisorWillContact": "Konsèye a pral kontakte ou"
   }
 }

@@ -208,10 +208,15 @@
     "successMessage": "Votre pré-consultation a été enregistrée. L'administrateur va examiner votre paiement et vous contactera bientôt.",
     "successContact": "Pour toute question, contactez-nous au",
     "success": "WhatsApp s'est ouvert avec votre demande. Si rien ne s'affiche, autorisez les fenêtres pop-up ou contactez-nous au",
+    "pendingRequest": "Demande en attente",
+    "pendingRequestMessage": "Vous avez déjà une demande de pré-consultation en cours. Veuillez attendre que l'administrateur l'approuve ou la rejete avant d'en soumettre une nouvelle.",
+    "pendingRequestNote": "Vous pouvez vérifier l'état de votre demande dans la section \"Mes consultations\".",
     "metaTitle": "Préconsultation — DIAGHU Asesor Migratorio",
     "metaDescription": "Premier contact pour comprendre vos besoins en matière de visa et d'assistance migratoire.",
     "ogTitle": "Préconsultation — DIAGHU",
-    "ogDescription": "Remplissez le formulaire de préconsultation pour votre premier contact avec DIAGHU."
+    "ogDescription": "Remplissez le formulaire de préconsultation pour votre premier contact avec DIAGHU.",
+    "validatingImage": "Validation de l'image... Veuillez patienter.",
+    "imageValidationError": "L'image ne semble pas être un reçu de paiement valide. Veuillez charger une capture de votre reçu ou facture."
   },
   "stats": {
     "experience": "Ans d'expérience",
@@ -327,7 +332,9 @@
     "paypalDescription": "Le coût de la préconsultation est de 50 USD.",
     "paypalButton": "Payer 50 USD avec PayPal",
     "pichinchaButton": "Payer avec Pichincha",
-    "securePayment": "Paiement sécurisé et vérifié par Visa, Mastercard, PayPal et plus"
+    "securePayment": "Paiement sécurisé et vérifié par Visa, Mastercard, PayPal et plus",
+    "autoLogoutMessage": "Vous avez été déconnecté pour inactivité.",
+    "autoLogoutTitle": "Déconnexion automatique"
   },
   "admin": {
     "title": "Administration",
@@ -406,6 +413,9 @@
       "approved": "Approuvé",
       "rejected": "Rejeté",
       "rescheduled": "Reprogrammé"
-    }
+    },
+    "congratulationsTitle": "Félicitations !",
+    "congratulationsMessage": "Votre demande a été approuvée. Le conseiller vous contactera dans le créneau horaire programmé.",
+    "advisorWillContact": "Le conseiller vous contactera"
   }
 }

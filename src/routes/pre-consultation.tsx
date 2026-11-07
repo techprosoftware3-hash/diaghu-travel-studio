@@ -11,6 +11,7 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
 import { BTN_GOLD, FIELD, LABEL } from "@/lib/styles";
 import { SITE, whatsappLink } from "@/lib/site";
+import { validatePaymentProof } from "@/lib/image-validation";
 
 const PAYPAL_EMAIL = import.meta.env['VITE_PAYPAL_EMAIL'] || 'your-paypal-business-email@example.com';
 
@@ -64,10 +65,27 @@ function PreConsultation() {
   const [authTab, setAuthTab] = useState<'login' | 'register'>('register');
   const [availableSlots, setAvailableSlots] = useState<AppointmentSlot[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
+  const [hasPendingConsultation, setHasPendingConsultation] = useState(false);
+  const [checkingPending, setCheckingPending] = useState(false);
+  const [validatingImage, setValidatingImage] = useState(false);
 
   useEffect(() => {
     fetchAvailableSlots();
-  }, []);
+    if (user) {
+      checkPendingConsultation();
+    }
+  }, [user]);
+
+  // Refresh pending check when component gains focus (user returns from my-consultations)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (user) {
+        checkPendingConsultation();
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [user]);
 
   const fetchAvailableSlots = async () => {
     setLoadingSlots(true);
@@ -96,6 +114,29 @@ function PreConsultation() {
     }
   };
 
+  const checkPendingConsultation = async () => {
+    if (!user) return;
+    setCheckingPending(true);
+    try {
+      const { data, error } = await supabase
+        .from('pre_consultations')
+        .select('status')
+        .eq('user_id', user.id)
+        .in('status', ['pending', 'rescheduled'])
+        .limit(1);
+
+      if (error) {
+        console.error('Error checking pending consultation:', error);
+      } else {
+        setHasPendingConsultation(data && data.length > 0);
+      }
+    } catch (err) {
+      console.error('Error checking pending consultation:', err);
+    } finally {
+      setCheckingPending(false);
+    }
+  };
+
   const update = (key: keyof FormState, value: string | File | null) => {
     setForm((f) => ({ ...f, [key]: value }));
     setSent(false);
@@ -107,6 +148,12 @@ function PreConsultation() {
     // Check if user is authenticated
     if (!user) {
       setShowAuthModal(true);
+      return;
+    }
+
+    // Check if user has a pending consultation
+    if (hasPendingConsultation) {
+      setError(t("preConsultation.pendingRequestMessage"));
       return;
     }
 
@@ -219,10 +266,31 @@ function PreConsultation() {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      update('paymentProof', file);
+      setValidatingImage(true);
+      setError("");
+      
+      try {
+        const validation = await validatePaymentProof(file);
+        
+        if (!validation.isValid) {
+          setError(validation.message);
+          // Clear the file input
+          e.target.value = '';
+          setValidatingImage(false);
+          return;
+        }
+        
+        update('paymentProof', file);
+      } catch (error) {
+        console.error('Error validating image:', error);
+        setError("Error al validar la imagen. Por favor inténtelo de nuevo.");
+        e.target.value = '';
+      } finally {
+        setValidatingImage(false);
+      }
     }
   };
 
@@ -256,10 +324,30 @@ function PreConsultation() {
         <div className="grid gap-6 md:gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <Reveal delay={140}>
-              <form
-                onSubmit={onSubmit}
-                className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6 sm:p-8 md:p-10"
-              >
+              {hasPendingConsultation ? (
+                <div className="rounded-[18px] border border-yellow-500/40 bg-yellow-500/10 p-6 sm:p-8 md:p-10">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-deep">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-yellow-400 mb-2">{t("preConsultation.pendingRequest")}</h4>
+                      <p className="text-sm text-ivory/90 leading-relaxed">
+                        {t("preConsultation.pendingRequestMessage")}
+                      </p>
+                      <p className="mt-3 text-xs text-muted">
+                        {t("preConsultation.pendingRequestNote")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <form
+                  onSubmit={onSubmit}
+                  className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6 sm:p-8 md:p-10"
+                >
                 <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                   <div>
                     <label className={LABEL} htmlFor="name">
@@ -374,7 +462,13 @@ function PreConsultation() {
                       accept="image/*,.pdf"
                       className={`${FIELD} mt-2`}
                       onChange={handleFileChange}
+                      disabled={validatingImage}
                     />
+                    {validatingImage && (
+                      <p className="mt-2 text-xs text-gold animate-pulse">
+                        Validando imagen... Por favor espere.
+                      </p>
+                    )}
                     <p className="mt-1 text-xs text-muted">{t("preConsultation.paymentProofHint")}</p>
                     <p className="mt-2 text-xs text-gold2">
                       {t("preConsultation.paymentMandatory")}
@@ -415,6 +509,7 @@ function PreConsultation() {
                   </button>
                 </div>
               </form>
+              )}
             </Reveal>
           </div>
 
