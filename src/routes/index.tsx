@@ -33,60 +33,48 @@ function Index() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  const services = [
+  const visaCountries = [
+    { name: t("servicesPage.guyana"), flag: "gy" },
+    { name: t("servicesPage.schengen"), flag: "eu" },
+    { name: t("servicesPage.brazil"), flag: "br" },
+    { name: t("servicesPage.chile"), flag: "cl" },
+    { name: t("servicesPage.ecuador"), flag: "ec" },
+    { name: t("servicesPage.mexico"), flag: "mx" },
+    { name: t("servicesPage.argentina"), flag: "ar" },
+    { name: t("servicesPage.colombia"), flag: "co" },
+    { name: t("servicesPage.antilles"), flag: "ai" },
+  ];
+
+  const mainServices = [
     {
-      num: "01",
-      title: t("services.01.title"),
-      body: t("services.01.body"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦", "🇧🇷", "🇪🇨", "🇵🇦"],
+      id: "visas",
+      title: t("servicesPage.visaSection"),
+      description: t("servicesPage.visaDescription"),
+      icon: "🌍",
     },
     {
-      num: "02",
-      title: t("services.02.title"),
-      body: t("services.02.body"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
+      id: "familial",
+      title: t("servicesPage.familialSection"),
+      description: t("servicesPage.familialDescription"),
+      icon: "👨‍👩‍👧‍👦",
     },
     {
-      num: "03",
-      title: t("services.03.title"),
-      body: t("services.03.body"),
-      flags: ["🌍"],
+      id: "documents",
+      title: t("servicesPage.documentsSection"),
+      description: t("servicesPage.documentsDescription"),
+      icon: "📄",
     },
     {
-      num: "04",
-      title: t("services.04.title"),
-      body: t("services.04.body"),
-      flags: ["📄"],
+      id: "asile",
+      title: t("servicesPage.asileSection"),
+      description: t("servicesPage.asileDescription"),
+      icon: "🏠",
     },
     {
-      num: "05",
-      title: t("services.05.title"),
-      body: t("services.05.body"),
-      flags: ["🇨🇦"],
-    },
-    {
-      num: "06",
-      title: t("services.06.title"),
-      body: t("services.06.body"),
-      flags: ["🇺🇸"],
-    },
-    {
-      num: "07",
-      title: t("services.07.title"),
-      body: t("services.07.body"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
-    },
-    {
-      num: "08",
-      title: t("services.08.title"),
-      body: t("services.08.body"),
-      flags: ["🌐"],
-    },
-    {
-      num: "09",
-      title: t("services.09.title"),
-      body: t("services.09.body"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸"],
+      id: "voyage",
+      title: t("servicesPage.voyageSection"),
+      description: t("servicesPage.voyageDescription"),
+      icon: "✈️",
     },
   ];
 
@@ -125,22 +113,22 @@ function Index() {
               </h1>
             </Reveal>
             <Reveal delay={220}>
-              <div className="mt-6 flex items-center gap-4 overflow-hidden">
-                <p className="text-balance font-display text-2xl text-ivory italic md:text-3xl">
+              <div className="mt-6 flex items-center gap-3 sm:gap-4 overflow-hidden">
+                <p className="text-balance font-display text-xl sm:text-2xl text-ivory italic md:text-3xl">
                   {t("site.tagline1")}
                 </p>
                 <img
                   src="https://www.pngarts.com/files/1/Globe-PNG-Background-Image.png"
                   alt="Travel icon"
-                  className="h-14 rotate-slow"
+                  className="h-10 sm:h-12 md:h-14 rotate-slow"
                 />
               </div>
             </Reveal>
             <Reveal delay={300}>
-              <p className="mt-3 font-display text-lg text-muted italic">{t("site.tagline2")}</p>
+              <p className="mt-3 font-display text-base sm:text-lg text-muted italic">{t("site.tagline2")}</p>
             </Reveal>
             <Reveal delay={380}>
-              <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-ivory/85 text-pretty">
+              <p className="mt-6 max-w-[46ch] text-[13px] sm:text-[15px] leading-relaxed text-ivory/85 text-pretty">
                 {t("site.heroDescription")}
               </p>
             </Reveal>
@@ -175,36 +163,66 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-6 md:py-8">
-        <div className="grid gap-5 md:grid-cols-4">
-          {services.map((service, i) => (
-            <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
-              <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>
-              <h3 className="mt-4 font-display text-xl font-bold text-gold2">{service.title}</h3>
-              <div className="mt-2 flex flex-wrap gap-1 text-2xl">
-                {service.flags.map((flag, idx) => (
-                  <span key={idx} className="transform hover:scale-125 transition-transform">
-                    {flag}
-                  </span>
-                ))}
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-6 md:px-6 md:py-8">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {mainServices.map((service, i) => (
+            <Reveal key={service.id} delay={120 + i * 60} className={CARD}>
+              <div className="flex flex-col h-full">
+                <div className="text-2xl sm:text-3xl mb-2">{service.icon}</div>
+                <h3 className="font-display text-base sm:text-lg font-bold text-gold2">{service.title}</h3>
+                <p className="mt-2 text-[11px] sm:text-xs leading-relaxed text-ivory/90 text-pretty">
+                  {service.description}
+                </p>
+                <a
+                  href="/pre-consultation"
+                  className="mt-auto inline-flex items-center justify-center rounded-md bg-gold px-3 py-1.5 text-[11px] sm:text-xs font-medium text-deep transition-colors hover:bg-gold/90"
+                >
+                  {t("servicesPage.requestConsultation")}
+                </a>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-ivory/80 text-pretty">
-                {service.body}
-              </p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Visa Countries Section */}
+      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+        <Reveal delay={60}>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gold2 mb-6 md:mb-8">{t("servicesPage.visaCountriesTitle")}</h2>
+        </Reveal>
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {visaCountries.map((country, i) => (
+            <Reveal key={country.name} delay={120 + i * 60} className={CARD}>
+              <div className="flex flex-col h-full">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <img
+                    src={`https://flagcdn.com/w80/${country.flag}.png`}
+                    alt={country.name}
+                    className="h-10 sm:h-12 w-auto rounded-sm"
+                  />
+                  <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-gold2">{country.name}</h3>
+                </div>
+                <a
+                  href="/pre-consultation"
+                  className="mt-auto inline-flex items-center justify-center rounded-md bg-gold px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-deep transition-colors hover:bg-gold/90"
+                >
+                  {t("servicesPage.requestConsultation")}
+                </a>
+              </div>
             </Reveal>
           ))}
         </div>
       </section>
 
       <section className="border-y border-gold/15 bg-navy">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 py-6 text-center md:gap-8 md:py-8 md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center sm:gap-6 sm:px-6 md:gap-8 md:py-8 md:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={100 + i * 60}>
-              <div className="font-display text-5xl font-black text-gold2">
+              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-gold2">
                 {stat.value}
                 {stat.suffix && <span className="text-gold">{stat.suffix}</span>}
               </div>
-              <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+              <div className="mt-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted">
                 {stat.label}
               </div>
             </Reveal>

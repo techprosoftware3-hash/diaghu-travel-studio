@@ -22,6 +22,19 @@ export const Route = createFileRoute("/services")({
 function Services() {
   const { t } = useTranslation();
 
+  const renderFlag = (flag: string) => {
+    if (flag === "world") return <span className="text-2xl">🌍</span>;
+    if (flag === "document") return <span className="text-2xl">📄</span>;
+    if (flag === "globe") return <span className="text-2xl">🌐</span>;
+    return (
+      <img
+        src={`https://flagcdn.com/w40/${flag}.png`}
+        alt={flag}
+        className="h-6 w-auto transform hover:scale-125 transition-transform rounded-sm"
+      />
+    );
+  };
+
   const servicesImages: MediaItem[] = [
     {
       type: 'image',
@@ -95,69 +108,48 @@ function Services() {
     }
   ];
 
-  const services = [
+  const visaCountries = [
+    { name: t("servicesPage.guyana"), flag: "gy" },
+    { name: t("servicesPage.schengen"), flag: "eu" },
+    { name: t("servicesPage.brazil"), flag: "br" },
+    { name: t("servicesPage.chile"), flag: "cl" },
+    { name: t("servicesPage.ecuador"), flag: "ec" },
+    { name: t("servicesPage.mexico"), flag: "mx" },
+    { name: t("servicesPage.argentina"), flag: "ar" },
+    { name: t("servicesPage.colombia"), flag: "co" },
+    { name: t("servicesPage.antilles"), flag: "ai" },
+  ];
+
+  const mainServices = [
     {
-      num: "01",
-      title: t("services.01.title"),
-      description: t("services.01.description"),
-      details: t("services.01.details"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦", "🇧🇷", "🇪🇨", "🇵🇦"],
+      id: "visas",
+      title: t("servicesPage.visaSection"),
+      description: t("servicesPage.visaDescription"),
+      icon: "🌍",
     },
     {
-      num: "02",
-      title: t("services.02.title"),
-      description: t("services.02.description"),
-      details: t("services.02.details"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
+      id: "familial",
+      title: t("servicesPage.familialSection"),
+      description: t("servicesPage.familialDescription"),
+      icon: "👨‍👩‍👧‍👦",
     },
     {
-      num: "03",
-      title: t("services.03.title"),
-      description: t("services.03.description"),
-      details: t("services.03.details"),
-      flags: ["🌍"],
+      id: "documents",
+      title: t("servicesPage.documentsSection"),
+      description: t("servicesPage.documentsDescription"),
+      icon: "📄",
     },
     {
-      num: "04",
-      title: t("services.04.title"),
-      description: t("services.04.description"),
-      details: t("services.04.details"),
-      flags: ["📄"],
+      id: "asile",
+      title: t("servicesPage.asileSection"),
+      description: t("servicesPage.asileDescription"),
+      icon: "🏠",
     },
     {
-      num: "05",
-      title: t("services.05.title"),
-      description: t("services.05.description"),
-      details: t("services.05.details"),
-      flags: ["🇨🇦"],
-    },
-    {
-      num: "06",
-      title: t("services.06.title"),
-      description: t("services.06.description"),
-      details: t("services.06.details"),
-      flags: ["🇺🇸"],
-    },
-    {
-      num: "07",
-      title: t("services.07.title"),
-      description: t("services.07.description"),
-      details: t("services.07.details"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸", "🇨🇦"],
-    },
-    {
-      num: "08",
-      title: t("services.08.title"),
-      description: t("services.08.description"),
-      details: t("services.08.details"),
-      flags: ["🌐"],
-    },
-    {
-      num: "09",
-      title: t("services.09.title"),
-      description: t("services.09.description"),
-      details: t("services.09.details"),
-      flags: ["🇫🇷", "🇪🇸", "🇺🇸"],
+      id: "voyage",
+      title: t("servicesPage.voyageSection"),
+      description: t("servicesPage.voyageDescription"),
+      icon: "✈️",
     },
   ];
 
@@ -200,25 +192,53 @@ function Services() {
 
       <FlightPath codes="PAP · VISA · ASSISTANCE · ACHEVEMENT" />
 
-      <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, i) => (
-            <Reveal key={service.num} delay={120 + i * 60} className={CARD}>
-              <div className="font-display text-4xl font-black text-gold/50">{service.num}</div>
-              <h3 className="mt-4 font-display text-xl font-bold text-gold2">{service.title}</h3>
-              <div className="mt-2 flex flex-wrap gap-1 text-2xl">
-                {service.flags.map((flag, idx) => (
-                  <span key={idx} className="transform hover:scale-125 transition-transform">
-                    {flag}
-                  </span>
-                ))}
+      {/* Main Services Section */}
+      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {mainServices.map((service, i) => (
+            <Reveal key={service.id} delay={120 + i * 60} className={CARD}>
+              <div className="flex flex-col h-full">
+                <div className="text-2xl sm:text-3xl mb-2">{service.icon}</div>
+                <h3 className="font-display text-base sm:text-lg font-bold text-gold2">{service.title}</h3>
+                <p className="mt-2 text-[11px] sm:text-xs leading-relaxed text-ivory/90 text-pretty">
+                  {service.description}
+                </p>
+                <a
+                  href="/pre-consultation"
+                  className="mt-auto inline-flex items-center justify-center rounded-md bg-gold px-3 py-1.5 text-[11px] sm:text-xs font-medium text-deep transition-colors hover:bg-gold/90"
+                >
+                  {t("servicesPage.requestConsultation")}
+                </a>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-ivory/90 text-pretty">
-                {service.description}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-ivory/70 text-pretty">
-                {service.details}
-              </p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Visa Countries Section */}
+      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+        <Reveal delay={60}>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gold2 mb-6 md:mb-8">{t("servicesPage.visaCountriesTitle")}</h2>
+        </Reveal>
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {visaCountries.map((country, i) => (
+            <Reveal key={country.name} delay={120 + i * 60} className={CARD}>
+              <div className="flex flex-col h-full">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <img
+                    src={`https://flagcdn.com/w80/${country.flag}.png`}
+                    alt={country.name}
+                    className="h-10 sm:h-12 w-auto rounded-sm"
+                  />
+                  <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-gold2">{country.name}</h3>
+                </div>
+                <a
+                  href="/pre-consultation"
+                  className="mt-auto inline-flex items-center justify-center rounded-md bg-gold px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-deep transition-colors hover:bg-gold/90"
+                >
+                  {t("servicesPage.requestConsultation")}
+                </a>
+              </div>
             </Reveal>
           ))}
         </div>

@@ -16,7 +16,7 @@ type FlightPathProps = {
 export function FlightPath({ codes = "🇭🇹 · 🇨🇦 · 🇺🇸 · 🇪🇸 · 🇫🇷 · 🇧🇷 · 🇬🇧 · 🇩🇪 · 🇮🇹 · 🇯🇵 · 🇦🇺 · 🇳🇿", className }: FlightPathProps) {
   return (
     <div className={cn("border-y border-gold/15 bg-navy", className)}>
-      <div className="mx-auto max-w-6xl px-6 py-4">
+      <div className="mx-auto max-w-6xl px-6 py-2">
         <div
           style={{
             backgroundImage: 'url(https://static.depositphotos.com//storage/ai_tools/preview/1024/file_e3e1f65e-7eef-4787-a41a-b995205d0000_6ac39c7e303a71.97879768.png)',
@@ -24,10 +24,10 @@ export function FlightPath({ codes = "🇭🇹 · 🇨🇦 · 🇺🇸 · 🇪�
             backgroundSize: 'contain',
             backgroundPosition: 'center',
           }}
-          className="w-full h-10"
+          className="w-full h-6"
           aria-label="World flags"
         />
-        <div className="relative mt-4 h-8" aria-hidden="true">
+        <div className="relative mt-2 h-6" aria-hidden="true">
           <svg
             className="absolute inset-0 h-full w-full"
             viewBox="0 0 1200 40"

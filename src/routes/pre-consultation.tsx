@@ -20,6 +20,8 @@ type AppointmentSlot = {
   start_time: string;
   end_time: string;
   description: string | null;
+  current_bookings: number;
+  max_bookings: number;
 };
 
 type FormState = {
@@ -113,7 +115,7 @@ function PreConsultation() {
       return;
     }
 
-    if (form.slotId && !form.paymentProof) {
+    if (!form.paymentProof) {
       setError(t("preConsultation.paymentProofRequired"));
       return;
     }
@@ -145,10 +147,6 @@ function PreConsultation() {
 
     try {
       // Upload payment proof to Supabase Storage
-      if (!form.paymentProof) {
-        setError(t("preConsultation.paymentProofRequired"));
-        return;
-      }
       const fileExt = form.paymentProof.name.split('.').pop();
       const fileName = `${user.id}/${Date.now()}.${fileExt}`;
       const { data: uploadData, error: uploadError } = await supabase.storage
@@ -325,8 +323,11 @@ function PreConsultation() {
                       <option value="">{t("preConsultation.selectService")}</option>
                       <option value="tourist_visa">{t("preConsultation.serviceTourist")}</option>
                       <option value="schengen_visa">{t("preConsultation.serviceSchengen")}</option>
+                      <option value="student_visa">{t("preConsultation.serviceStudent")}</option>
+                      <option value="work_visa">{t("preConsultation.serviceWork")}</option>
                       <option value="family_reunion">{t("preConsultation.serviceFamily")}</option>
                       <option value="profile_analysis">{t("preConsultation.serviceProfile")}</option>
+                      <option value="document_translation">{t("preConsultation.serviceTranslation")}</option>
                       <option value="other">{t("preConsultation.serviceOther")}</option>
                     </select>
                   </div>
@@ -360,11 +361,6 @@ function PreConsultation() {
                             </option>
                           ))}
                         </select>
-                        {form.slotId && (
-                          <p className="mt-2 text-xs text-gold2">
-                            {t("preConsultation.slotPaymentRequired")}
-                          </p>
-                        )}
                       </>
                     )}
                   </div>
@@ -380,6 +376,9 @@ function PreConsultation() {
                       onChange={handleFileChange}
                     />
                     <p className="mt-1 text-xs text-muted">{t("preConsultation.paymentProofHint")}</p>
+                    <p className="mt-2 text-xs text-gold2">
+                      {t("preConsultation.paymentMandatory")}
+                    </p>
                   </div>
                 </div>
 
