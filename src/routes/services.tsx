@@ -8,6 +8,7 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { CARD } from "@/lib/styles";
+import { whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -233,12 +234,26 @@ function Services() {
                 <p className="mt-2 text-[11px] sm:text-xs leading-relaxed text-ivory/90 text-pretty">
                   {service.description}
                 </p>
-                <a
-                  href="/pre-consultation"
-                  className="mt-auto inline-flex items-center justify-center rounded-md bg-gold px-3 py-1.5 text-[11px] sm:text-xs font-medium text-deep transition-colors hover:bg-gold/90"
-                >
-                  {t("servicesPage.requestConsultation")}
-                </a>
+                <div className="mt-auto flex flex-col gap-2">
+                  {service.id !== "documents" && service.id !== "archives" && service.id !== "casier" && (
+                    <a
+                      href="/pre-consultation"
+                      className="inline-flex items-center justify-center rounded-md bg-gold px-3 py-1.5 text-[11px] sm:text-xs font-medium text-deep transition-colors hover:bg-gold/90"
+                    >
+                      {t("servicesPage.requestConsultation")}
+                    </a>
+                  )}
+                  {(service.id === "documents" || service.id === "archives" || service.id === "casier") && (
+                    <a
+                      href={whatsappLink(t("contact.whatsappMessage"))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-1.5 text-[11px] sm:text-xs font-medium text-white transition-colors hover:bg-green-700"
+                    >
+                      {t("servicesPage.requestService")}
+                    </a>
+                  )}
+                </div>
               </div>
             </Reveal>
           ))}
