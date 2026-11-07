@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw, Download } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -960,66 +960,90 @@ function AdminDashboard() {
           <div className="max-w-4xl w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-display text-xl font-bold text-gold2">{t("admin.paymentProof")}</h3>
-              <button
-                onClick={() => {
-                  setShowProofModal(false);
-                  setImageZoom(1);
-                  setImageRotation(0);
-                }}
-                className="text-ivory/70 hover:text-ivory"
-              >
-                <X className="h-6 w-6" />
-              </button>
+              <div className="flex items-center gap-2">
+                {selectedConsultation.payment_proof_url?.toLowerCase().endsWith('.pdf') && (
+                  <a
+                    href={selectedConsultation.payment_proof_url}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg p-2 text-gold2 hover:bg-gold/10 transition-all"
+                    title="Download PDF"
+                  >
+                    <Download className="h-5 w-5" />
+                  </a>
+                )}
+                <button
+                  onClick={() => {
+                    setShowProofModal(false);
+                    setImageZoom(1);
+                    setImageRotation(0);
+                  }}
+                  className="text-ivory/70 hover:text-ivory"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
             </div>
-            <div className="flex gap-2 mb-4">
-              <button
-                onClick={() => setImageZoom(prev => Math.min(prev + 0.25, 3))}
-                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
-                title="Zoom in"
-              >
-                <ZoomIn className="h-4 w-4" />
-                <span>+</span>
-              </button>
-              <button
-                onClick={() => setImageZoom(prev => Math.max(prev - 0.25, 0.5))}
-                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
-                title="Zoom out"
-              >
-                <ZoomOut className="h-4 w-4" />
-                <span>-</span>
-              </button>
-              <button
-                onClick={() => setImageRotation(prev => prev + 90)}
-                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
-                title="Rotar"
-              >
-                <RotateCcw className="h-4 w-4" />
-                <span>90°</span>
-              </button>
-              <button
-                onClick={() => {
-                  setImageZoom(1);
-                  setImageRotation(0);
-                }}
-                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
-                title="Restablecer"
-              >
-                <span>Reset</span>
-              </button>
-              <span className="text-sm text-ivory/70 ml-auto">
-                {Math.round(imageZoom * 100)}%
-              </span>
-            </div>
+            {!selectedConsultation.payment_proof_url?.toLowerCase().endsWith('.pdf') && (
+              <div className="flex gap-2 mb-4">
+                <button
+                  onClick={() => setImageZoom(prev => Math.min(prev + 0.25, 3))}
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                  title="Zoom in"
+                >
+                  <ZoomIn className="h-4 w-4" />
+                  <span>+</span>
+                </button>
+                <button
+                  onClick={() => setImageZoom(prev => Math.max(prev - 0.25, 0.5))}
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                  title="Zoom out"
+                >
+                  <ZoomOut className="h-4 w-4" />
+                  <span>-</span>
+                </button>
+                <button
+                  onClick={() => setImageRotation(prev => prev + 90)}
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                  title="Rotar"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                  <span>90°</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setImageZoom(1);
+                    setImageRotation(0);
+                  }}
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-sm text-gold2 hover:bg-gold/10 transition-colors"
+                  title="Restablecer"
+                >
+                  <span>Reset</span>
+                </button>
+                <span className="text-sm text-ivory/70 ml-auto">
+                  {Math.round(imageZoom * 100)}%
+                </span>
+              </div>
+            )}
             <div className="overflow-auto max-h-[70vh] flex items-center justify-center bg-navy/50 rounded-lg">
-              <img
-                src={selectedConsultation.payment_proof_url}
-                alt="Payment proof"
-                className="transition-transform duration-200 rounded-lg"
-                style={{
-                  transform: `scale(${imageZoom}) rotate(${imageRotation}deg)`,
-                  transformOrigin: 'center center'
-                }}
-              />
+              {selectedConsultation.payment_proof_url?.toLowerCase().endsWith('.pdf') ? (
+                <iframe
+                  src={selectedConsultation.payment_proof_url}
+                  className="w-full h-full min-h-[500px] rounded-lg"
+                  title="Payment proof PDF"
+                />
+              ) : (
+                <img
+                  src={selectedConsultation.payment_proof_url}
+                  alt="Payment proof"
+                  className="transition-transform duration-200 rounded-lg"
+                  style={{
+                    transform: `scale(${imageZoom}) rotate(${imageRotation}deg)`,
+                    transformOrigin: 'center center'
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
