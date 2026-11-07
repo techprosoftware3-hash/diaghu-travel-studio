@@ -60,20 +60,20 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg rounded-[24px] bg-gradient-to-br from-navy2 to-navy border border-gold/40 p-8 shadow-2xl animate-in zoom-in-95 duration-200 my-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6 animate-in fade-in duration-200">
+      <div className="relative w-full max-w-md sm:max-w-lg rounded-[20px] sm:rounded-[24px] bg-gradient-to-br from-navy2 to-navy border border-gold/40 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 my-auto max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-gold/10 hover:text-gold2 transition-all"
+          className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-lg p-2 text-muted hover:bg-gold/10 hover:text-gold2 transition-all"
         >
-          <X className="h-6 w-6" />
+          <X className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
 
-        <div className="mb-8">
-          <h2 className="font-display text-3xl font-bold text-gold2 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-gold2 mb-2">
             {tab === 'login' ? t('auth.login') : t('auth.register')}
           </h2>
-          <p className="text-sm text-muted">
+          <p className="text-xs sm:text-sm text-muted">
             {tab === 'login' ? 'Connectez-vous à votre compte' : 'Créez votre compte DIAGHU'}
           </p>
         </div>
