@@ -211,12 +211,20 @@
     "pendingRequest": "Demande en attente",
     "pendingRequestMessage": "Vous avez déjà une demande de pré-consultation en cours. Veuillez attendre que l'administrateur l'approuve ou la rejete avant d'en soumettre une nouvelle.",
     "pendingRequestNote": "Vous pouvez vérifier l'état de votre demande dans la section \"Mes consultations\".",
+    "validation": {
+      "pdf_accepted": "PDF - sera accepté sans validation d'image",
+      "insufficient_text": "L'image semble ne pas contenir suffisamment de texte. Veuillez charger une preuve de paiement valide.",
+      "not_payment_proof": "L'image ne semble pas être une preuve de paiement. Veuillez charger une capture de votre reçu ou facture.",
+      "low_confidence": "L'image n'a pas pu être lue clairement. Veuillez charger une image plus nette du reçu.",
+      "validation_success": "Image validée correctement comme preuve de paiement.",
+      "validation_failed": "L'image n'a pas pu être validée automatiquement. Veuillez vous assurer qu'il s'agit d'une preuve de paiement valide.",
+      "generalError": "Erreur lors de la validation de l'image. Veuillez réessayer."
+    },
     "metaTitle": "Préconsultation — DIAGHU Asesor Migratorio",
     "metaDescription": "Premier contact pour comprendre vos besoins en matière de visa et d'assistance migratoire.",
     "ogTitle": "Préconsultation — DIAGHU",
     "ogDescription": "Remplissez le formulaire de préconsultation pour votre premier contact avec DIAGHU.",
-    "validatingImage": "Validation de l'image... Veuillez patienter.",
-    "imageValidationError": "L'image ne semble pas être un reçu de paiement valide. Veuillez charger une capture de votre reçu ou facture."
+    "validatingImage": "Validation de l'image... Veuillez patienter."
   },
   "stats": {
     "experience": "Ans d'expérience",

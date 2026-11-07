@@ -271,22 +271,22 @@ function PreConsultation() {
     if (file) {
       setValidatingImage(true);
       setError("");
-      
+
       try {
         const validation = await validatePaymentProof(file);
-        
+
         if (!validation.isValid) {
-          setError(validation.message);
+          setError(t(`preConsultation.validation.${validation.errorCode}`));
           // Clear the file input
           e.target.value = '';
           setValidatingImage(false);
           return;
         }
-        
+
         update('paymentProof', file);
       } catch (error) {
         console.error('Error validating image:', error);
-        setError("Error al validar la imagen. Por favor inténtelo de nuevo.");
+        setError(t("preConsultation.validation.generalError"));
         e.target.value = '';
       } finally {
         setValidatingImage(false);

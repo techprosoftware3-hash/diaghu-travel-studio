@@ -3,6 +3,7 @@ import Tesseract from 'tesseract.js';
 export interface ValidationResult {
   isValid: boolean;
   message: string;
+  errorCode?: string;
   confidence: number;
 }
 
@@ -11,7 +12,8 @@ export async function validatePaymentProof(file: File): Promise<ValidationResult
   if (!file.type.startsWith('image/')) {
     return {
       isValid: true,
-      message: 'PDF - se aceptará sin validación de imagen',
+      message: 'pdf_accepted',
+      errorCode: 'pdf_accepted',
       confidence: 0
     };
   }
@@ -63,7 +65,8 @@ export async function validatePaymentProof(file: File): Promise<ValidationResult
     if (wordCount < 5) {
       return {
         isValid: false,
-        message: 'La imagen parece no contener suficiente texto. Por favor cargue un comprobante de pago válido.',
+        message: 'insufficient_text',
+        errorCode: 'insufficient_text',
         confidence
       };
     }
@@ -71,7 +74,8 @@ export async function validatePaymentProof(file: File): Promise<ValidationResult
     if (!hasPrice && !hasKeywords) {
       return {
         isValid: false,
-        message: 'La imagen no parece ser un comprobante de pago. Por favor cargue una captura de su recibo o factura.',
+        message: 'not_payment_proof',
+        errorCode: 'not_payment_proof',
         confidence
       };
     }
@@ -79,14 +83,16 @@ export async function validatePaymentProof(file: File): Promise<ValidationResult
     if (confidence < 50) {
       return {
         isValid: false,
-        message: 'No se pudo leer claramente la imagen. Por favor cargue una imagen más nítida del comprobante.',
+        message: 'low_confidence',
+        errorCode: 'low_confidence',
         confidence
       };
     }
 
     return {
       isValid: true,
-      message: 'Imagen validada correctamente como comprobante de pago.',
+      message: 'validation_success',
+      errorCode: 'validation_success',
       confidence
     };
 
@@ -95,7 +101,8 @@ export async function validatePaymentProof(file: File): Promise<ValidationResult
     // If OCR fails, allow the upload but warn the user
     return {
       isValid: true,
-      message: 'No se pudo validar la imagen automáticamente. Por favor asegúrese de que sea un comprobante de pago válido.',
+      message: 'validation_failed',
+      errorCode: 'validation_failed',
       confidence: 0
     };
   }

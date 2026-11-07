@@ -211,12 +211,20 @@
     "pendingRequest": "Solicitud pendiente",
     "pendingRequestMessage": "Ya tiene una solicitud de pre-consulta en proceso. Por favor espere a que el administrador la apruebe o rechace antes de enviar una nueva.",
     "pendingRequestNote": "Puede verificar el estado de su solicitud en la sección \"Mis consultas\".",
+    "validation": {
+      "pdf_accepted": "PDF - se aceptará sin validación de imagen",
+      "insufficient_text": "La imagen parece no contener suficiente texto. Por favor cargue un comprobante de pago válido.",
+      "not_payment_proof": "La imagen no parece ser un comprobante de pago. Por favor cargue una captura de su recibo o factura.",
+      "low_confidence": "No se pudo leer claramente la imagen. Por favor cargue una imagen más nítida del comprobante.",
+      "validation_success": "Imagen validada correctamente como comprobante de pago.",
+      "validation_failed": "No se pudo validar la imagen automáticamente. Por favor asegúrese de que sea un comprobante de pago válido.",
+      "generalError": "Error al validar la imagen. Por favor inténtelo de nuevo."
+    },
     "metaTitle": "Preconsulta — DIAGHU Asesor Migratorio",
     "metaDescription": "Primer contacto para entender sus necesidades en materia de visa y asistencia migratoria.",
     "ogTitle": "Preconsulta — DIAGHU",
     "ogDescription": "Complete el formulario de preconsulta para su primer contacto con DIAGHU.",
-    "validatingImage": "Validando imagen... Por favor espere.",
-    "imageValidationError": "La imagen no parece ser un comprobante de pago válido. Por favor cargue una captura de su recibo o factura."
+    "validatingImage": "Validando imagen... Por favor espere."
   },
   "stats": {
     "experience": "Años de experiencia",

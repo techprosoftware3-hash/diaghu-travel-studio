@@ -211,12 +211,20 @@
     "pendingRequest": "Demann an tann",
     "pendingRequestMessage": "Ou deja gen yon demann pre-konsiltasyon an kours. Tanpri tann ke admin a apwouve oswa rejete li anvan ou voye yon lòt.",
     "pendingRequestNote": "Ou ka verifye eta demann ou nan seksyon \"Konsiltasyon mwen yo\".",
+    "validation": {
+      "pdf_accepted": "PDF - ap aksepte san validasyon imaj",
+      "insufficient_text": "Imaj la sanble pa gen ase tèks. Tanpri chaje yon previ peman ki valab.",
+      "not_payment_proof": "Imaj la sanble pa se yon previ peman. Tanpri chaje yon kaptir resevwa oswa fakti ou.",
+      "low_confidence": "Imaj la pa ka klèman li. Tanpri chaje yon imaj pi klè nan resevwa a.",
+      "validation_success": "Imaj valide kòrèkteman kòm previ peman.",
+      "validation_failed": "Imaj la pa ka valide otomatikman. Tanpri asire w ke li se yon previ peman ki valab.",
+      "generalError": "Erè pandan validasyon imaj la. Tanpri eseye ankò."
+    },
     "metaTitle": "Pre-konsiltasyon — DIAGHU Asesor Migratorio",
     "metaDescription": "Premye kontak pou konprann bezwen ou nan viza ak asistans migratwa.",
     "ogTitle": "Pre-konsiltasyon — DIAGHU",
     "ogDescription": "Ranpli fòmilè pre-konsiltasyon an pou premye kontak ou ak DIAGHU.",
-    "validatingImage": "Validasyon imaj a... Tanpri tann.",
-    "imageValidationError": "Imaj la sanble pa yon resevwa peman valid. Tanpri chaje yon kapti nan resevwa ou oswa fakti ou."
+    "validatingImage": "Validasyon imaj a... Tanpri tann."
   },
   "stats": {
     "experience": "Lane eksperyans",
