@@ -151,6 +151,18 @@ function Services() {
       description: t("servicesPage.voyageDescription"),
       icon: "✈️",
     },
+    {
+      id: "archives",
+      title: t("servicesPage.archivesSection"),
+      description: t("servicesPage.archivesDescription"),
+      icon: "🗂️",
+    },
+    {
+      id: "casier",
+      title: t("servicesPage.casierSection"),
+      description: t("servicesPage.casierDescription"),
+      icon: "⚖️",
+    },
   ];
 
   return (
@@ -194,7 +206,7 @@ function Services() {
 
       {/* Main Services Section */}
       <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {mainServices.map((service, i) => (
             <Reveal key={service.id} delay={120 + i * 60} className={CARD}>
               <div className="flex flex-col h-full">
