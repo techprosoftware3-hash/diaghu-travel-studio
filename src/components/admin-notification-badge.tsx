@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
 
 export function AdminNotificationBadge() {
   const { user, role } = useAuth();
   const [pendingCount, setPendingCount] = useState(0);
+  const channelRef = useRef<any>(null);
 
   useEffect(() => {
     if (!user || (role !== 'admin' && role !== 'staff')) {
@@ -24,9 +25,11 @@ export function AdminNotificationBadge() {
 
     fetchPendingCount();
 
-    // Subscribe to real-time updates
-    const channel = supabase
-      .channel('pre_consultations_changes')
+    // Subscribe to real-time updates - use a unique channel name to avoid conflicts
+    const channelName = `pre_consultations_changes_${Date.now()}`;
+    const channel = supabase.channel(channelName);
+
+    channel
       .on(
         'postgres_changes',
         {
@@ -37,12 +40,19 @@ export function AdminNotificationBadge() {
         () => {
           fetchPendingCount();
         }
-      );
+      )
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log('Realtime subscription established');
+        }
+      });
 
-    const subscription = channel.subscribe();
+    channelRef.current = channel;
 
     return () => {
-      subscription.then((sub) => sub.unsubscribe());
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current);
+      }
     };
   }, [user, role]);
 
