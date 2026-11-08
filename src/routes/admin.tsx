@@ -412,11 +412,11 @@ function AdminDashboard() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-8">
-        <div className="flex gap-4 mb-8">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+        <div className="flex flex-wrap gap-2 sm:gap-4 mb-8">
           <button
             onClick={() => setActiveTab('consultations')}
-            className={`relative px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`relative flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
               activeTab === 'consultations'
                 ? 'bg-gold text-deep'
                 : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
@@ -433,7 +433,7 @@ function AdminDashboard() {
             <>
               <button
                 onClick={() => setActiveTab('slots')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                   activeTab === 'slots'
                     ? 'bg-gold text-deep'
                     : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
@@ -443,7 +443,7 @@ function AdminDashboard() {
               </button>
               <button
                 onClick={() => setActiveTab('testimonials')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                   activeTab === 'testimonials'
                     ? 'bg-gold text-deep'
                     : 'bg-navy2/40 text-ivory/70 hover:text-ivory'
@@ -457,11 +457,11 @@ function AdminDashboard() {
 
         {activeTab === 'slots' && role === 'admin' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="font-display text-2xl font-bold text-gold2">{t("admin.manageSlots")}</h2>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-gold2">{t("admin.manageSlots")}</h2>
               <button
                 onClick={() => setShowSlotForm(!showSlotForm)}
-                className="flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors"
+                className="flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors w-full sm:w-auto"
               >
                 <Plus className="h-4 w-4" />
                 <span>{t("admin.addSlot")}</span>
@@ -654,11 +654,11 @@ function AdminDashboard() {
 
         {activeTab === 'testimonials' && role === 'admin' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="font-display text-2xl font-bold text-gold2">{t("admin.manageTestimonials")}</h2>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-gold2">{t("admin.manageTestimonials")}</h2>
               <button
                 onClick={() => setShowTestimonialForm(!showTestimonialForm)}
-                className="flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors"
+                className="flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors w-full sm:w-auto"
               >
                 <Plus className="h-4 w-4" />
                 <span>{t("admin.addTestimonial")}</span>
@@ -768,20 +768,20 @@ function AdminDashboard() {
         {activeTab === 'consultations' && (
           <>
             <div className="mb-6 space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1">
                   <input
                     type="text"
                     placeholder="Buscar por nombre, email, WhatsApp, destino o servicio..."
                     value={filterSearch}
                     onChange={(e) => setFilterSearch(e.target.value)}
-                    className="w-full rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory placeholder:text-ivory/50"
+                    className="w-full rounded-lg border border-gold/30 bg-navy px-3 sm:px-4 py-2 text-ivory placeholder:text-ivory/50 text-sm"
                   />
                 </div>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory"
+                  className="rounded-lg border border-gold/30 bg-navy px-3 sm:px-4 py-2 text-ivory text-sm"
                 >
                   <option value="all">Todos los estados</option>
                   <option value="pending">Pendiente</option>
@@ -793,7 +793,7 @@ function AdminDashboard() {
                   type="date"
                   value={filterDate}
                   onChange={(e) => setFilterDate(e.target.value)}
-                  className="rounded-lg border border-gold/30 bg-navy px-4 py-2 text-ivory"
+                  className="rounded-lg border border-gold/30 bg-navy px-3 sm:px-4 py-2 text-ivory text-sm"
                   placeholder="Filtrar por fecha"
                 />
               </div>
@@ -828,13 +828,13 @@ function AdminDashboard() {
             ) : (
               <div className="space-y-4">
                 {filteredConsultations.map((consultation) => (
-                  <Reveal key={consultation.id} delay={100} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
-                    <div className="flex items-start justify-between gap-4">
+                  <Reveal key={consultation.id} delay={100} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="font-display text-xl font-bold text-gold2">{consultation.full_name}</h3>
-                        <p className="mt-1 text-sm text-ivory/80">{consultation.email}</p>
-                        <div className="mt-1 flex items-center gap-2">
-                          <p className="text-sm text-ivory/80">{consultation.whatsapp}</p>
+                        <h3 className="font-display text-lg sm:text-xl font-bold text-gold2">{consultation.full_name}</h3>
+                        <p className="mt-1 text-xs sm:text-sm text-ivory/80 break-all">{consultation.email}</p>
+                        <div className="mt-1 flex items-center gap-2 flex-wrap">
+                          <p className="text-xs sm:text-sm text-ivory/80">{consultation.whatsapp}</p>
                           {consultation.whatsapp && (
                             <a
                               href={`https://wa.me/${consultation.whatsapp.replace(/[^0-9]/g, '')}`}
@@ -849,29 +849,29 @@ function AdminDashboard() {
                           )}
                         </div>
                         {consultation.destination_country && (
-                          <p className="mt-2 text-sm text-ivory/70">
+                          <p className="mt-2 text-xs sm:text-sm text-ivory/70">
                             <span className="font-mono text-gold/60">Destino:</span> {consultation.destination_country}
                           </p>
                         )}
                         {consultation.service_type && (
-                          <p className="mt-1 text-sm text-ivory/70">
+                          <p className="mt-1 text-xs sm:text-sm text-ivory/70">
                             <span className="font-mono text-gold/60">Servicio:</span> {consultation.service_type}
                           </p>
                         )}
                         {consultation.slot_id && consultation.appointment_slots && (
-                          <p className="mt-1 text-sm text-ivory/70">
+                          <p className="mt-1 text-xs sm:text-sm text-ivory/70">
                             <span className="font-mono text-gold/60">Créneau:</span> {new Date(consultation.appointment_slots.slot_date).toLocaleDateString('fr-FR')} {consultation.appointment_slots.start_time}
                           </p>
                         )}
-                        <p className="mt-2 text-xs text-muted">
+                        <p className="mt-2 text-[10px] sm:text-xs text-muted">
                           {t("admin.submitted")}: {new Date(consultation.created_at).toLocaleDateString()}
                         </p>
                         {consultation.scheduled_date && (
-                          <p className="mt-1 text-xs text-muted">
+                          <p className="mt-1 text-[10px] sm:text-xs text-muted">
                             {t("admin.scheduledDate")}: {new Date(consultation.scheduled_date).toLocaleDateString()}
                           </p>
                         )}
-                        <div className="mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium"
+                        <div className="mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] sm:text-xs font-medium"
                           style={{
                             backgroundColor: consultation.status === 'approved' ? 'rgba(34, 197, 94, 0.1)' :
                                            consultation.status === 'rejected' ? 'rgba(239, 68, 68, 0.1)' :
@@ -886,14 +886,14 @@ function AdminDashboard() {
                           {t(`admin.status.${consultation.status}`)}
                         </div>
                       </div>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-row sm:flex-col gap-2 mt-4 sm:mt-0 overflow-x-auto">
                         {consultation.payment_proof_url && (
                           <button
                             onClick={() => {
                               setSelectedConsultation(consultation);
                               setShowProofModal(true);
                             }}
-                            className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+                            className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[12px] sm:text-[13px] text-gold2 hover:bg-gold/10 transition-colors whitespace-nowrap"
                           >
                             <Eye className="h-4 w-4" />
                             <span>{t("admin.viewProof")}</span>
@@ -903,7 +903,7 @@ function AdminDashboard() {
                           <>
                             <button
                               onClick={() => handleApprove(consultation.id)}
-                              className="flex items-center gap-2 rounded border border-green-500/30 px-3 py-2 text-[13px] text-green-400 hover:bg-green-500/10 transition-colors"
+                              className="flex items-center gap-2 rounded border border-green-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-green-400 hover:bg-green-500/10 transition-colors whitespace-nowrap"
                             >
                               <Check className="h-4 w-4" />
                               <span>{t("admin.approve")}</span>
@@ -913,7 +913,7 @@ function AdminDashboard() {
                                 setSelectedRejectId(consultation.id);
                                 setShowRejectModal(true);
                               }}
-                              className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[13px] text-red-400 hover:bg-red-500/10 transition-colors"
+                              className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-red-400 hover:bg-red-500/10 transition-colors whitespace-nowrap"
                             >
                               <X className="h-4 w-4" />
                               <span>{t("admin.reject")}</span>
@@ -923,11 +923,11 @@ function AdminDashboard() {
                                 type="date"
                                 value={rescheduleDate}
                                 onChange={(e) => setRescheduleDate(e.target.value)}
-                                className="rounded border border-gold/30 bg-navy px-2 py-1 text-[13px] text-ivory"
+                                className="rounded border border-gold/30 bg-navy px-2 py-1 text-[12px] sm:text-[13px] text-ivory"
                               />
                               <button
                                 onClick={() => handleReschedule(consultation.id)}
-                                className="flex items-center gap-2 rounded border border-yellow-500/30 px-3 py-2 text-[13px] text-yellow-400 hover:bg-yellow-500/10 transition-colors"
+                                className="flex items-center gap-2 rounded border border-yellow-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-yellow-400 hover:bg-yellow-500/10 transition-colors whitespace-nowrap"
                               >
                                 <Calendar className="h-4 w-4" />
                                 <span>{t("admin.reschedule")}</span>
@@ -938,7 +938,7 @@ function AdminDashboard() {
                         {consultation.status === 'rejected' && (
                           <button
                             onClick={() => handleDelete(consultation.id)}
-                            className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[13px] text-red-400 hover:bg-red-500/10 transition-colors"
+                            className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-red-400 hover:bg-red-500/10 transition-colors whitespace-nowrap"
                             title="Eliminar solicitud"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -956,8 +956,8 @@ function AdminDashboard() {
       </section>
 
       {showProofModal && selectedConsultation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="max-w-4xl w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 sm:p-4">
+          <div className="max-w-4xl w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-4 sm:p-6 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-display text-xl font-bold text-gold2">{t("admin.paymentProof")}</h3>
               <div className="flex items-center gap-2">
@@ -1050,8 +1050,8 @@ function AdminDashboard() {
       )}
 
       {showRejectModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="max-w-md w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-2 sm:p-4">
+          <div className="max-w-md w-full rounded-[18px] border border-gold/25 bg-navy2/40 p-4 sm:p-6 mx-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-display text-xl font-bold text-gold2">{t("admin.rejectReasonTitle")}</h3>
               <button
