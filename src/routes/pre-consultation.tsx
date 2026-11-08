@@ -302,7 +302,7 @@ function PreConsultation() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-8">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 pb-4 sm:pt-6 sm:pb-8">
         <Reveal delay={60}>
           <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-gold">
             {t("preConsultation.title")}
@@ -320,12 +320,12 @@ function PreConsultation() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-10">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-4 sm:py-6 md:py-10">
         <div className="grid gap-6 md:gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <Reveal delay={140}>
               {hasPendingConsultation ? (
-                <div className="rounded-[18px] border border-yellow-500/40 bg-yellow-500/10 p-6 sm:p-8 md:p-10">
+                <div className="rounded-[18px] border border-yellow-500/40 bg-yellow-500/10 p-4 sm:p-6 md:p-8 lg:p-10">
                   <div className="flex items-start gap-3">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-deep">
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -346,7 +346,7 @@ function PreConsultation() {
               ) : (
                 <form
                   onSubmit={onSubmit}
-                  className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6 sm:p-8 md:p-10"
+                  className="rounded-[18px] border border-gold/25 bg-navy2/40 p-4 sm:p-6 md:p-8 lg:p-10"
                 >
                 <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
                   <div>

@@ -8,7 +8,7 @@ import { Reveal } from "./reveal";
 export function CtaSection() {
   const { t } = useTranslation();
   return (
-    <section id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-16 text-center">
+    <section id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-4 sm:px-6 py-8 sm:py-12 md:py-16 text-center">
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
           <div

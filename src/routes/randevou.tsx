@@ -31,7 +31,7 @@ function Randevou() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-20">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-10 md:py-20">
         <div className="grid gap-6 md:gap-10 md:grid-cols-2">
           <div className="md:col-span-1">
             <Reveal delay={240}>

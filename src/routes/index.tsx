@@ -89,7 +89,7 @@ function Index() {
     <div className="min-h-screen bg-deep font-body text-ivory">
       <SiteHeader />
 
-      <section className="relative mx-auto max-w-6xl px-6 pt-2 pb-4 md:pt-4 md:pb-6">
+      <section className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-2 pb-4 md:pt-4 md:pb-6">
         {/* Logo de fondo */}
         <div
           className="absolute inset-0 -z-10 opacity-15 pointer-events-none"
@@ -163,7 +163,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-6 md:px-6 md:py-8">
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-4 sm:py-6 md:px-6 md:py-8">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {mainServices.map((service, i) => (
             <Reveal key={service.id} delay={120 + i * 60} className={CARD}>
@@ -200,7 +200,7 @@ function Index() {
       </section>
 
       {/* Visa Countries Section */}
-      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+      <section className="mx-auto max-w-6xl px-4 py-4 sm:py-6 md:px-6 md:py-8">
         <Reveal delay={60}>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gold2 mb-6 md:mb-8">{t("servicesPage.visaCountriesTitle")}</h2>
         </Reveal>

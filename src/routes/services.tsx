@@ -194,7 +194,7 @@ function Services() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-10 pb-12 md:pt-16 md:pb-20">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-6 pb-8 sm:pt-10 sm:pb-12 md:pt-16 md:pb-20">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
             <Reveal delay={60}>
@@ -215,7 +215,7 @@ function Services() {
           </div>
           <Reveal delay={120}>
             <div className="flex justify-center">
-              <ImageCarousel media={servicesImages} className="h-[504px] w-auto" />
+              <ImageCarousel media={servicesImages} className="h-[350px] sm:h-[504px] w-auto" />
             </div>
           </Reveal>
         </div>
@@ -224,7 +224,7 @@ function Services() {
       <FlightPath codes="PAP · VISA · ASSISTANCE · ACHEVEMENT" />
 
       {/* Main Services Section */}
-      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+      <section className="mx-auto max-w-6xl px-4 py-4 sm:py-6 md:px-6 md:py-8">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {mainServices.map((service, i) => (
             <Reveal key={service.id} delay={120 + i * 60} className={CARD}>
@@ -261,7 +261,7 @@ function Services() {
       </section>
 
       {/* Visa Countries Section */}
-      <section className="mx-auto max-w-6xl px-4 py-6 md:px-6 md:py-8">
+      <section className="mx-auto max-w-6xl px-4 py-4 sm:py-6 md:px-6 md:py-8">
         <Reveal delay={60}>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gold2 mb-6 md:mb-8">{t("servicesPage.visaCountriesTitle")}</h2>
         </Reveal>

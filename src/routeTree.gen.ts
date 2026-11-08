@@ -14,6 +14,7 @@ import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as MyConsultationsRouteImport } from './routes/my-consultations'
 import { Route as PreConsultationRouteImport } from './routes/pre-consultation'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RandevouRouteImport } from './routes/randevou'
 import { Route as ServicesRouteImport } from './routes/services'
 
@@ -42,6 +43,11 @@ const PreConsultationRoute = PreConsultationRouteImport.update({
   path: '/pre-consultation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RandevouRoute = RandevouRouteImport.update({
   id: '/randevou',
   path: '/randevou',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
+  '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
+  '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
+  '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/my-consultations'
     | '/pre-consultation'
+    | '/privacy'
     | '/randevou'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/my-consultations'
     | '/pre-consultation'
+    | '/privacy'
     | '/randevou'
     | '/services'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/my-consultations'
     | '/pre-consultation'
+    | '/privacy'
     | '/randevou'
     | '/services'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   MyConsultationsRoute: typeof MyConsultationsRoute
   PreConsultationRoute: typeof PreConsultationRoute
+  PrivacyRoute: typeof PrivacyRoute
   RandevouRoute: typeof RandevouRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreConsultationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/randevou': {
       id: '/randevou'
       path: '/randevou'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   MyConsultationsRoute: MyConsultationsRoute,
   PreConsultationRoute: PreConsultationRoute,
+  PrivacyRoute: PrivacyRoute,
   RandevouRoute: RandevouRoute,
   ServicesRoute: ServicesRoute,
 }

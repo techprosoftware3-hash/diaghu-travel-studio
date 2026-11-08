@@ -155,7 +155,7 @@ function MyConsultations() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-14">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 pb-10 sm:pt-12 sm:pb-14 md:pt-16 md:pb-14">
         <Reveal delay={60}>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
             {t("myConsultations.title")}
@@ -173,10 +173,10 @@ function MyConsultations() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-8">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-8">
         {consultations.length === 0 ? (
           <Reveal delay={140}>
-            <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-12 text-center">
+            <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-8 sm:p-12 text-center">
               <AlertCircle className="h-16 w-16 text-gold/50 mx-auto mb-4" />
               <p className="text-xl text-muted">{t("myConsultations.noConsultations")}</p>
               <a
@@ -190,8 +190,8 @@ function MyConsultations() {
         ) : (
           <div className="space-y-4">
             {consultations.map((consultation, index) => (
-              <Reveal key={consultation.id} delay={140 + index * 60} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
-                <div className="flex items-start justify-between gap-4">
+              <Reveal key={consultation.id} delay={140 + index * 60} className="rounded-[18px] border border-gold/25 bg-navy2/40 p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                       {getStatusIcon(consultation.status)}
@@ -352,8 +352,8 @@ function MyConsultations() {
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
-                    <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium border ${getStatusColor(consultation.status)}`}>
+                  <div className="flex flex-col sm:items-end items-start gap-2 w-full sm:w-auto">
+                    <div className={`inline-flex items-center gap-2 rounded-full px-3 sm:px-4 py-2 text-xs font-medium border ${getStatusColor(consultation.status)}`}>
                       {t(`myConsultations.status.${consultation.status}`)}
                     </div>
                     {editingId !== consultation.id && (

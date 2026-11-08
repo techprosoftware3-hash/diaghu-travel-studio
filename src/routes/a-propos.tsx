@@ -50,27 +50,27 @@ function APropos() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-4 pb-4 sm:pt-6 sm:pb-6 md:pt-8 md:pb-8">
         <Reveal delay={60}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">
+          <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-gold">
             {t("about.title")}
           </p>
         </Reveal>
         <Reveal delay={140}>
-          <h1 className="mt-5 font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl whitespace-nowrap">
+          <h1 className="mt-4 sm:mt-5 font-display text-3xl sm:text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
             {t("about.heading")}
           </h1>
         </Reveal>
         <Reveal delay={220}>
-          <p className="mt-6 font-display text-2xl text-ivory italic">
+          <p className="mt-4 sm:mt-6 font-display text-lg sm:text-2xl text-ivory italic">
             {t("about.subtitle")}
           </p>
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="grid items-center gap-10 md:grid-cols-12">
-          <div className="md:col-span-5">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pb-8 sm:pb-12 md:pb-16">
+        <div className="grid items-center gap-6 sm:gap-10 md:grid-cols-12">
+          <div className="md:col-span-5 order-2 md:order-1">
             <Reveal delay={200}>
               <div className="aspect-[4/5] w-full overflow-hidden rounded-[18px] bg-navy2 outline-1 -outline-offset-1 outline-gold/10">
                 <img
@@ -84,24 +84,24 @@ function APropos() {
               </div>
             </Reveal>
           </div>
-          <div className="md:col-span-7">
+          <div className="md:col-span-7 order-1 md:order-2">
             <Reveal delay={120}>
-              <p className="text-[15px] leading-relaxed text-ivory/85 text-pretty">
+              <p className="text-[14px] sm:text-[15px] leading-relaxed text-ivory/85 text-pretty">
                 {t("about.description1")}
               </p>
             </Reveal>
             <Reveal delay={200}>
-              <p className="mt-5 text-[15px] leading-relaxed text-ivory/85 text-pretty">
+              <p className="mt-4 sm:mt-5 text-[14px] sm:text-[15px] leading-relaxed text-ivory/85 text-pretty">
                 {t("about.description2")}
               </p>
             </Reveal>
             <Reveal delay={280}>
-              <p className="mt-5 font-display text-lg text-muted italic text-pretty">
+              <p className="mt-4 sm:mt-5 font-display text-base sm:text-lg text-muted italic text-pretty">
                 {t("about.description3")}
               </p>
             </Reveal>
             <Reveal delay={360}>
-              <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-gold/70">
+              <p className="mt-6 sm:mt-8 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gold/70">
                 {t("about.languages")}
               </p>
             </Reveal>
@@ -109,13 +109,13 @@ function APropos() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-5 md:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-8 md:py-12">
+        <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
           {values.map((value, i) => (
             <Reveal key={value.num} delay={120 + i * 60} className={CARD}>
-              <div className="font-display text-4xl font-black text-gold/50">{value.num}</div>
-              <h3 className="mt-4 font-display text-xl font-bold text-gold2">{value.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ivory/80 text-pretty">
+              <div className="font-display text-3xl sm:text-4xl font-black text-gold/50">{value.num}</div>
+              <h3 className="mt-3 sm:mt-4 font-display text-lg sm:text-xl font-bold text-gold2">{value.title}</h3>
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-ivory/80 text-pretty">
                 {value.body}
               </p>
             </Reveal>

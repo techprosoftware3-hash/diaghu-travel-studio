@@ -46,7 +46,7 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section id="testimonials" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-16">
+    <section id="testimonials" className="mx-auto max-w-6xl scroll-mt-20 px-4 sm:px-6 py-8 sm:py-12 md:py-16">
       <Reveal delay={60}>
         <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold text-center">
           {t("testimonials.kicker")}
