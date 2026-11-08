@@ -443,5 +443,27 @@
     "rejectionMessage": "Demann ou rejete. Tanpri gade rezon an anba a.",
     "rejectionReason": "Rezon rejet la",
     "claimEmail": "Pou reklame, voye yon imèl nan"
+  },
+  "cookieConsent": {
+    "message": "Nou itilize cookies pou amelye eksperyans ou. Si ou kontinye navige, ou aksepte itilizasyon nou an nan cookies.",
+    "accept": "Aksepte",
+    "reject": "Refize",
+    "learnMore": "Plis enfòmasyon"
+  },
+  "privacy": {
+    "title": "Konfidansyalite",
+    "heading": "Politik Konfidansyalite",
+    "metaTitle": "Politik Konfidansyalite — DIAGHU",
+    "metaDescription": "Politik konfidansyalite nou ak itilizasyon cookies",
+    "intro": "Nan DIAGHU Asesor Migratorio, nou angaje pwoteje prive ou epi transparan sou kijan nou kolekte, itilize epi pwoteve enfòmasyon pèsonal ou.",
+    "cookiesSection": "Itilizasyon Cookies",
+    "cookiesDescription": "Nou itilize cookies pou amelye eksperyans ou nan sit entènèt nou an. Cookies se ti fichye tèks ki estoke nan aparè ou lè ou vizite sit nou an.",
+    "cookiesEssential": "Cookies esansyèl: Nesesè pou fonksyonman de baz sit la",
+    "cookiesAnalytics": "Cookies analiz: ede nou konprann kijan itilizatè itilize sit nou an",
+    "cookiesPreferences": "Cookies preferans: Sonje paramèt ak preferans ou",
+    "dataSection": "Koleksyon Done",
+    "dataDescription": "Nou kolekte enfòmasyon pèsonl ou bay volontèman tankou non ou, imèl ou nimewo WhatsApp, pou ka ofri sèvis konsèy imigrasyon nou yo.",
+    "contactSection": "Kontak",
+    "contactDescription": "Si ou gen kesyon sou politik konfidansyalite nou an, ou ka kontakte nou nan diaghuasesormigratorio@gmail.com"
   }
 }

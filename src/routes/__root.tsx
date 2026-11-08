@@ -16,6 +16,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { AutoLogoutNotification } from "@/components/auto-logout-notification";
+import { CookieConsent } from "@/components/cookie-consent";
 import { AuthProvider } from "@/lib/auth";
 import i18n from "../lib/i18n";
 
@@ -154,6 +155,7 @@ function RootComponent() {
           <Outlet />
           <WhatsAppFloat />
           <AutoLogoutNotification />
+          <CookieConsent />
         </I18nextProvider>
       </AuthProvider>
     </QueryClientProvider>

@@ -443,5 +443,27 @@
     "rejectionMessage": "Tu solicitud ha sido rechazada. Por favor, revisa el motivo a continuación.",
     "rejectionReason": "Motivo del rechazo",
     "claimEmail": "Para reclamar, envía un correo a"
+  },
+  "cookieConsent": {
+    "message": "Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestro uso de cookies.",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "learnMore": "Leer más"
+  },
+  "privacy": {
+    "title": "Privacidad",
+    "heading": "Política de Privacidad",
+    "metaTitle": "Política de Privacidad — DIAGHU",
+    "metaDescription": "Nuestra política de privacidad y uso de cookies",
+    "intro": "En DIAGHU Asesor Migratorio, nos comprometemos a proteger su privacidad y a ser transparentes sobre cómo recopilamos, utilizamos y protegemos su información personal.",
+    "cookiesSection": "Uso de Cookies",
+    "cookiesDescription": "Utilizamos cookies para mejorar su experiencia en nuestro sitio web. Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita nuestro sitio.",
+    "cookiesEssential": "Cookies esenciales: Necesarias para el funcionamiento básico del sitio",
+    "cookiesAnalytics": "Cookies de análisis: Nos ayudan a entender cómo los usuarios usan nuestro sitio",
+    "cookiesPreferences": "Cookies de preferencias: Recuerdan sus configuraciones y preferencias",
+    "dataSection": "Recopilación de Datos",
+    "dataDescription": "Recopilamos información personal que usted nos proporciona voluntariamente, como su nombre, correo electrónico y número de WhatsApp, para poder ofrecerle nuestros servicios de asesoría migratoria.",
+    "contactSection": "Contacto",
+    "contactDescription": "Si tiene alguna pregunta sobre nuestra política de privacidad, puede contactarnos en diaghuasesormigratorio@gmail.com"
   }
 }

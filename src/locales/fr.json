@@ -443,5 +443,27 @@
     "rejectionMessage": "Votre demande a été rejetée. Veuillez consulter le motif ci-dessous.",
     "rejectionReason": "Motif du rejet",
     "claimEmail": "Pour réclamer, envoyez un email à"
+  },
+  "cookieConsent": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre utilisation des cookies.",
+    "accept": "Accepter",
+    "reject": "Refuser",
+    "learnMore": "En savoir plus"
+  },
+  "privacy": {
+    "title": "Confidentialité",
+    "heading": "Politique de Confidentialité",
+    "metaTitle": "Politique de Confidentialité — DIAGHU",
+    "metaDescription": "Notre politique de confidentialité et utilisation des cookies",
+    "intro": "Chez DIAGHU Asesor Migratorio, nous nous engageons à protéger votre vie privée et à être transparents sur la manière dont nous collectons, utilisons et protégeons vos informations personnelles.",
+    "cookiesSection": "Utilisation des Cookies",
+    "cookiesDescription": "Nous utilisons des cookies pour améliorer votre expérience sur notre site web. Les cookies sont de petits fichiers texte stockés sur votre appareil lorsque vous visitez notre site.",
+    "cookiesEssential": "Cookies essentiels : Nécessaires au fonctionnement de base du site",
+    "cookiesAnalytics": "Cookies d'analyse : Nous aident à comprendre comment les utilisateurs utilisent notre site",
+    "cookiesPreferences": "Cookies de préférences : Mémorisent vos paramètres et préférences",
+    "dataSection": "Collecte de Données",
+    "dataDescription": "Nous collectons des informations personnelles que vous nous fournissez volontairement, telles que votre nom, adresse e-mail et numéro WhatsApp, afin de pouvoir vous offrir nos services de conseil en immigration.",
+    "contactSection": "Contact",
+    "contactDescription": "Si vous avez des questions sur notre politique de confidentialité, vous pouvez nous contacter à diaghuasesormigratorio@gmail.com"
   }
 }
