@@ -1,14 +1,9 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/supabase/client';
 
 // Check if Supabase is configured
-const supabaseUrl = import.meta.env['VITE_SUPABASE_URL'];
-const supabaseAnonKey = import.meta.env['VITE_SUPABASE_ANON_KEY'];
-const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey);
-
-// Create Supabase client
-const supabase = isSupabaseConfigured ? createClient(supabaseUrl, supabaseAnonKey) : null;
+const isSupabaseConfigured = !!import.meta.env['VITE_SUPABASE_URL'] && !!import.meta.env['VITE_SUPABASE_ANON_KEY'];
 
 type UserRole = 'admin' | 'staff' | 'client';
 

@@ -25,7 +25,7 @@ export function AdminNotificationBadge() {
     fetchPendingCount();
 
     // Subscribe to real-time updates
-    const subscription = supabase
+    const channel = supabase
       .channel('pre_consultations_changes')
       .on(
         'postgres_changes',
@@ -37,11 +37,12 @@ export function AdminNotificationBadge() {
         () => {
           fetchPendingCount();
         }
-      )
-      .subscribe();
+      );
+
+    const subscription = channel.subscribe();
 
     return () => {
-      subscription.unsubscribe();
+      subscription.then((sub) => sub.unsubscribe());
     };
   }, [user, role]);
 
