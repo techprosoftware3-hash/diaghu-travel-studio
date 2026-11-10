@@ -74,6 +74,8 @@ export type Database = {
           status: string;
           payment_proof_url: string | null;
           scheduled_date: string | null;
+          fulfillment_status: 'fulfilled' | 'unfulfilled' | null;
+          fulfillment_status_changed_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -89,6 +91,8 @@ export type Database = {
           status?: string;
           payment_proof_url?: string | null;
           scheduled_date?: string | null;
+          fulfillment_status?: 'fulfilled' | 'unfulfilled' | null;
+          fulfillment_status_changed_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -104,6 +108,8 @@ export type Database = {
           status?: string;
           payment_proof_url?: string | null;
           scheduled_date?: string | null;
+          fulfillment_status?: 'fulfilled' | 'unfulfilled' | null;
+          fulfillment_status_changed_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };

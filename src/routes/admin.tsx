@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw, Download } from "lucide-react";
+import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw, Download, Phone, AlertTriangle } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -77,6 +77,7 @@ function AdminDashboard() {
       fetchConsultations();
       fetchSlots();
       fetchTestimonials();
+      checkUnfulfilledConsultations();
     }
   }, [role]);
 
@@ -356,6 +357,45 @@ function AdminDashboard() {
     } else {
       fetchConsultations();
       setRescheduleDate('');
+    }
+  };
+
+  const handleMarkFulfilled = async (id: string) => {
+    const { error } = await supabase.rpc('mark_consultation_fulfilled', {
+      p_consultation_id: id
+    });
+
+    if (error) {
+      console.error('Error marking consultation as fulfilled:', error);
+      alert('Error al marcar como cumplida: ' + error.message);
+    } else {
+      fetchConsultations();
+    }
+  };
+
+  const handleMarkUnfulfilled = async (id: string) => {
+    if (!confirm('¿Está seguro de que desea marcar esta consulta como incumplida? Esto notificará que debe contactar al cliente.')) {
+      return;
+    }
+
+    const { error } = await supabase.rpc('mark_consultation_unfulfilled', {
+      p_consultation_id: id
+    });
+
+    if (error) {
+      console.error('Error marking consultation as unfulfilled:', error);
+      alert('Error al marcar como incumplida: ' + error.message);
+    } else {
+      fetchConsultations();
+    }
+  };
+
+  const checkUnfulfilledConsultations = async () => {
+    const { error } = await supabase.rpc('check_unfulfilled_consultations');
+    if (error) {
+      console.error('Error checking unfulfilled consultations:', error);
+    } else {
+      fetchConsultations();
     }
   };
 
@@ -872,6 +912,21 @@ function AdminDashboard() {
                             {t("admin.scheduledDate")}: {new Date(consultation.scheduled_date).toLocaleDateString()}
                           </p>
                         )}
+                        {consultation.fulfillment_status && (
+                          <div className={`mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] sm:text-xs font-medium ${
+                            consultation.fulfillment_status === 'fulfilled'
+                              ? 'bg-green-500/10 text-green-400'
+                              : 'bg-red-500/10 text-red-400'
+                          }`}>
+                            {consultation.fulfillment_status === 'fulfilled' ? '✓ Cumplida' : '⚠ Incumplida'}
+                          </div>
+                        )}
+                        {consultation.scheduled_date && consultation.status === 'approved' && !consultation.fulfillment_status && new Date(consultation.scheduled_date) < new Date() && (
+                          <div className="mt-2 inline-flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/30 px-3 py-2 text-[10px] sm:text-xs text-red-400">
+                            <AlertTriangle className="h-3 w-3" />
+                            <span>Fecha pasada - Contactar cliente</span>
+                          </div>
+                        )}
                         <div className="mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] sm:text-xs font-medium"
                           style={{
                             backgroundColor: consultation.status === 'approved' ? 'rgba(34, 197, 94, 0.1)' :
@@ -945,6 +1000,36 @@ function AdminDashboard() {
                             <Trash2 className="h-4 w-4" />
                             <span>Eliminar</span>
                           </button>
+                        )}
+                        {(consultation.status === 'approved' || consultation.status === 'rescheduled') && !consultation.fulfillment_status && (
+                          <>
+                            <button
+                              onClick={() => handleMarkFulfilled(consultation.id)}
+                              className="flex items-center gap-2 rounded border border-green-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-green-400 hover:bg-green-500/10 transition-colors whitespace-nowrap"
+                              title="Marcar como cumplida"
+                            >
+                              <Check className="h-4 w-4" />
+                              <span>Cumplida</span>
+                            </button>
+                            <button
+                              onClick={() => handleMarkUnfulfilled(consultation.id)}
+                              className="flex items-center gap-2 rounded border border-red-500/30 px-3 py-2 text-[12px] sm:text-[13px] text-red-400 hover:bg-red-500/10 transition-colors whitespace-nowrap"
+                              title="Marcar como incumplida"
+                            >
+                              <AlertTriangle className="h-4 w-4" />
+                              <span>Incumplida</span>
+                            </button>
+                          </>
+                        )}
+                        {consultation.fulfillment_status === 'unfulfilled' && (
+                          <a
+                            href={`tel:${consultation.whatsapp}`}
+                            className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[12px] sm:text-[13px] text-gold2 hover:bg-gold/10 transition-colors whitespace-nowrap"
+                            title="Llamar al cliente"
+                          >
+                            <Phone className="h-4 w-4" />
+                            <span>Contactar</span>
+                          </a>
                         )}
                       </div>
                     </div>
