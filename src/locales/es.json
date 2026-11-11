@@ -351,9 +351,9 @@
   },
   "admin": {
     "title": "Administración",
-    "heading": "Dashboard Admin",
+    "heading": "DashboardAdmin",
     "subtitle": "Gestione las solicitudes de preconsulta",
-    "metaTitle": "Dashboard Admin — DIAGHU",
+    "metaTitle": "DashboardAdmin — DIAGHU",
     "metaDescription": "Gestión de solicitudes de preconsulta y pagos",
     "loading": "Cargando...",
     "noConsultations": "No hay solicitudes de preconsulta por ahora",

@@ -351,9 +351,9 @@
   },
   "admin": {
     "title": "Administasyon",
-    "heading": "Dashboard Admin",
+    "heading": "DashboardAdmin",
     "subtitle": "Jere demann pre-konsiltasyon yo",
-    "metaTitle": "Dashboard Admin — DIAGHU",
+    "metaTitle": "DashboardAdmin — DIAGHU",
     "metaDescription": "Jesyon demann pre-konsiltasyon ak peman yo",
     "loading": "Chaj...",
     "noConsultations": "Pa gen demann pre-konsiltasyon pou kounye a",
