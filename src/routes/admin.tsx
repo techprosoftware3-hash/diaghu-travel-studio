@@ -453,7 +453,7 @@ function AdminDashboard() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 pb-10 sm:pt-12 sm:pb-14 md:pt-16 md:pb-14">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 pb-2 sm:pt-12 sm:pb-2 md:pt-16 md:pb-2">
         <Reveal delay={140}>
           <h1 className="text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
             {t("admin.heading")}
