@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
@@ -78,16 +78,9 @@ function AdminDashboard() {
       fetchSlots();
       fetchTestimonials();
     }
-  }, [role]);
+  }, [role, fetchConsultations]);
 
-  // Separate effect for checking unfulfilled consultations
-  useEffect(() => {
-    if (role === 'admin' || role === 'staff') {
-      checkUnfulfilledConsultations();
-    }
-  }, [role]);
-
-  const fetchConsultations = useCallback(async () => {
+  const fetchConsultations = async () => {
     const { data, error } = await supabase
       .from('pre_consultations')
       .select('*, appointment_slots(*)')
@@ -99,7 +92,7 @@ function AdminDashboard() {
       setConsultations(data || []);
     }
     setLoadingData(false);
-  }, []);
+  };
 
   const pendingCount = consultations.filter(c => c.status === 'pending').length;
 
@@ -375,7 +368,15 @@ function AdminDashboard() {
       console.error('Error marking consultation as fulfilled:', error);
       alert('Error al marcar como cumplida: ' + error.message);
     } else {
-      fetchConsultations();
+      // Fetch consultations after marking
+      const { data, error: fetchError } = await supabase
+        .from('pre_consultations')
+        .select('*, appointment_slots(*)')
+        .order('created_at', { ascending: false });
+
+      if (!fetchError) {
+        setConsultations(data || []);
+      }
     }
   };
 
@@ -392,18 +393,24 @@ function AdminDashboard() {
       console.error('Error marking consultation as unfulfilled:', error);
       alert('Error al marcar como incumplida: ' + error.message);
     } else {
-      fetchConsultations();
+      // Fetch consultations after marking
+      const { data, error: fetchError } = await supabase
+        .from('pre_consultations')
+        .select('*, appointment_slots(*)')
+        .order('created_at', { ascending: false });
+
+      if (!fetchError) {
+        setConsultations(data || []);
+      }
     }
   };
 
-  const checkUnfulfilledConsultations = useCallback(async () => {
+  const checkUnfulfilledConsultations = async () => {
     const { error } = await supabase.rpc('check_unfulfilled_consultations');
     if (error) {
       console.error('Error checking unfulfilled consultations:', error);
-    } else {
-      fetchConsultations();
     }
-  }, [fetchConsultations]);
+  };
 
   const handleDelete = async (id: string) => {
     console.log('Attempting to delete consultation with ID:', id);
@@ -476,6 +483,20 @@ function AdminDashboard() {
               </span>
             )}
           </button>
+          {activeTab === 'consultations' && (
+            <button
+              onClick={async () => {
+                await checkUnfulfilledConsultations();
+                await fetchConsultations();
+              }}
+              className="flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base bg-navy2/40 text-ivory/70 hover:text-ivory border border-gold/30"
+            >
+              <span className="flex items-center gap-2">
+                <AlertTriangle className="h-4 w-4" />
+                Verificar Incumplidas
+              </span>
+            </button>
+          )}
           {role === 'admin' && (
             <>
               <button
