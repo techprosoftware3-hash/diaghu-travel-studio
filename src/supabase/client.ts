@@ -74,8 +74,10 @@ export type Database = {
           status: string;
           payment_proof_url: string | null;
           scheduled_date: string | null;
+          slot_id: string | null;
           fulfillment_status: 'fulfilled' | 'unfulfilled' | null;
           fulfillment_status_changed_at: string | null;
+          rejection_reason: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -91,8 +93,10 @@ export type Database = {
           status?: string;
           payment_proof_url?: string | null;
           scheduled_date?: string | null;
+          slot_id?: string | null;
           fulfillment_status?: 'fulfilled' | 'unfulfilled' | null;
           fulfillment_status_changed_at?: string | null;
+          rejection_reason?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -108,8 +112,10 @@ export type Database = {
           status?: string;
           payment_proof_url?: string | null;
           scheduled_date?: string | null;
+          slot_id?: string | null;
           fulfillment_status?: 'fulfilled' | 'unfulfilled' | null;
           fulfillment_status_changed_at?: string | null;
+          rejection_reason?: string | null;
           created_at?: string;
           updated_at?: string;
         };
