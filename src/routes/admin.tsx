@@ -453,20 +453,20 @@ function AdminDashboard() {
       </Helmet>
       <SiteHeader />
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 pb-2 sm:pt-12 sm:pb-2 md:pt-16 md:pb-2">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 sm:pt-12 md:pt-16">
         <Reveal delay={140}>
           <h1 className="text-balance font-display text-5xl leading-[0.95] font-black tracking-tight text-gold2 md:text-7xl">
             {t("admin.heading")}
           </h1>
         </Reveal>
         <Reveal delay={220}>
-          <p className="mt-6 font-display text-2xl text-muted italic">
+          <p className="mt-2 font-display text-2xl text-muted italic">
             {t("admin.subtitle")}
           </p>
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-2">
         <div className="flex flex-wrap gap-2 sm:gap-4 mb-8">
           <button
             onClick={() => setActiveTab('consultations')}
