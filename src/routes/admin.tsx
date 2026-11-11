@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
@@ -77,11 +77,17 @@ function AdminDashboard() {
       fetchConsultations();
       fetchSlots();
       fetchTestimonials();
+    }
+  }, [role]);
+
+  // Separate effect for checking unfulfilled consultations
+  useEffect(() => {
+    if (role === 'admin' || role === 'staff') {
       checkUnfulfilledConsultations();
     }
   }, [role]);
 
-  const fetchConsultations = async () => {
+  const fetchConsultations = useCallback(async () => {
     const { data, error } = await supabase
       .from('pre_consultations')
       .select('*, appointment_slots(*)')
@@ -93,7 +99,7 @@ function AdminDashboard() {
       setConsultations(data || []);
     }
     setLoadingData(false);
-  };
+  }, []);
 
   const pendingCount = consultations.filter(c => c.status === 'pending').length;
 
@@ -390,14 +396,14 @@ function AdminDashboard() {
     }
   };
 
-  const checkUnfulfilledConsultations = async () => {
+  const checkUnfulfilledConsultations = useCallback(async () => {
     const { error } = await supabase.rpc('check_unfulfilled_consultations');
     if (error) {
       console.error('Error checking unfulfilled consultations:', error);
     } else {
       fetchConsultations();
     }
-  };
+  }, [fetchConsultations]);
 
   const handleDelete = async (id: string) => {
     console.log('Attempting to delete consultation with ID:', id);
