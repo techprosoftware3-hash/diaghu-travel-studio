@@ -63,6 +63,14 @@ function AdminDashboard() {
     }
   }, [loading, role]);
 
+  useEffect(() => {
+    if (role === 'admin' || role === 'staff') {
+      fetchConsultations();
+      fetchSlots();
+      fetchTestimonials();
+    }
+  }, [role]);
+
   // Show loading state while checking authentication
   if (loading) {
     return (
@@ -71,14 +79,6 @@ function AdminDashboard() {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (role === 'admin' || role === 'staff') {
-      fetchConsultations();
-      fetchSlots();
-      fetchTestimonials();
-    }
-  }, [role]);
 
   const fetchConsultations = async () => {
     const { data, error } = await supabase
