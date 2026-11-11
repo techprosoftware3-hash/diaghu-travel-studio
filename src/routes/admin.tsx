@@ -78,7 +78,7 @@ function AdminDashboard() {
       fetchSlots();
       fetchTestimonials();
     }
-  }, [role, fetchConsultations]);
+  }, [role]);
 
   const fetchConsultations = async () => {
     const { data, error } = await supabase
