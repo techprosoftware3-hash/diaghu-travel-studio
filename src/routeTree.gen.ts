@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AdminStatsRouteImport } from './routes/admin-stats'
 import { Route as MyConsultationsRouteImport } from './routes/my-consultations'
 import { Route as PreConsultationRouteImport } from './routes/pre-consultation'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -31,6 +32,11 @@ const AProposRoute = AProposRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStatsRoute = AdminStatsRouteImport.update({
+  id: '/admin-stats',
+  path: '/admin-stats',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MyConsultationsRoute = MyConsultationsRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
+  '/admin-stats': typeof AdminStatsRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/privacy': typeof PrivacyRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
+  '/admin-stats': typeof AdminStatsRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/privacy': typeof PrivacyRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
+  '/admin-stats': typeof AdminStatsRoute
   '/my-consultations': typeof MyConsultationsRoute
   '/pre-consultation': typeof PreConsultationRoute
   '/privacy': typeof PrivacyRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
+    | '/admin-stats'
     | '/my-consultations'
     | '/pre-consultation'
     | '/privacy'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
+    | '/admin-stats'
     | '/my-consultations'
     | '/pre-consultation'
     | '/privacy'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/admin'
+    | '/admin-stats'
     | '/my-consultations'
     | '/pre-consultation'
     | '/privacy'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AProposRoute: typeof AProposRoute
   AdminRoute: typeof AdminRoute
+  AdminStatsRoute: typeof AdminStatsRoute
   MyConsultationsRoute: typeof MyConsultationsRoute
   PreConsultationRoute: typeof PreConsultationRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-stats': {
+      id: '/admin-stats'
+      path: '/admin-stats'
+      fullPath: '/admin-stats'
+      preLoaderRoute: typeof AdminStatsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/my-consultations': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
   AdminRoute: AdminRoute,
+  AdminStatsRoute: AdminStatsRoute,
   MyConsultationsRoute: MyConsultationsRoute,
   PreConsultationRoute: PreConsultationRoute,
   PrivacyRoute: PrivacyRoute,

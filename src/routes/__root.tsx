@@ -17,6 +17,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { AutoLogoutNotification } from "@/components/auto-logout-notification";
 import { CookieConsent } from "@/components/cookie-consent";
+import { VisitTracker } from "@/components/visit-tracker";
 import { AuthProvider } from "@/lib/auth";
 import i18n from "../lib/i18n";
 
@@ -151,6 +152,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <I18nextProvider i18n={i18n}>
+          <VisitTracker />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <WhatsAppFloat />

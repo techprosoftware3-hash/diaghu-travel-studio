@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { Reveal } from "@/components/reveal";
@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw, Download, Phone, AlertTriangle } from "lucide-react";
+import { Check, X, Calendar, Eye, Plus, Trash2, MessageCircle, ZoomIn, ZoomOut, RotateCcw, Download, Phone, AlertTriangle, BarChart3 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -56,6 +56,7 @@ function AdminDashboard() {
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [rejectReason, setRejectReason] = useState('');
   const [selectedRejectId, setSelectedRejectId] = useState<string | null>(null);
+  const [siteVisits, setSiteVisits] = useState<any[]>([]);
 
   useEffect(() => {
     if (!loading && (role !== 'admin' && role !== 'staff')) {
@@ -68,6 +69,7 @@ function AdminDashboard() {
       fetchConsultations();
       fetchSlots();
       fetchTestimonials();
+      fetchSiteVisits();
     }
   }, [role]);
 
@@ -95,6 +97,16 @@ function AdminDashboard() {
   };
 
   const pendingCount = consultations.filter(c => c.status === 'pending').length;
+
+  // Calculate statistics
+  const totalVisits = siteVisits.length;
+  const visitCountryStats = siteVisits.reduce((acc, visit) => {
+    const country = visit.country || 'Unknown';
+    acc[country] = (acc[country] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const uniqueSessions = new Set(siteVisits.map(v => v.session_id)).size;
 
   const filteredConsultations = consultations.filter(consultation => {
     // Filter by status
@@ -151,6 +163,19 @@ function AdminDashboard() {
       console.error('Error fetching testimonials:', error);
     } else {
       setTestimonials(data || []);
+    }
+  };
+
+  const fetchSiteVisits = async () => {
+    const { data, error } = await supabase
+      .from('site_visits')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching site visits:', error);
+    } else {
+      setSiteVisits(data || []);
     }
   };
 
@@ -464,6 +489,18 @@ function AdminDashboard() {
             {t("admin.subtitle")}
           </p>
         </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-4">
+        <div className="flex justify-end mb-4">
+          <Link
+            to="/admin-stats"
+            className="inline-flex items-center gap-2 rounded-lg bg-gold px-4 py-2 text-deep font-medium hover:bg-gold/90 transition-colors"
+          >
+            <BarChart3 className="h-4 w-4" />
+            <span>{t("admin.viewStats")}</span>
+          </Link>
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-2">
