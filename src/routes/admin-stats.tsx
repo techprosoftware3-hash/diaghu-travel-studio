@@ -126,18 +126,18 @@ function AdminStats() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-4">
-        <div className="rounded-[18px] border-2 border-green-500/50 bg-green-500/10 p-6 mb-6">
+        <div className="rounded-[18px] border-2 border-green-500/50 bg-green-500/10 p-4 mb-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Activity className="text-green-400" size={32} />
+            <div className="flex items-center gap-2">
+              <Activity className="text-green-400" size={20} />
               <div>
-                <h3 className="font-display text-xl font-bold text-green-400">{t("adminStats.liveSessions")}</h3>
-                <p className="text-sm text-green-400/70">{t("adminStats.liveSessionsDesc")}</p>
+                <h3 className="font-display text-sm font-bold text-green-400">{t("adminStats.liveSessions")}</h3>
+                <p className="text-xs text-green-400/70">{t("adminStats.liveSessionsDesc")}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              <p className="text-5xl font-bold text-green-400">{liveSessions}</p>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <p className="text-2xl font-bold text-green-400">{liveSessions}</p>
             </div>
           </div>
         </div>
