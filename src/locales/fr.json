@@ -423,6 +423,8 @@
     "backToAdmin": "Retour à l'Admin",
     "heading": "Statistiques",
     "subtitle": "Statistiques des visites du site web",
+    "liveSessions": "Sessions en Direct",
+    "liveSessionsDesc": "Visiteurs actifs dans les 5 dernières minutes",
     "totalVisits": "Total Visites",
     "uniqueSessions": "Sessions Uniques",
     "countries": "Pays",

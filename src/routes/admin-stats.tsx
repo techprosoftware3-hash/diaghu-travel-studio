@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { ArrowLeft, Users, Globe, TrendingUp, Calendar } from "lucide-react";
+import { ArrowLeft, Users, Globe, TrendingUp, Calendar, Activity } from "lucide-react";
 
 export const Route = createFileRoute("/admin-stats")({
   head: () => ({
@@ -22,6 +22,7 @@ function AdminStats() {
   const { user, role, loading } = useAuth();
   const [siteVisits, setSiteVisits] = useState<any[]>([]);
   const [loadingData, setLoadingData] = useState(true);
+  const [liveSessions, setLiveSessions] = useState(0);
 
   useEffect(() => {
     if (!loading && (role !== 'admin' && role !== 'staff')) {
@@ -34,6 +35,23 @@ function AdminStats() {
       fetchSiteVisits();
     }
   }, [role]);
+
+  // Calculate live sessions (visits in the last 5 minutes)
+  useEffect(() => {
+    const calculateLiveSessions = () => {
+      const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+      const live = siteVisits.filter(
+        v => new Date(v.created_at) > fiveMinutesAgo
+      ).length;
+      setLiveSessions(live);
+    };
+
+    calculateLiveSessions();
+
+    // Update every 30 seconds
+    const interval = setInterval(calculateLiveSessions, 30000);
+    return () => clearInterval(interval);
+  }, [siteVisits]);
 
   if (loading) {
     return (
@@ -108,6 +126,22 @@ function AdminStats() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-4">
+        <div className="rounded-[18px] border-2 border-green-500/50 bg-green-500/10 p-6 mb-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Activity className="text-green-400" size={32} />
+              <div>
+                <h3 className="font-display text-xl font-bold text-green-400">{t("adminStats.liveSessions")}</h3>
+                <p className="text-sm text-green-400/70">{t("adminStats.liveSessionsDesc")}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              <p className="text-5xl font-bold text-green-400">{liveSessions}</p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-6">
             <div className="flex items-center gap-3 mb-2">

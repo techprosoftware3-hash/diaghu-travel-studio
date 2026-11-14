@@ -423,6 +423,8 @@
     "backToAdmin": "Retounen nan Admin",
     "heading": "Estatistik",
     "subtitle": "Estatistik vizit sit entènèt la",
+    "liveSessions": "Sesyon Dirèk",
+    "liveSessionsDesc": "Vizitè aktif nan 5 dènye minit yo",
     "totalVisits": "Total Vizit",
     "uniqueSessions": "Sesyon Inik",
     "countries": "Peyi",
