@@ -13,20 +13,41 @@ export function AdminNotificationBadge() {
     }
 
     const fetchPendingCount = async () => {
-      const { data, error } = await supabase
-        .from('pre_consultations')
-        .select('id')
-        .eq('status', 'pending');
+      // Count pending pre-consultations (only for admin)
+      let preConsultationCount = 0;
+      if (role === 'admin') {
+        const { data: preConsultations, error: preError } = await supabase
+          .from('pre_consultations')
+          .select('id')
+          .eq('status', 'pending');
 
-      if (!error) {
-        setPendingCount(data?.length || 0);
+        if (!preError) {
+          preConsultationCount = preConsultations?.length || 0;
+        }
       }
+
+      // Count escalated chat conversations (only for staff)
+      let chatCount = 0;
+      if (role === 'staff') {
+        const { data: chats, error: chatError } = await supabase
+          .from('chat_conversations')
+          .select('id')
+          .eq('status', 'escalated')
+          .is('escalated_to', null)
+          .not('payment_proof_url', 'is', null);
+
+        if (!chatError) {
+          chatCount = chats?.length || 0;
+        }
+      }
+
+      setPendingCount(preConsultationCount + chatCount);
     };
 
     fetchPendingCount();
 
     // Subscribe to real-time updates - use a unique channel name to avoid conflicts
-    const channelName = `pre_consultations_changes_${Date.now()}`;
+    const channelName = `notifications_changes_${Date.now()}`;
     const channel = supabase.channel(channelName);
 
     channel
@@ -36,6 +57,17 @@ export function AdminNotificationBadge() {
           event: '*',
           schema: 'public',
           table: 'pre_consultations'
+        },
+        () => {
+          fetchPendingCount();
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'chat_conversations'
         },
         () => {
           fetchPendingCount();

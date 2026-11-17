@@ -7,7 +7,7 @@
     "tagline2": "Su viaje comienza aquí.",
     "heroDescription": "Visas, asesoría migratoria y organización de viajes internacionales con el rigor y la discreción de la papelería diplomática. Confidencialidad y claridad en cada trámite.",
     "takeAppointment": "Reservar cita",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Iniciar conversación",
     "trustBadge": "Servicio certificado y seguro",
     "contactUs": "Contacto",
     "login": "Iniciar sesión",
@@ -347,7 +347,15 @@
     "pichinchaButton": "Pagar con Pichincha",
     "securePayment": "Pago seguro y verificado por Visa, Mastercard, PayPal y más",
     "autoLogoutMessage": "Ha sido desconectado por inactividad.",
-    "autoLogoutTitle": "Desconexión automática"
+    "autoLogoutTitle": "Desconexión automática",
+    "invalidCredentials": "Email o contraseña incorrectos",
+    "registrationError": "Error al crear la cuenta. El email podría ya estar registrado.",
+    "whatsapp": "WhatsApp",
+    "phoneRequired": "Por favor ingresa tu número de WhatsApp",
+    "phoneInvalid": "Número de teléfono inválido. Usa formato internacional (+ país)",
+    "activeConversation": "Conversación Activa",
+    "activeConversationMessage": "Ya tienes una conversación activa con un agente. Por favor espera a que el agente complete la conversación antes de crear una nueva solicitud.",
+    "backToChat": "Volver al Chat"
   },
   "admin": {
     "title": "Administración",
@@ -476,6 +484,14 @@
     "accept": "Aceptar",
     "reject": "Rechazar",
     "learnMore": "Leer más"
+  },
+  "lucie": {
+    "chatButton": "Chat con Lucie",
+    "assistantTitle": "Asistente Virtual",
+    "staffTitle": "Agente",
+    "placeholder": "Escribe tu mensaje...",
+    "greeting": "¡Hola! Soy Lucie, tu asistente virtual de DIAGHU. ¿En qué puedo ayudarte hoy con tus consultas migratorias?",
+    "errorMessage": "Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente o contáctanos por WhatsApp."
   },
   "privacy": {
     "title": "Privacidad",

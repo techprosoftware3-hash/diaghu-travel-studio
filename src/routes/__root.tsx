@@ -14,11 +14,13 @@ import { Helmet } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { LucieChat } from "@/components/lucie-chat";
 import { AutoLogoutNotification } from "@/components/auto-logout-notification";
 import { CookieConsent } from "@/components/cookie-consent";
 import { VisitTracker } from "@/components/visit-tracker";
-import { AuthProvider } from "@/lib/auth";
+import { PhoneUpdateModal } from "@/components/phone-update-modal";
+
+import { AuthProvider, useAuth } from "@/lib/auth";
 import i18n from "../lib/i18n";
 
 function NotFoundComponent() {
@@ -145,6 +147,17 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function LucieChatWrapper() {
+  const { role } = useAuth();
+
+  // Don't show LucieChat for staff or admin users
+  if (role === 'staff' || role === 'admin') {
+    return null;
+  }
+
+  return <LucieChat />;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -155,9 +168,10 @@ function RootComponent() {
           <VisitTracker />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
-          <WhatsAppFloat />
+          <LucieChatWrapper />
           <AutoLogoutNotification />
           <CookieConsent />
+          <PhoneUpdateModal />
         </I18nextProvider>
       </AuthProvider>
     </QueryClientProvider>

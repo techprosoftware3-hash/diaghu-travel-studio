@@ -72,8 +72,12 @@ export function ImageCarousel({ className, media = CAROUSEL_MEDIA }: { className
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === currentIndex) {
-          console.log('Playing video at index:', index);
           video.play().catch((err) => {
+            // Ignore browser power-saving restrictions for background videos
+            if (err.name === 'AbortError' && err.message.includes('paused to save power')) {
+              // Silently ignore - this is a browser restriction
+              return;
+            }
             console.error('Error playing video:', err);
           });
         } else {

@@ -16,6 +16,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [num1, setNum1] = useState(0);
@@ -50,7 +51,8 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
     const { error } = await signIn(email, password);
 
     if (error) {
-      setError(error.message);
+      // Show generic error message instead of technical details
+      setError(t('auth.invalidCredentials') || 'Email o contraseña incorrectos');
     } else {
       onClose();
     }
@@ -69,6 +71,20 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
       return;
     }
 
+    if (!phone) {
+      setError(t('auth.phoneRequired') || 'Por favor ingresa tu número de WhatsApp');
+      setLoading(false);
+      return;
+    }
+
+    // Validate phone format (basic validation for international format)
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+      setError(t('auth.phoneInvalid') || 'Número de teléfono inválido. Usa formato internacional (+ país)');
+      setLoading(false);
+      return;
+    }
+
     // Validate math challenge
     const correctAnswer = num1 + num2;
     if (parseInt(userAnswer) !== correctAnswer) {
@@ -78,10 +94,11 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
       return;
     }
 
-    const { error } = await signUp(email, password, fullName);
+    const { error } = await signUp(email, password, fullName, phone);
 
     if (error) {
-      setError(error.message);
+      // Show generic error message instead of technical details
+      setError(t('auth.registrationError') || 'Error al crear la cuenta. El email podría ya estar registrado.');
     } else {
       setWelcomeName(fullName);
       setShowWelcome(true);
@@ -89,6 +106,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
       setEmail('');
       setPassword('');
       setFullName('');
+      setPhone('');
       setUserAnswer('');
     }
 
@@ -214,6 +232,20 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                 placeholder="Votre nom complet"
                 required
               />
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-medium text-ivory">
+                {t('auth.whatsapp')} *
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full rounded-xl border border-gold/30 bg-deep/50 px-4 py-3 text-ivory placeholder:text-muted/50 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
+                placeholder="+509 1234 5678"
+                required
+              />
+              <p className="text-xs text-ivory/50 mt-1">Formato internacional (ej: +509 1234 5678)</p>
             </div>
             <div>
               <label className="mb-2 block text-sm font-medium text-ivory">

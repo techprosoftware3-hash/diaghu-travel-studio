@@ -57,7 +57,7 @@ export const Route = createFileRoute("/pre-consultation")({
 
 function PreConsultation() {
   const { t } = useTranslation();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, hasActiveConversation } = useAuth();
   const [form, setForm] = useState<FormState>(EMPTY);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
@@ -340,6 +340,28 @@ function PreConsultation() {
                       <p className="mt-3 text-xs text-muted">
                         {t("preConsultation.pendingRequestNote")}
                       </p>
+                    </div>
+                  </div>
+                </div>
+              ) : hasActiveConversation ? (
+                <div className="rounded-[18px] border border-orange-500/40 bg-orange-500/10 p-4 sm:p-6 md:p-8 lg:p-10">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-deep">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-orange-400 mb-2">Conversación Activa</h4>
+                      <p className="text-sm text-ivory/90 leading-relaxed">
+                        Ya tienes una conversación activa con un agente. Por favor espera a que el agente complete la conversación antes de crear una nueva solicitud.
+                      </p>
+                      <button
+                        onClick={() => window.location.href = '/'}
+                        className="mt-4 px-4 py-2 bg-gold text-deep rounded-lg font-medium hover:bg-gold/90 transition-colors"
+                      >
+                        Volver al Chat
+                      </button>
                     </div>
                   </div>
                 </div>

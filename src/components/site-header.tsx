@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, LogOut, LogIn, LayoutDashboard } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -47,6 +47,13 @@ export function SiteHeader() {
   const { user, role, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  // Allow opening auth modal from outside components
+  useEffect(() => {
+    const handleOpenAuthModal = () => setShowAuthModal(true);
+    window.addEventListener('openAuthModal', handleOpenAuthModal);
+    return () => window.removeEventListener('openAuthModal', handleOpenAuthModal);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 border-b border-gold/15 bg-navy/85 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-6 md:h-20">
@@ -72,7 +79,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          {user && (role === 'admin' || role === 'staff') && (
+          {user && role === 'admin' && (
             <div className="relative hidden md:flex">
               <Link
                 to="/admin"
@@ -85,9 +92,22 @@ export function SiteHeader() {
               <AdminNotificationBadge />
             </div>
           )}
+          {user && role === 'staff' && (
+            <div className="relative hidden md:flex">
+              <Link
+                to="/staff-dashboard"
+                className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
+                title="Gestionar chat"
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                <span>Gestionar chat</span>
+              </Link>
+              <AdminNotificationBadge />
+            </div>
+          )}
           {user ? (
             <button
-              onClick={signOut}
+              onClick={() => signOut()}
               className="hidden md:flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-[13px] text-gold2 hover:bg-gold/10 transition-colors"
               title={t("site.logout")}
             >
@@ -128,7 +148,7 @@ export function SiteHeader() {
         <nav className="border-t border-gold/15 bg-navy px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3 text-sm">
             <NavLinks />
-            {user && (role === 'admin' || role === 'staff') && (
+            {user && role === 'admin' && (
               <div className="relative">
                 <Link
                   to="/admin"
@@ -140,9 +160,21 @@ export function SiteHeader() {
                 <AdminNotificationBadge />
               </div>
             )}
+            {user && role === 'staff' && (
+              <div className="relative">
+                <Link
+                  to="/staff-dashboard"
+                  className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Gestionar chat</span>
+                </Link>
+                <AdminNotificationBadge />
+              </div>
+            )}
             {user ? (
               <button
-                onClick={signOut}
+                onClick={() => signOut()}
                 className="flex items-center gap-2 rounded border border-gold/30 px-3 py-2 text-gold2 hover:bg-gold/10 transition-colors"
               >
                 <LogOut className="h-4 w-4" />

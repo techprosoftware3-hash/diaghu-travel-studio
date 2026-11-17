@@ -94,9 +94,6 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 pb-8 font-mono text-[11px] uppercase tracking-[0.15em] text-gold/40">
         © {new Date().getFullYear()} {SITE.legalName}
       </div>
-      <div className="relative h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent">
-        <Plane className="absolute top-1/2 -translate-y-1/2 text-gold animate-plane -rotate-90" size={24} />
-      </div>
     </footer>
   );
 }

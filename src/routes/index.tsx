@@ -7,9 +7,11 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TestimonialsSection } from "@/components/testimonials-section";
+import { openLucieChat } from "@/components/lucie-chat";
 import { BTN_GHOST, BTN_GOLD, CARD } from "@/lib/styles";
 import { whatsappLink } from "@/lib/site";
 import emblem from "@/assets/emblem.png";
+import lucieAvatar from "@/assets/lucie-avatar.jpg";
 import { ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -137,14 +139,19 @@ function Index() {
                 <a href="/pre-consultation" className={BTN_GOLD}>
                   {t("site.takeAppointment")}
                 </a>
-                <a
-                  href={whatsappLink(t("contact.whatsappMessage"))}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={openLucieChat}
                   className={BTN_GHOST}
                 >
-                  {t("site.whatsapp")}
-                </a>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={lucieAvatar}
+                      alt="Lucie"
+                      className="h-8 w-8 rounded-full object-cover"
+                    />
+                    {t("site.whatsapp")}
+                  </div>
+                </button>
               </div>
             </Reveal>
             <Reveal delay={520}>
@@ -228,7 +235,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-y border-gold/15 bg-navy">
+      <section className="bg-navy">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center sm:gap-6 sm:px-6 md:gap-8 md:py-8 md:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={100 + i * 60}>

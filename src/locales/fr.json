@@ -7,7 +7,7 @@
     "tagline2": "Votre voyage commence ici.",
     "heroDescription": "Visas, conseil en immigration et organisation de voyages internationaux avec la rigueur et la discrétion de la diplomatie. Confidentialité et clarté à chaque étape.",
     "takeAppointment": "Prendre rendez-vous",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Démarrer une conversation",
     "trustBadge": "Service certifié et sécurisé",
     "contactUs": "Contact",
     "login": "Connexion",
@@ -347,7 +347,15 @@
     "pichinchaButton": "Payer avec Pichincha",
     "securePayment": "Paiement sécurisé et vérifié par Visa, Mastercard, PayPal et plus",
     "autoLogoutMessage": "Vous avez été déconnecté pour inactivité.",
-    "autoLogoutTitle": "Déconnexion automatique"
+    "autoLogoutTitle": "Déconnexion automatique",
+    "invalidCredentials": "Email ou mot de passe incorrect",
+    "registrationError": "Erreur lors de la création du compte. L'email est peut-être déjà enregistré.",
+    "whatsapp": "WhatsApp",
+    "phoneRequired": "Veuillez entrer votre numéro WhatsApp",
+    "phoneInvalid": "Numéro de téléphone invalide. Utilisez le format international (+ pays)",
+    "activeConversation": "Conversation Active",
+    "activeConversationMessage": "Vous avez déjà une conversation active avec un agent. Veuillez attendre que l'agent termine la conversation avant de créer une nouvelle demande.",
+    "backToChat": "Retour au Chat"
   },
   "admin": {
     "title": "Administration",
@@ -476,6 +484,14 @@
     "accept": "Accepter",
     "reject": "Refuser",
     "learnMore": "En savoir plus"
+  },
+  "lucie": {
+    "chatButton": "Chat avec Lucie",
+    "assistantTitle": "Assistante Virtuelle",
+    "staffTitle": "Agent",
+    "placeholder": "Écrivez votre message...",
+    "greeting": "Bonjour! Je suis Lucie, votre assistante virtuelle DIAGHU. Comment puis-je vous aider aujourd'hui avec vos questions d'immigration?",
+    "errorMessage": "Désolé, une erreur s'est produite lors du traitement de votre message. Veuillez réessayer ou contactez-nous via WhatsApp."
   },
   "privacy": {
     "title": "Confidentialité",

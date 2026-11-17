@@ -7,7 +7,7 @@
     "tagline2": "Vwayaj ou kòmanse isit la.",
     "heroDescription": "Visa, konsèy imigrasyon ak òganizasyon vwayaj entènasyonal ak rigè ak diskresyon diplomasi. Konfidansyalite ak klète nan chak etap.",
     "takeAppointment": "Pran randevou",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Kòmanse yon konvèsasyon",
     "trustBadge": "Sèvis sètifize ak sekir",
     "contactUs": "Kontak",
     "login": "Konekte",
@@ -347,7 +347,12 @@
     "pichinchaButton": "Peye ak Pichincha",
     "securePayment": "Peye ki sekirize ak verifie pa Visa, Mastercard, PayPal ak plis",
     "autoLogoutMessage": "Ou te dekonekte paske ou pa te aktif.",
-    "autoLogoutTitle": "Dekoneksyon otomatik"
+    "autoLogoutTitle": "Dekoneksyon otomatik",
+    "invalidCredentials": "Imèl oswa modpas pa kòrèk",
+    "registrationError": "Erè pandan kreyasyon kont lan. Imèl la ka deja anrejistre.",
+    "whatsapp": "WhatsApp",
+    "phoneRequired": "Tanpri antre nimewo WhatsApp ou",
+    "phoneInvalid": "Nimewo telefon pa kòrèk. Itilize fòma entènasyonal (+ peyi)"
   },
   "admin": {
     "title": "Administasyon",
@@ -476,6 +481,13 @@
     "accept": "Aksepte",
     "reject": "Refize",
     "learnMore": "Plis enfòmasyon"
+  },
+  "lucie": {
+    "chatButton": "Chat ak Lucie",
+    "assistantTitle": "Asistan Virtual",
+    "placeholder": "Ekri mesaj ou...",
+    "greeting": "Bonjou! Mwen se Lucie, asistan virtual ou DIAGHU. Kisa mwen ka ede ou jodi a ak kesyon imigrasyon ou?",
+    "errorMessage": "Padon, te yon erè ki fèt lè trete mesaj ou. Tanpri eseye ankò oswa kontakte nou pa WhatsApp."
   },
   "privacy": {
     "title": "Konfidansyalite",
