@@ -14,5 +14,16 @@ export default defineConfig({
   },
   vite: {
     envDir: '.',
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+          // Ignore circular dependency warnings
+          if (warning.code === 'CIRCULAR_DEPENDENCY') {
+            return;
+          }
+          warn(warning);
+        },
+      },
+    },
   },
 });
