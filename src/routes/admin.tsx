@@ -556,6 +556,15 @@ function AdminDashboard() {
               >
                 {t("admin.testimonialsTab")}
               </button>
+              <Link
+                to="/staff-dashboard"
+                className="flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base bg-blue-600 text-white hover:bg-blue-700"
+              >
+                <span className="flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Staff Panel
+                </span>
+              </Link>
             </>
           )}
         </div>
