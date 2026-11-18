@@ -25,7 +25,9 @@ function AdminStats() {
   const [liveSessions, setLiveSessions] = useState(0);
 
   useEffect(() => {
-    if (!loading && (role !== 'admin' && role !== 'staff')) {
+    // Only redirect if we're not loading and the user has a role that's not admin/staff
+    // If role is null but user exists, wait for role to be determined
+    if (!loading && role && role !== 'admin' && role !== 'staff') {
       window.location.href = '/';
     }
   }, [loading, role]);
@@ -59,6 +61,12 @@ function AdminStats() {
         <p>{t("admin.loading")}</p>
       </div>
     );
+  }
+
+  // If not authenticated or not authorized, redirect
+  if (!role || (role !== 'admin' && role !== 'staff')) {
+    window.location.href = '/';
+    return null;
   }
 
   const fetchSiteVisits = async () => {

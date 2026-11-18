@@ -58,8 +58,64 @@ function AdminDashboard() {
   const [selectedRejectId, setSelectedRejectId] = useState<string | null>(null);
   const [siteVisits, setSiteVisits] = useState<any[]>([]);
 
+  const fetchConsultations = async () => {
+    const { data, error } = await supabase
+      .from('pre_consultations')
+      .select('*, appointment_slots(*)')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching consultations:', error);
+    } else {
+      setConsultations(data || []);
+    }
+    setLoadingData(false);
+  };
+
+  const fetchSlots = async () => {
+    const { data, error } = await supabase
+      .from('appointment_slots')
+      .select('*')
+      .order('slot_date', { ascending: true })
+      .order('start_time', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching slots:', error);
+    } else {
+      setSlots(data || []);
+    }
+  };
+
+  const fetchTestimonials = async () => {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching testimonials:', error);
+    } else {
+      setTestimonials(data || []);
+    }
+  };
+
+  const fetchSiteVisits = async () => {
+    const { data, error } = await supabase
+      .from('site_visits')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching site visits:', error);
+    } else {
+      setSiteVisits(data || []);
+    }
+  };
+
   useEffect(() => {
-    if (!loading && (role !== 'admin' && role !== 'staff')) {
+    // Only redirect if we're not loading and the user has a role that's not admin/staff
+    // If role is null but user exists, wait for role to be determined
+    if (!loading && role && role !== 'admin' && role !== 'staff') {
       window.location.href = '/';
     }
   }, [loading, role]);
@@ -82,19 +138,11 @@ function AdminDashboard() {
     );
   }
 
-  const fetchConsultations = async () => {
-    const { data, error } = await supabase
-      .from('pre_consultations')
-      .select('*, appointment_slots(*)')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching consultations:', error);
-    } else {
-      setConsultations(data || []);
-    }
-    setLoadingData(false);
-  };
+  // If not authenticated or not authorized, redirect
+  if (!role || (role !== 'admin' && role !== 'staff')) {
+    window.location.href = '/';
+    return null;
+  }
 
   const pendingCount = consultations.filter(c => c.status === 'pending').length;
 
@@ -138,46 +186,6 @@ function AdminDashboard() {
 
     return true;
   });
-
-  const fetchSlots = async () => {
-    const { data, error } = await supabase
-      .from('appointment_slots')
-      .select('*')
-      .order('slot_date', { ascending: true })
-      .order('start_time', { ascending: true });
-
-    if (error) {
-      console.error('Error fetching slots:', error);
-    } else {
-      setSlots(data || []);
-    }
-  };
-
-  const fetchTestimonials = async () => {
-    const { data, error } = await supabase
-      .from('testimonials')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching testimonials:', error);
-    } else {
-      setTestimonials(data || []);
-    }
-  };
-
-  const fetchSiteVisits = async () => {
-    const { data, error } = await supabase
-      .from('site_visits')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching site visits:', error);
-    } else {
-      setSiteVisits(data || []);
-    }
-  };
 
   const handleAddSlot = async (e: React.FormEvent) => {
     e.preventDefault();

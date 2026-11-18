@@ -18,6 +18,7 @@ import { Route as PreConsultationRouteImport } from './routes/pre-consultation'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RandevouRouteImport } from './routes/randevou'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as StaffDashboardRouteImport } from './routes/staff-dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StaffDashboardRoute = StaffDashboardRouteImport.update({
+  id: '/staff-dashboard',
+  path: '/staff-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
+  '/staff-dashboard': typeof StaffDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
+  '/staff-dashboard': typeof StaffDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/randevou': typeof RandevouRoute
   '/services': typeof ServicesRoute
+  '/staff-dashboard': typeof StaffDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/randevou'
     | '/services'
+    | '/staff-dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/randevou'
     | '/services'
+    | '/staff-dashboard'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/randevou'
     | '/services'
+    | '/staff-dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RandevouRoute: typeof RandevouRoute
   ServicesRoute: typeof ServicesRoute
+  StaffDashboardRoute: typeof StaffDashboardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/staff-dashboard': {
+      id: '/staff-dashboard'
+      path: '/staff-dashboard'
+      fullPath: '/staff-dashboard'
+      preLoaderRoute: typeof StaffDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RandevouRoute: RandevouRoute,
   ServicesRoute: ServicesRoute,
+  StaffDashboardRoute: StaffDashboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
