@@ -100,15 +100,36 @@ function AdminDashboard() {
   };
 
   const fetchSiteVisits = async () => {
-    const { data, error } = await supabase
-      .from('site_visits')
-      .select('*')
-      .order('created_at', { ascending: false });
+    try {
+      let allVisits: any[] = [];
+      let hasMore = true;
+      let from = 0;
+      const pageSize = 1000;
 
-    if (error) {
+      while (hasMore) {
+        const { data, error } = await supabase
+          .from('site_visits')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .range(from, from + pageSize - 1);
+
+        if (error) {
+          console.error('Error fetching site visits:', error);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          allVisits = [...allVisits, ...data];
+          from += pageSize;
+          hasMore = data.length === pageSize;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      setSiteVisits(allVisits);
+    } catch (error) {
       console.error('Error fetching site visits:', error);
-    } else {
-      setSiteVisits(data || []);
     }
   };
 

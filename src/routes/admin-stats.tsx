@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { SiteHeader } from "@/components/site-header";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/supabase/client";
-import { ArrowLeft, Users, Globe, TrendingUp, Calendar, Activity } from "lucide-react";
+import { ArrowLeft, Users, Globe, TrendingUp, Calendar, Activity, Filter } from "lucide-react";
 
 export const Route = createFileRoute("/admin-stats")({
   head: () => ({
@@ -23,6 +23,44 @@ function AdminStats() {
   const [siteVisits, setSiteVisits] = useState<any[]>([]);
   const [loadingData, setLoadingData] = useState(true);
   const [liveSessions, setLiveSessions] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState<string>('all');
+
+  const fetchSiteVisits = async () => {
+    try {
+      let allVisits: any[] = [];
+      let hasMore = true;
+      let from = 0;
+      const pageSize = 1000;
+
+      while (hasMore) {
+        const { data, error } = await supabase
+          .from('site_visits')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .range(from, from + pageSize - 1);
+
+        if (error) {
+          console.error('Error fetching site visits:', error);
+          setLoadingData(false);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          allVisits = [...allVisits, ...data];
+          from += pageSize;
+          hasMore = data.length === pageSize;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      setSiteVisits(allVisits);
+    } catch (error) {
+      console.error('Error fetching site visits:', error);
+    } finally {
+      setLoadingData(false);
+    }
+  };
 
   useEffect(() => {
     // Only redirect if we're not loading and the user has a role that's not admin/staff
@@ -69,44 +107,49 @@ function AdminStats() {
     return null;
   }
 
-  const fetchSiteVisits = async () => {
-    const { data, error } = await supabase
-      .from('site_visits')
-      .select('*')
-      .order('created_at', { ascending: false });
+  // Get available months from visits
+  const availableMonths = Array.from(
+    new Set(
+      siteVisits.map(v => {
+        const date = new Date(v.created_at);
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      })
+    )
+  ).sort().reverse();
 
-    if (error) {
-      console.error('Error fetching site visits:', error);
-    } else {
-      setSiteVisits(data || []);
-    }
-    setLoadingData(false);
-  };
+  // Filter visits by selected month
+  const filteredVisits = selectedMonth === 'all'
+    ? siteVisits
+    : siteVisits.filter(v => {
+        const date = new Date(v.created_at);
+        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        return monthKey === selectedMonth;
+      });
 
-  const totalVisits = siteVisits.length;
-  const uniqueSessions = new Set(siteVisits.map(v => v.session_id)).size;
+  const totalVisits = filteredVisits.length;
+  const uniqueSessions = new Set(filteredVisits.map(v => v.session_id)).size;
 
-  const countryStats = siteVisits.reduce((acc, visit) => {
+  const countryStats = filteredVisits.reduce((acc, visit) => {
     const country = visit.country || 'Unknown';
     acc[country] = (acc[country] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
-  const cityStats = siteVisits.reduce((acc, visit) => {
+  const cityStats = filteredVisits.reduce((acc, visit) => {
     const city = visit.city || 'Unknown';
     acc[city] = (acc[city] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
   // Visits by date (last 7 days)
-  const visitsByDate = siteVisits.reduce((acc, visit) => {
+  const visitsByDate = filteredVisits.reduce((acc, visit) => {
     const date = new Date(visit.created_at).toLocaleDateString();
     acc[date] = (acc[date] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
   // Recent visits
-  const recentVisits = siteVisits.slice(0, 20);
+  const recentVisits = filteredVisits.slice(0, 20);
 
   return (
     <div className="min-h-screen bg-deep font-body text-ivory">
@@ -134,6 +177,40 @@ function AdminStats() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-4">
+        {/* Month Filter */}
+        <div className="rounded-[18px] border border-gold/25 bg-navy2/40 p-4 mb-6">
+          <div className="flex items-center gap-3">
+            <Filter className="text-gold" size={20} />
+            <div className="flex-1">
+              <label className="block text-sm font-medium text-gold2 mb-2">
+                Filtrar por mes
+              </label>
+              <select
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="w-full max-w-xs bg-navy border border-gold/30 rounded-lg px-3 py-2 text-ivory focus:outline-none focus:ring-2 focus:ring-gold/50"
+              >
+                <option value="all">Todos los meses</option>
+                {availableMonths.map(month => {
+                  const [year, monthNum] = month.split('-');
+                  const monthName = new Date(parseInt(year), parseInt(monthNum) - 1).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+                  return (
+                    <option key={month} value={month}>
+                      {monthName.charAt(0).toUpperCase() + monthName.slice(1)}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-ivory/60">
+                {selectedMonth === 'all' ? 'Todas las visitas' : 'Visitas filtradas'}
+              </p>
+              <p className="text-2xl font-bold text-gold">{totalVisits}</p>
+            </div>
+          </div>
+        </div>
+
         <div className="rounded-[18px] border-2 border-green-500/50 bg-green-500/10 p-4 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">

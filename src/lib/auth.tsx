@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, useRef, type ReactNode } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/supabase/client';
-import { hasActiveConversation } from '@/lib/chat-service';
+import { hasActiveConversation as checkActiveConversationFn } from '@/lib/chat-service';
 
 // Check if Supabase is configured
 const isSupabaseConfigured = !!import.meta.env['VITE_SUPABASE_URL'] && !!import.meta.env['VITE_SUPABASE_ANON_KEY'];
@@ -289,7 +289,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   };
 
   const checkActiveConversation = async () => {
-    const hasActive = await hasActiveConversation();
+    const hasActive = await checkActiveConversationFn();
     setHasActiveConversation(hasActive);
   };
 
